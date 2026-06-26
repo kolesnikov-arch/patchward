@@ -8,12 +8,13 @@
 
 ---
 
-## The number nobody benchmarks
+## Benchmarks measure capability. CI needs trust.
 
-AI coding agents are scored on **resolve rate** — how many bugs they fix. Almost
-nobody publishes the number that actually decides whether you can trust an agent in
-your CI: the **false-accept rate** — how often an agent *confidently ships* a fix
-that looks right and silently isn't.
+AI coding agents are scored on **resolve rate** — how many bugs they fix. That's
+**capability**, and most widely-used agent benchmarks measure it. The number that
+actually decides whether you can let an agent into your CI is a different, far
+less-reported one: the **false-accept rate** — how often an agent *confidently ships*
+a fix that looks right and silently isn't.
 
 It gets worse, because agents grade their own homework:
 
@@ -25,9 +26,9 @@ the regression that fires under load.
 
 ## The approach: separate generation from judgement
 
-A probabilistic LLM **proposes**; a deterministic governance layer **decides**.
-Independent gates, not the agent itself, render the verdict — and there are three
-honest outcomes, not a binary pass/fail:
+A probabilistic LLM **proposes**; an independent, deterministic verdict layer
+**decides**. The checks, not the agent itself, render the verdict — and there are
+three honest outcomes, not a binary pass/fail:
 
 - 🟢 **Verified** — independently confirmed (e.g. existing tests pass in an isolated
   container; the change is in scope and doesn't regress).
@@ -45,16 +46,18 @@ render the verdict, not the agent. Most of them don't require executing code, so
 work offline, air-gapped, in any language; an isolated test run is an additional
 confirmation layer when a runtime is available.
 
-The architecture patterns behind this — the governance pipeline and the boundary
-between the model's judgement zone and the deterministic enforcement zone — are
-documented (abstracted, with implementation and tool names stripped) in the
-companion [Verdict Layer Framework](https://github.com/kolesnikov-arch/verdict-layer-framework).
-The specific *tuned* engine that implements them stays private.
+The reasoning behind this — why an independent verdict beats an agent's self-report,
+and why the decision is three-state rather than binary — is documented (abstracted,
+with implementation and tool names stripped) in the companion
+[Verdict Layer Framework](https://github.com/kolesnikov-arch/verdict-layer-framework).
+The specific *tuned* engine that implements it stays private.
 
 ## What's public — and what isn't
 
 **Public:**
 - the concept and the measurement methodology;
+- **[Current Scope & Limitations](CURRENT_SCOPE_AND_LIMITATIONS.md)** — what the measurement
+  does and doesn't yet show (honest by construction; no number claimed until the held-out set);
 - a **reproducible proof-kit** — model predictions + diffs + scoring reports, so you
   can re-run the *scoring* yourself and verify the numbers *(landing as results finalize)*;
 - an **interactive sim** of the gates in action *(coming)*.
@@ -67,8 +70,8 @@ are checkable without handing over the moat.
 ## Status
 
 Pre-release. No headline number is claimed here until it's backed by a published,
-reproducible artifact on a held-out set (honesty over hype). The concept and role
-ontology live in the companion repo:
+reproducible artifact on a held-out set (honesty over hype). The concept and the
+trust thesis live in the companion repo:
 [verdict-layer-framework](https://github.com/kolesnikov-arch/verdict-layer-framework).
 
 ## License
