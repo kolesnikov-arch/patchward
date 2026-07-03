@@ -56,6 +56,9 @@ The specific *tuned* engine that implements it stays private.
 
 **Public:**
 - the concept and the measurement methodology;
+- **[Pre-registered Scoring Contract](PREREGISTRATION.md)** — the scoring rules, the reporting
+  commitments, and the answers to the hard objections, **date-stamped before the results exist**
+  — so the rules provably weren't fitted around the outcome;
 - **[Current Scope & Limitations](CURRENT_SCOPE_AND_LIMITATIONS.md)** — what the measurement
   does and doesn't yet show (honest by construction; no number claimed until the held-out set);
 - a **reproducible proof-kit** — model predictions + diffs + scoring reports, so you
