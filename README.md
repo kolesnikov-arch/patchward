@@ -77,6 +77,9 @@ reproducible artifact on a held-out set (honesty over hype). The concept and the
 trust thesis live in the companion repo:
 [verdict-layer-framework](https://github.com/kolesnikov-arch/verdict-layer-framework).
 
+Field notes from the evaluation as it runs:
+[Trust in AI Delivery](https://dmitriykolesnikov.substack.com) (newsletter).
+
 ## License
 
 Concept, documentation, and results: **CC BY-NC 4.0** (matching the
