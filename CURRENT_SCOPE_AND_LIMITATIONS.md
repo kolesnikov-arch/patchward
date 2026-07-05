@@ -15,16 +15,20 @@ produce the evidence here. For the thesis-level framing, see the companion
   false-accept predicts real engineering risk is the top open question, not a settled fact.
 - **One ecosystem so far.** All instances to date are Python repositories. No claim is made
   about other languages or build systems yet.
-- **Held-out number pending.** The headline figure must come from a frozen, seeded held-out
-  set. **Until the held-out evaluation is complete, all quantitative observations should be
-  treated as development feedback, not evidence for public claims.** Dev-set figures (the
-  iterated set) are labelled as such; there is no published number until the held-out run.
+- **Held-out number: published.** The headline figure now comes from a frozen, seeded,
+  never-tuned-on held-out set of 50 instances — see [RESULTS.md](RESULTS.md), reported
+  against the [pre-registered contract](PREREGISTRATION.md). Dev-set figures remain
+  development feedback, not evidence; only the held-out result is claimed. One held-out
+  evaluation exists so far — replication (a second set, other benchmarks) is future work,
+  not something this result already proves.
 
 ## Measurement caveats
 
-- **Proposer stochasticity is not yet quantified.** The same task can yield different outcomes
-  across re-runs (the proposer is noisy). A single run per instance is not reproducible on
-  intermediate states; the re-run policy that stabilizes the number is still being determined.
+- **Proposer stochasticity is real and only budgeted, not quantified.** The same task can
+  yield different outcomes across re-runs (the proposer is noisy). The held-out run used a
+  fixed re-run policy set before the run — re-run **non-completions only** (crash/timeout),
+  once, at the frozen timeout, every run recorded, verdicts never re-rolled — which bounds
+  the flake channel but does not measure run-to-run outcome variance itself.
 - **Independent verification reduces coverage in some cases.** To avoid wrongly rejecting a
   correct change, the regression check skips existing tests that the reference solution's own
   test changes touch. Where that removes all regression coverage for an instance, the decision
@@ -32,10 +36,13 @@ produce the evidence here. For the thesis-level framing, see the companion
   with no pass-to-pass coverage at all is, by construction, a case where a confident accept
   would rest on the acceptance test alone — exactly the kind of case the held-out set is meant
   to characterize, not to be rule-patched in advance.)
-- **Recent instrument corrections are dev-validated only.** The calibration and the
-  false-block fixes (found by deliberately hunting cases where the instrument blocked correct
-  changes) have been validated on the iterated set; they have not yet been re-confirmed at
-  held-out scale.
+- **Two characterized false-reject classes remain (held-out-confirmed).** The held-out run
+  confirmed the calibration on the trust side (no confident vouch of a wrong fix) and
+  surfaced five false-rejects in two known classes: the fix-blind acceptance-test author
+  can produce environment-incompatible test code, and the regression check is imprecise in
+  both directions (it blocked three gold-correct fixes and missed one real test break).
+  All five are disclosed with root causes in [RESULTS.md](RESULTS.md) §5; fixing them is
+  the next evaluation's delta, measured on a fresh set against the same rules.
 
 ## Threats to validity
 

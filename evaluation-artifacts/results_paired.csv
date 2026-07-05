@@ -1,0 +1,51 @@
+instance_id,repo,gated_verdict,gated_patch_resolves,gated_outcome,ungated_resolves,ungated_outcome
+django__django-11001,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-12184,django,Needs review,True,needs_review_correct,False,silent_false_accept
+django__django-12286,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-12700,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-12708,django,Blocked,True,false_reject,True,shipped_correct
+django__django-12856,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-12915,django,Blocked,True,false_reject,True,shipped_correct
+django__django-13158,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-13265,django,Needs review,False,needs_review_wrong,False,silent_false_accept
+django__django-13315,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-13321,django,Needs review,False,needs_review_wrong,False,silent_false_accept
+django__django-13925,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-14730,django,Needs review,False,needs_review_wrong,False,silent_false_accept
+django__django-14855,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-14997,django,Needs review,False,needs_review_wrong,True,shipped_correct
+django__django-15202,django,Needs review,False,needs_review_wrong,False,silent_false_accept
+django__django-15213,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-15252,django,Needs review,False,needs_review_wrong,False,silent_false_accept
+django__django-15738,django,Needs review,True,needs_review_correct,False,silent_false_accept
+django__django-16041,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-16046,django,Needs review,True,needs_review_correct,True,shipped_correct
+django__django-16527,django,Blocked,True,false_reject,True,shipped_correct
+django__django-17087,django,Blocked,True,false_reject,True,shipped_correct
+pylint-dev__pylint-5859,pylint-dev,Needs review,True,needs_review_correct,True,shipped_correct
+pylint-dev__pylint-7993,pylint-dev,Blocked,False,correct_block,True,shipped_correct
+sphinx-doc__sphinx-10325,sphinx-doc,Needs review,True,needs_review_correct,True,shipped_correct
+sphinx-doc__sphinx-7738,sphinx-doc,Needs review,False,needs_review_wrong,False,silent_false_accept
+sphinx-doc__sphinx-8282,sphinx-doc,Blocked,False,correct_block,False,silent_false_accept
+sphinx-doc__sphinx-8435,sphinx-doc,Needs review,True,needs_review_correct,True,shipped_correct
+sphinx-doc__sphinx-8595,sphinx-doc,Needs review,False,needs_review_wrong,False,silent_false_accept
+sphinx-doc__sphinx-8801,sphinx-doc,Blocked,False,correct_block,True,shipped_correct
+sympy__sympy-12454,sympy,Needs review,False,needs_review_wrong,True,shipped_correct
+sympy__sympy-13471,sympy,Needs review,True,needs_review_correct,True,shipped_correct
+sympy__sympy-13971,sympy,Blocked,True,false_reject,True,shipped_correct
+sympy__sympy-14024,sympy,Needs review,False,needs_review_wrong,False,silent_false_accept
+sympy__sympy-15011,sympy,Needs review,True,needs_review_correct,True,shipped_correct
+sympy__sympy-15346,sympy,Needs review,True,needs_review_correct,True,shipped_correct
+sympy__sympy-15678,sympy,Blocked,False,correct_block,True,shipped_correct
+sympy__sympy-16503,sympy,Blocked,False,correct_block,False,silent_false_accept
+sympy__sympy-18621,sympy,Needs review,True,needs_review_correct,True,shipped_correct
+sympy__sympy-20322,sympy,Needs review,False,needs_review_wrong,False,silent_false_accept
+sympy__sympy-21055,sympy,Needs review,True,needs_review_correct,True,shipped_correct
+sympy__sympy-21614,sympy,Needs review,True,needs_review_correct,True,shipped_correct
+sympy__sympy-22005,sympy,Needs review,False,needs_review_wrong,True,shipped_correct
+sympy__sympy-22840,sympy,Blocked,False,correct_block,False,silent_false_accept
+sympy__sympy-24213,sympy,Needs review,True,needs_review_correct,True,shipped_correct
+sympy__sympy-24909,sympy,Needs review,False,needs_review_wrong,False,silent_false_accept
+pydata__xarray-4094,pydata,Needs review,True,needs_review_correct,True,shipped_correct
+pydata__xarray-4248,pydata,Blocked,False,correct_block,False,silent_false_accept
+pydata__xarray-4493,pydata,Needs review,False,needs_review_wrong,False,silent_false_accept

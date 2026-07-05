@@ -2,9 +2,11 @@
 
 **A verdict layer for AI coding agents — so an agent can't quietly ship a broken fix.**
 
-> 🚧 **Pre-release.** This is the public *proof + concept* home for the Verdict Layer
-> approach. The hardened engine is private by design; what's public here is the
-> **evidence** and a **live demo**, so you can check the claims yourself.
+> **📊 First held-out results are published: [RESULTS.md](RESULTS.md)** — on a frozen,
+> pre-registered set of 50 tasks, the same model silently shipped **17/50** wrong fixes
+> ungated vs **0/50** gated. Every number recomputable from
+> [`evaluation-artifacts/`](evaluation-artifacts/). The hardened engine is private by
+> design; what's public here is the **evidence**, so you can check the claims yourself.
 
 ---
 
@@ -56,14 +58,19 @@ The specific *tuned* engine that implements it stays private.
 
 **Public:**
 - the concept and the measurement methodology;
+- **[RESULTS.md](RESULTS.md)** — the held-out results: headline counts, exact CIs, the full
+  disposition table, the pessimistic sensitivity row, every false-reject with root cause, and
+  the run-integrity log;
 - **[Pre-registered Scoring Contract](PREREGISTRATION.md)** — the scoring rules, the reporting
-  commitments, and the answers to the hard objections, **date-stamped before the results exist**
-  — so the rules provably weren't fitted around the outcome;
+  commitments, and the answers to the hard objections, **date-stamped before the results
+  existed** — so the rules provably weren't fitted around the outcome;
 - **[Current Scope & Limitations](CURRENT_SCOPE_AND_LIMITATIONS.md)** — what the measurement
-  does and doesn't yet show (honest by construction; no number claimed until the held-out set);
-- a **reproducible proof-kit** — model predictions + diffs + scoring reports, so you
-  can re-run the *scoring* yourself and verify the numbers *(landing as results finalize)*;
-- an **interactive sim** of the gates in action *(coming)*.
+  does and doesn't yet show (honest by construction);
+- **[`evaluation-artifacts/`](evaluation-artifacts/)** — the reproducible proof-kit: both arms'
+  predictions exactly as evaluated, raw per-instance scoring reports, the paired results table,
+  the seeded task selection, and a stdlib-only script that recomputes every headline figure;
+- an **interactive sim** of the verdict logic in action *(in the
+  [companion repo](https://github.com/kolesnikov-arch/verdict-layer-framework))*.
 
 **Private, by design:** the tuned engine — the gates, the prompts, and the
 failure-memory corpus they're tuned against. That tuning, distilled from hundreds of
@@ -72,9 +79,11 @@ are checkable without handing over the moat.
 
 ## Status
 
-Pre-release. No headline number is claimed here until it's backed by a published,
-reproducible artifact on a held-out set (honesty over hype). The concept and the
-trust thesis live in the companion repo:
+**Evaluation #1 published (2026-07-05): [RESULTS.md](RESULTS.md).** The scoring rules
+were pre-registered before the outcome existed ([PREREGISTRATION.md](PREREGISTRATION.md),
+2026-07-03) and every number is recomputable from
+[`evaluation-artifacts/`](evaluation-artifacts/) — honesty over hype, by construction.
+The concept and the trust thesis live in the companion repo:
 [verdict-layer-framework](https://github.com/kolesnikov-arch/verdict-layer-framework).
 
 Field notes from the evaluation as it runs:

@@ -6,6 +6,10 @@ contains NO results — that is the point.** The scoring rules, the reporting co
 the answers to the hard objections are fixed *before* the outcome exists, so they cannot be
 fitted around it. When the results publish, hold this document against them.
 
+> **Update 2026-07-05:** the evaluation completed; the results are in
+> [RESULTS.md](RESULTS.md), reported against this contract. The contract text below is
+> unchanged since its 2026-07-03 commit (`8d2d11f`) — verify via git history.
+
 ---
 
 ## 1. What is being measured
