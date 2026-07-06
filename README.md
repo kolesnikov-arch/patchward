@@ -1,5 +1,7 @@
 # patchward
 
+**🇺🇸 English | [🇨🇳 简体中文](README_zh.md)**
+
 **A verdict layer for AI coding agents — so an agent can't quietly ship a broken fix.**
 
 > **📊 First held-out results are published: [RESULTS.md](RESULTS.md)** — on a frozen,

@@ -1,5 +1,7 @@
 # Current Scope & Limitations
 
+**🇺🇸 English | [🇨🇳 简体中文](CURRENT_SCOPE_AND_LIMITATIONS_zh.md)**
+
 What this work does **not** yet show — listed first, on purpose. A trust project that hides
 its limits has already failed its own thesis.
 

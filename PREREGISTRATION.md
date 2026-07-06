@@ -1,5 +1,7 @@
 # Pre-registered Scoring Contract
 
+**🇺🇸 English | [🇨🇳 简体中文](PREREGISTRATION_zh.md)** *(translation; the English original and its git history are authoritative)*
+
 **Date-stamped: 2026-07-03 (see this file's git history).**
 **Status: the evaluation is IN PROGRESS on a frozen instrument. This document deliberately
 contains NO results — that is the point.** The scoring rules, the reporting commitments, and

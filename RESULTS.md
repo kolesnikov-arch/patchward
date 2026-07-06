@@ -1,5 +1,7 @@
 # Held-out results — Evaluation #1 (2026-07-05)
 
+**🇺🇸 English | [🇨🇳 简体中文](RESULTS_zh.md)**
+
 **On a frozen, pre-registered, held-out set of 50 SWE-bench Lite tasks, the same
 model silently shipped 17/50 wrong fixes when ungated — and 0/50 when an
 independent verdict layer decided what ships.**
