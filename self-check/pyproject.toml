@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fa-patchward"
+version = "0.1.0"
+description = "Point it at your coding agent; get your own silent-false-accept number on a frozen public benchmark."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Dmitriy Kolesnikov" }]
+license = { text = "MIT (code) / CC-BY-NC-4.0 (docs) — see LICENSE" }
+keywords = ["swe-bench", "coding-agent", "evaluation", "false-accept", "trust"]
+dependencies = []  # core is pure stdlib
+
+[project.optional-dependencies]
+select = ["datasets>=2.0"]   # to sample tasks from a benchmark
+eval = ["swebench>=2.0"]     # the public evaluator (step 3)
+
+[project.scripts]
+fa-patchward = "fa_patchward.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["fa_patchward*"]

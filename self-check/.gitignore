@@ -1,0 +1,25 @@
+# Secrets — never commit
+*.env
+.env*
+*secret*
+*token*
+*credential*
+*.key
+*.pem
+
+# Gauge run outputs (evidence lives wherever the user commits it, not by default)
+predictions*.jsonl
+/frozen/
+/report/
+logs/
+
+# OS / editor / build noise
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.vscode/
+.idea/
