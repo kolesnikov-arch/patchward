@@ -9,7 +9,8 @@ description = "Point it at your coding agent; get your own silent-false-accept n
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{ name = "Dmitriy Kolesnikov" }]
-license = { text = "MIT (code) / CC-BY-NC-4.0 (docs) — see LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 keywords = ["swe-bench", "coding-agent", "evaluation", "false-accept", "trust"]
 dependencies = []  # core is pure stdlib
 
