@@ -1,0 +1,11 @@
+# Build metadata — must never reach the public history.
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+
+# Study cache: raw HTTP responses and fetched diffs. Gigabytes, and fully
+# rebuildable from study-artifacts/sample.json. The artifacts themselves ARE
+# committed — see study/README.md for what goes where and why.
+cache/
