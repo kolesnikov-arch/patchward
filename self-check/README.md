@@ -8,8 +8,9 @@ ships silently.**
 > tool, see **[`../check/`](../check/)**: `pip install patchward-check` flags changes
 > that rewrite the tests judging them, instantly, on any repository, offline.
 >
-> *Naming note: on PyPI this instrument is `fa-patchward` and the everyday tool is
-> `patchward-check`. The bare `patchward` name there belongs to an unrelated project.*
+> *Naming note: on PyPI this instrument is `fa-patchward` — `fa-` is the false-accept
+> rate it measures — and the everyday tool is `patchward-check`. The bare `patchward`
+> name there belongs to an unrelated project.*
 
 Benchmarks score agents on *capability* — how many bugs they fix. The number that
 decides whether you can let an agent into your CI is a different one: the
