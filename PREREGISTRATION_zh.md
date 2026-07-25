@@ -2,6 +2,12 @@
 
 **[🇺🇸 English](PREREGISTRATION.md) | 🇨🇳 简体中文**
 
+
+> **翻译状态 / Translation status:** 本文档翻译于 **2026-07-25**，此后不再同步更新。
+> 英文版本为唯一权威版本，如有出入以英文为准。
+> *Translated 2026-07-25 and frozen. The English document is canonical; where the
+> two differ, the English text governs.*
+
 > 本文为英文原件 [PREREGISTRATION.md](PREREGISTRATION.md) 的翻译，仅供阅读方便。
 > **具有约束力的版本是英文原件及其 git 历史**（日期戳可由提交历史核验）。
 

@@ -2,6 +2,12 @@
 
 **[🇺🇸 English](RESULTS.md) | 🇨🇳 简体中文**
 
+
+> **翻译状态 / Translation status:** 本文档翻译于 **2026-07-25**，此后不再同步更新。
+> 英文版本为唯一权威版本，如有出入以英文为准。
+> *Translated 2026-07-25 and frozen. The English document is canonical; where the
+> two differ, the English text governs.*
+
 > 本文为英文原件 [RESULTS.md](RESULTS.md) 的翻译。如有出入，以英文原件为准。
 
 **在一个冻结的、预注册的、由 50 个 SWE-bench Lite 任务组成的留出集上：同一个模型在无门控时

@@ -4,6 +4,12 @@
 
 **面向 AI 编码智能体的判决层 (verdict layer)——让智能体无法悄悄交付一个坏掉的修复。**
 
+> **翻译状态 / Translation status:** 本文档翻译于 **2026-07-25**，此后不再同步更新。
+> 英文版本为唯一权威版本，如有出入以英文为准。
+> *Translated 2026-07-25 and frozen. The English document is canonical; where the
+> two differ, the English text governs.*
+
+
 > **📊 首次留出集 (held-out) 评测结果已发布：[RESULTS_zh.md](RESULTS_zh.md)** — 在一个冻结的、
 > 预注册的 50 任务集上，同一个模型在无门控时**静默交付了 17/50** 个错误修复，有门控时为
 > **0/50**。每个数字都可以从 [`evaluation-artifacts/`](evaluation-artifacts/) 复算。
