@@ -98,6 +98,7 @@ class Client:
         self.cache.mkdir(parents=True, exist_ok=True)
         self.verbose = verbose
         self.requests_made = 0
+        self.last_from_cache = False
         if not self.token:
             self._warn(f"no token found (looked in $GITHUB_TOKEN, "
                        f"${TOKEN_FILE_ENV}, {DEFAULT_TOKEN_FILE}) — "
@@ -117,6 +118,17 @@ class Client:
     def _cache_path(self, url, accept):
         key = hashlib.sha256(f"{url}\n{accept}".encode()).hexdigest()[:32]
         return self.cache / f"{key}.gz"
+
+    def _pace(self, seconds=2):
+        """Pause between search calls — but only after a real request.
+
+        The search endpoint allows 30 requests a minute, so a 2s pace keeps a
+        long run just under the cap. Paying it on a cache hit as well turns a
+        resumed run into a re-enactment: replaying ~700 cached calls cost 24
+        minutes of pure sleeping before the first new byte was fetched.
+        """
+        if not self.last_from_cache:
+            time.sleep(seconds)
 
     def _sleep_for_limit(self, headers):
         remaining = headers.get("X-RateLimit-Remaining")
@@ -142,8 +154,10 @@ class Client:
 
         cp = self._cache_path(url, accept)
         if use_cache and cp.exists():
+            self.last_from_cache = True
             with gzip.open(cp, "rt", encoding="utf-8") as f:
                 return f.read(), {}
+        self.last_from_cache = False
 
         headers = {"Accept": accept, "User-Agent": UA,
                    "X-GitHub-Api-Version": "2022-11-28"}
@@ -212,14 +226,14 @@ class Client:
             out += data.get("items", [])
             if len(data.get("items", [])) < per_page:
                 break
-            time.sleep(2)   # search API: 30 req/min
+            self._pace()   # search API: 30 req/min
         return out
 
     def search_issues_count(self, query):
         """Cheap total_count for a search query (used for the ≥N PR filter)."""
         data, _ = self.get_json("/search/issues",
                                 params={"q": query, "per_page": 1})
-        time.sleep(2)
+        self._pace()
         return data.get("total_count", 0)
 
     def search_issues(self, query, per_page=100, max_items=1000):
@@ -232,7 +246,7 @@ class Client:
                                             "order": "asc"})
             items = data.get("items", [])
             out += items
-            time.sleep(2)
+            self._pace()
             if len(items) < per_page:
                 break
         return out
