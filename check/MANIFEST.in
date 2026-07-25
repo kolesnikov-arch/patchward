@@ -1,0 +1,3 @@
+# The two regression fixtures are real agent output from the held-out run; the
+# sdist promises `python tests/test_detect.py`, so it has to carry them.
+recursive-include tests *.diff

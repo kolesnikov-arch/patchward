@@ -1,0 +1,116 @@
+name: "patchward check"
+description: >-
+  Flags pull requests that edit the tests which judge them. Reads the diff only
+  — runs nothing, blocks nothing.
+author: "Dmitriy Kolesnikov"
+
+branding:
+  icon: "alert-triangle"
+  color: "yellow"
+
+inputs:
+  fail-on:
+    description: >-
+      Fail the check at this severity or above: high | medium | any | never.
+      Default `never` — start as a comment, not a blocker. Earn the block.
+    required: false
+    default: "never"
+  comment:
+    description: "Post the findings as a PR comment (true/false)."
+    required: false
+    default: "true"
+  test-glob:
+    description: >-
+      Extra regex marking a path as a test file, one per line.
+    required: false
+    default: ""
+  base:
+    description: "Base ref to diff against. Defaults to the PR base."
+    required: false
+    default: ""
+
+outputs:
+  verdict:
+    description: "clean | note | review | self-graded"
+    value: ${{ steps.run.outputs.verdict }}
+  findings:
+    description: "JSON array of findings"
+    value: ${{ steps.run.outputs.findings }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+
+    - name: Install patchward check
+      shell: bash
+      run: pip install --quiet patchward-check
+
+    - name: Run patchward check
+      id: run
+      shell: bash
+      env:
+        FAIL_ON: ${{ inputs.fail-on }}
+        TEST_GLOB: ${{ inputs.test-glob }}
+        BASE: ${{ inputs.base }}
+      run: |
+        set -euo pipefail
+        base="${BASE:-${{ github.event.pull_request.base.sha }}}"
+        head="${{ github.event.pull_request.head.sha || github.sha }}"
+        [ -n "$base" ] || base="$(git rev-parse HEAD~1)"
+
+        args=()
+        while IFS= read -r g; do
+          [ -n "$g" ] && args+=(--test-glob "$g")
+        done <<< "${TEST_GLOB}"
+
+        git diff --unified=3 "$base" "$head" > /tmp/pw.diff || true
+
+        patchward-check --diff /tmp/pw.diff --format json \
+          --fail-on never "${args[@]}" > /tmp/pw.json || true
+
+        verdict=$(python -c "import json;print(json.load(open('/tmp/pw.json'))['verdict'])")
+        echo "verdict=$verdict" >> "$GITHUB_OUTPUT"
+        python - <<'PY' >> "$GITHUB_OUTPUT"
+        import json
+        d = json.load(open("/tmp/pw.json"))
+        print("findings=" + json.dumps(d["findings"], ensure_ascii=False))
+        PY
+
+        patchward-check --diff /tmp/pw.diff --format markdown \
+          --fail-on never "${args[@]}" > /tmp/pw.md || true
+        cat /tmp/pw.md >> "$GITHUB_STEP_SUMMARY"
+
+        sev=$(python -c "import json;print(json.load(open('/tmp/pw.json'))['severity'])")
+        case "${FAIL_ON}" in
+          high)   limit=3 ;;
+          medium) limit=2 ;;
+          any)    limit=1 ;;
+          *)      limit=99 ;;
+        esac
+        if [ "$sev" -ge "$limit" ]; then
+          echo "::error::patchward: $verdict — this change edits the tests that judge it"
+          exit 1
+        fi
+
+    - name: Comment on the pull request
+      if: ${{ inputs.comment == 'true' && github.event_name == 'pull_request' && steps.run.outputs.verdict != 'clean' }}
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const body = fs.readFileSync('/tmp/pw.md', 'utf8');
+          const tag = '<!-- patchward-check -->';
+          const { owner, repo } = context.repo;
+          const issue_number = context.issue.number;
+          const existing = await github.rest.issues.listComments({ owner, repo, issue_number });
+          const mine = existing.data.find(c => c.body.includes(tag));
+          const payload = `${tag}\n${body}`;
+          if (mine) {
+            await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body: payload });
+          } else {
+            await github.rest.issues.createComment({ owner, repo, issue_number, body: payload });
+          }

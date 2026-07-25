@@ -1,0 +1,74 @@
+diff --git a/sympy/printing/pretty/pretty.py b/sympy/printing/pretty/pretty.py
+index 7a3de33522..510e379e73 100644
+--- a/sympy/printing/pretty/pretty.py
++++ b/sympy/printing/pretty/pretty.py
+@@ -618,6 +618,10 @@ def adjust(s, wid=None, how='<^>'):
+ 
+             if first:
+                 # change F baseline so it centers on the sign
++                expr_orig_baseline = prettyF.baseline
++                expr_height = prettyF.height()
++                first_d = d
++                first_adjustment = adjustment
+                 prettyF.baseline -= d - (prettyF.height()//2 -
+                                          prettyF.baseline) - adjustment
+                 first = False
+@@ -629,7 +633,7 @@ def adjust(s, wid=None, how='<^>'):
+             # put the present prettyF to the right
+             prettyF = prettyForm(*prettySign.right(prettyF))
+ 
+-        prettyF.baseline = max_upper + sign_height//2
++        prettyF.baseline = max_upper + 1 + first_d - expr_height//2 - first_adjustment + expr_orig_baseline
+         prettyF.binding = prettyForm.MUL
+         return prettyF
+ 
+diff --git a/sympy/printing/pretty/tests/test_pretty.py b/sympy/printing/pretty/tests/test_pretty.py
+index 4c48fda6e1..9288ede222 100644
+--- a/sympy/printing/pretty/tests/test_pretty.py
++++ b/sympy/printing/pretty/tests/test_pretty.py
+@@ -4824,14 +4824,14 @@ def test_pretty_sum():
+            1 + -                         \n\
+     oo         n                         \n\
+   _____    _____                         \n\
+-  \\    `   \\    `                        \n\
+-   \\        \\     /        1    \\        \n\
+-    \\        \\    |1 + ---------|        \n\
+-     \\        \\   |          1  |     1  \n\
+-      )        )  |    1 + -----| + -----\n\
+-     /        /   |            1|       1\n\
+-    /        /    |        1 + -|   1 + -\n\
+-   /        /     \\            k/       k\n\
++  \    `   \    `                        \n\
++   \        \     /        1    \     1  \n\
++    \        \    |1 + ---------| + -----\n\
++     \        \   |          1  |       1\n\
++      )        )  |    1 + -----|   1 + -\n\
++     /        /   |            1|       k\n\
++    /        /    |        1 + -|        \n\
++   /        /     \            k/        \n\
+   /____,   /____,                        \n\
+       1   k = 111                        \n\
+ k = -----                                \n\
+@@ -4844,14 +4844,14 @@ def test_pretty_sum():
+     в€ћ          n                         \n\
+   ______   ______                        \n\
+   в•І        в•І                             \n\
+-   в•І        в•І     вЋ›        1    вЋћ        \n\
+-    в•І        в•І    вЋњ1 + в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”ЂвЋџ        \n\
+-     в•І        в•І   вЋњ          1  вЋџ        \n\
+-      в•І        в•І  вЋњ    1 + в”Ђв”Ђв”Ђв”Ђв”ЂвЋџ     1  \n\
+-      в•±        в•±  вЋњ            1вЋџ + в”Ђв”Ђв”Ђв”Ђв”Ђ\n\
+-     в•±        в•±   вЋњ        1 + в”ЂвЋџ       1\n\
+-    в•±        в•±    вЋќ            kвЋ    1 + в”Ђ\n\
+-   в•±        в•±                           k\n\
++   в•І        в•І     вЋ›        1    вЋћ     1  \n\
++    в•І        в•І    вЋњ1 + в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”ЂвЋџ + в”Ђв”Ђв”Ђв”Ђв”Ђ\n\
++     в•І        в•І   вЋњ          1  вЋџ       1\n\
++      в•І        в•І  вЋњ    1 + в”Ђв”Ђв”Ђв”Ђв”ЂвЋџ   1 + в”Ђ\n\
++      в•±        в•±  вЋњ            1вЋџ       k\n\
++     в•±        в•±   вЋњ        1 + в”ЂвЋџ        \n\
++    в•±        в•±    вЋќ            kвЋ         \n\
++   в•±        в•±                            \n\
+   в•±        в•±                             \n\
+   вЂѕвЂѕвЂѕвЂѕвЂѕвЂѕ   вЂѕвЂѕвЂѕвЂѕвЂѕвЂѕ                        \n\
+       1   k = 111                        \n\

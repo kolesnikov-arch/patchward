@@ -1,0 +1,31 @@
+diff --git a/sympy/solvers/polysys.py b/sympy/solvers/polysys.py
+index b9809fd4e9..6e84d7b8f8 100644
+--- a/sympy/solvers/polysys.py
++++ b/sympy/solvers/polysys.py
+@@ -257,6 +257,11 @@ def _solve_reduced_system(system, gens, entry=False):
+             return []
+ 
+         if len(basis) == 1:
++            if len(gens) > 1:
++                raise NotImplementedError(filldedent('''
++                    only zero-dimensional systems supported
++                    (finite number of solutions)
++                    '''))
+             return [(zero,) for zero in zeros]
+ 
+         solutions = []
+diff --git a/sympy/solvers/tests/test_polysys.py b/sympy/solvers/tests/test_polysys.py
+index 58419f8762..a3ca98e989 100644
+--- a/sympy/solvers/tests/test_polysys.py
++++ b/sympy/solvers/tests/test_polysys.py
+@@ -48,6 +48,10 @@ def test_solve_poly_system():
+     raises(NotImplementedError, lambda: solve_poly_system(
+         [z, -2*x*y**2 + x + y**2*z, y**2*(-z - 4) + 2]))
+     raises(PolynomialError, lambda: solve_poly_system([1/x], x))
++    raises(NotImplementedError, lambda: solve_poly_system(
++        [Poly(x - 1, x, y)], (x, y)))
++    raises(NotImplementedError, lambda: solve_poly_system(
++        [Poly(y - 1, x, y)], (x, y)))
+ 
+ 
+ def test_solve_biquadratic():

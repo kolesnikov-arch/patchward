@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "patchward-check"
+version = "0.1.0"
+description = "Does this change edit the tests that judge it? A flag for AI-authored diffs — reads the diff, runs nothing, blocks nothing."
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{ name = "Dmitriy Kolesnikov" }]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["code-review", "ai-agents", "coding-agent", "tests", "ci",
+            "static-analysis", "trust", "pull-request"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+    "Programming Language :: Python :: 3",
+]
+dependencies = []  # pure stdlib, on purpose
+
+[project.urls]
+Homepage = "https://github.com/kolesnikov-arch/patchward"
+Source = "https://github.com/kolesnikov-arch/patchward/tree/main/check"
+Evidence = "https://github.com/kolesnikov-arch/patchward/blob/main/RESULTS.md"
+
+[project.scripts]
+patchward-check = "patchward_check.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["patchward_check*"]
