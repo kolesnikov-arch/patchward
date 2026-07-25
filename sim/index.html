@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verdict Layer — Trust Decision Walkthrough</title>
+  <meta name="description" content="Interactive walkthrough of the tri-state trust verdict: requirement, fix-blind acceptance test, agent change, independent verification, and the accept / review / reject decision.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-copy">
+          <p class="eyebrow">Trust Decision Walkthrough</p>
+          <h1>Verdict Layer — When Can a Change Be Trusted?</h1>
+          <p class="brand-subtitle">An illustration of how an admission decision is formed from <strong>independent</strong> evidence — not from the agent's self-report. Conceptual; not a deployable product, and no internal logic is shown.</p>
+          <p class="brand-subtitle"><strong>The measured version of this idea is published:</strong> on a pre-registered, held-out set of 50 tasks, the same model silently shipped <strong>17/50</strong> wrong fixes ungated vs <strong>0/50</strong> gated — <a href="https://github.com/kolesnikov-arch/patchward/blob/main/RESULTS.md">held-out results</a>. Each scenario below notes its real measured counterpart.</p>
+        </div>
+      </div>
+      <div class="topbar-actions" aria-label="Scenario selection">
+        <button class="scenario-button active" data-scenario="accept" type="button">Verified → Accept</button>
+        <button class="scenario-button" data-scenario="review" type="button">Underspecified → Review</button>
+        <button class="scenario-button" data-scenario="reject" type="button">Confidently wrong → Reject</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar" aria-label="Evidence trace">
+        <div class="status-tile" id="scenarioStatus">
+          <span class="status-label">Verdict</span>
+          <strong>Accept</strong>
+          <span>Independently verified</span>
+        </div>
+
+        <nav class="step-list" id="stepList">
+          <button class="step-button active" data-step="requirement" type="button">
+            <span>01</span>
+            <strong>Requirement</strong>
+          </button>
+          <button class="step-button" data-step="accept_test" type="button">
+            <span>02</span>
+            <strong>Acceptance Test</strong>
+          </button>
+          <button class="step-button" data-step="change" type="button">
+            <span>03</span>
+            <strong>Agent Change</strong>
+          </button>
+          <button class="step-button" data-step="diff" type="button">
+            <span>04</span>
+            <strong>Diff</strong>
+          </button>
+          <button class="step-button" data-step="verify" type="button">
+            <span>05</span>
+            <strong>Independent Verification</strong>
+          </button>
+          <button class="step-button" data-step="verdict" type="button">
+            <span>06</span>
+            <strong>Verdict</strong>
+          </button>
+          <button class="step-button" data-step="trace" type="button">
+            <span>07</span>
+            <strong>Evidence Trace</strong>
+          </button>
+          <button class="step-button" data-step="decision" type="button">
+            <span>08</span>
+            <strong>Decision</strong>
+          </button>
+        </nav>
+      </aside>
+
+      <section class="main-panel" aria-live="polite">
+        <div class="demo-strip" id="flowStrip"></div>
+
+        <section class="artifact-view">
+          <div class="artifact-header">
+            <div>
+              <p class="eyebrow" id="artifactType">artifact</p>
+              <h2 id="artifactTitle">Requirement</h2>
+            </div>
+            <div class="artifact-actions">
+              <button id="runCheckButton" type="button">Run Independent Verification</button>
+              <button id="bundleButton" type="button">Evidence Trace</button>
+            </div>
+          </div>
+
+          <div class="split-layout">
+            <article class="artifact-copy" id="artifactCopy"></article>
+            <pre class="code-pane" id="artifactCode"></pre>
+          </div>
+        </section>
+      </section>
+
+      <aside class="right-rail" aria-label="Verification summary">
+        <section class="metrics">
+          <h2>Verification Summary</h2>
+          <div class="metric-row">
+            <span>Agent's own test</span>
+            <strong id="selfTestMetric">passed (not decisive)</strong>
+          </div>
+          <div class="metric-row">
+            <span>Independent acceptance test</span>
+            <strong id="acceptTestMetric">passed</strong>
+          </div>
+          <div class="metric-row">
+            <span>Regression check</span>
+            <strong id="regressionMetric">clean</strong>
+          </div>
+          <div class="metric-row">
+            <span>Verdict action</span>
+            <strong id="actionMetric">accept</strong>
+          </div>
+        </section>
+
+        <section class="bundle-list">
+          <h2>Evidence Trace</h2>
+          <ul id="bundleList"></ul>
+        </section>
+
+        <section class="boundary-note">
+          <h2>What This Shows</h2>
+          <p>The verdict is formed from evidence the agent never controlled: a <strong>fix-blind acceptance test</strong> and a regression check. The agent's own test is always shown as passing — to make the point that a self-referential test cannot, on its own, be trusted. Internal scoring, calibration, and orchestration are not disclosed.</p>
+        </section>
+
+        <section class="boundary-note">
+          <h2>Real Measured Counterpart</h2>
+          <p id="realCaseLine"></p>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
