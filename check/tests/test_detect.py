@@ -152,6 +152,63 @@ class TestCoreRules(unittest.TestCase):
         self.assertEqual(res.verdict, "clean")
 
 
+WRAPPED_IN_TRY = """\
+diff --git a/pkg/calc.py b/pkg/calc.py
+--- a/pkg/calc.py
++++ b/pkg/calc.py
+@@ -1,3 +1,3 @@
+ def total(x):
+-    return x * 2
++    return x * 3
+diff --git a/tests/test_calc.py b/tests/test_calc.py
+--- a/tests/test_calc.py
++++ b/tests/test_calc.py
+@@ -4,4 +4,7 @@ def test_total():
+-    spy = make_spy()
+-    assert total(1) == 3
+-    assert total(2) == 6
++    spy = make_spy()
++    try:
++        assert total(1) == 3
++        assert total(2) == 6
++        assert spy.was_not_called()
++    finally:
++        spy.restore()
+"""
+
+
+class TestMovedNotRetracted(unittest.TestCase):
+    """Re-indenting or wrapping existing assertions is not retracting them.
+
+    A hunk read on its own cannot tell the two apart: both show the old lines
+    as removed. Real refactors do this constantly (wrapping a block in
+    try/finally, moving it into a helper), and calling that "the change rewrote
+    its own tests" is the false-positive class that costs the tool its
+    credibility. Found on real merged pull requests, not by reasoning.
+    """
+
+    def test_wrapping_assertions_is_not_a_rewrite(self):
+        res = analyse(WRAPPED_IN_TRY)
+        self.assertEqual(res.of("REWRITTEN_EXPECTATION"), [])
+        self.assertLess(res.worst, 3)
+
+    def test_a_genuine_rewrite_inside_a_wrap_is_still_caught(self):
+        # Same shape, but one expectation really changes value: 6 -> 7.
+        sneaky = WRAPPED_IN_TRY.replace("        assert total(2) == 6",
+                                        "        assert total(2) == 7")
+        res = analyse(sneaky)
+        f = res.of("REWRITTEN_EXPECTATION")
+        self.assertEqual(len(f), 1)
+        self.assertIn("total(2) == 6", " ".join(f[0].samples))
+
+    def test_duplicate_removals_are_not_masked_by_one_addition(self):
+        # Two identical lines removed, only one added back: one is still gone.
+        diff = WRAPPED_IN_TRY.replace(
+            "-    assert total(2) == 6", "-    assert total(2) == 6\n-    assert total(2) == 6")
+        res = analyse(diff)
+        self.assertTrue(res.of("REWRITTEN_EXPECTATION"))
+
+
 class TestRealHeldOutPatches(unittest.TestCase):
     """Regressions against actual agent output from the held-out evaluation."""
 

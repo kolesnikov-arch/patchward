@@ -22,6 +22,7 @@ assertion, never touching the word `assert`. Keying on the keyword misses it.
 That miss was found by running against real data, not by reasoning.
 """
 import re
+from collections import Counter
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -162,6 +163,25 @@ def analyse_file(fd: FileDiff) -> List[Finding]:
         removed_decls += [l for l in rm if TEST_DECL.match(l)]
         if h.is_replacement:
             rewritten += rm
+
+    # A removed line that reappears among the file's additions was not
+    # retracted — it was moved or re-indented. Wrapping existing assertions in
+    # try/finally, or re-indenting a block, is indistinguishable from rewriting
+    # them when a hunk is read on its own. Found on real data (a refactor that
+    # removed 14 assertion lines and added all 14 back verbatim inside a
+    # try/finally, plus one NEW assertion, was reported as a rewrite).
+    # A multiset, not a set: two removals matched by one addition still leave
+    # one line genuinely gone.
+    survivors = Counter(a.strip() for a in fd.added)
+
+    def _kept_elsewhere(line: str) -> bool:
+        key = line.strip()
+        if survivors[key]:
+            survivors[key] -= 1
+            return True
+        return False
+
+    rewritten = [l for l in rewritten if not _kept_elsewhere(l)]
 
     if rewritten:
         asserty = [l for l in rewritten if ASSERTION.search(l)]
