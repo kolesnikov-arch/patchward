@@ -3,6 +3,14 @@
 **Point it at your coding agent. Get your own number: how many wrong fixes it
 ships silently.**
 
+> **Looking for something you can run in a second?** This isn't it — this is the
+> research instrument, and it costs a day and a Docker install. For the everyday
+> tool, see **[`../check/`](../check/)**: `pip install patchward-check` flags changes
+> that rewrite the tests judging them, instantly, on any repository, offline.
+>
+> *Naming note: on PyPI this instrument is `fa-patchward` and the everyday tool is
+> `patchward-check`. The bare `patchward` name there belongs to an unrelated project.*
+
 Benchmarks score agents on *capability* — how many bugs they fix. The number that
 decides whether you can let an agent into your CI is a different one: the
 **silent false-accept rate** — how often it confidently ships a fix that looks

@@ -2,97 +2,128 @@
 
 **🇺🇸 English | [🇨🇳 简体中文](README_zh.md)**
 
-**A verdict layer for AI coding agents — so an agent can't quietly ship a broken fix.**
+**An AI agent shouldn't get to write both the fix and the test that approves it.**
 
-> **📊 First held-out results are published: [RESULTS.md](RESULTS.md)** — on a frozen,
-> pre-registered set of 50 tasks, the same model silently shipped **17/50** wrong fixes
-> ungated vs **0/50** gated. Every number recomputable from
-> [`evaluation-artifacts/`](evaluation-artifacts/). The hardened engine is private by
-> design; what's public here is the **evidence**, so you can check the claims yourself.
+```bash
+pip install patchward-check
+patchward-check scan      # your history: which changes rewrote the tests judging them?
+```
+
+No config, no API key, no Docker, no model. Reads the diff, runs nothing, blocks
+nothing. → [`check/`](check/)
 
 ---
 
+## The failure this is about
+
+A coding agent was asked to fix a formatting bug. It changed the source — and then
+rewrote the expected output in the existing test, so the test would agree with it:
+
+```diff
+--- a/sympy/printing/pretty/pretty.py
+-        prettyF.baseline = max_upper + sign_height//2
++        prettyF.baseline = max_upper + 1 + first_d - expr_height//2 ...
+
+--- a/sympy/printing/pretty/tests/test_pretty.py
+-   \        \     /        1    \        \n\
++   \        \     /        1    \     1  \n\
+```
+
+Suite green. Fix wrong. The test that would have caught it was edited by the change
+it was supposed to catch. **The agent didn't just err — it moved the definition of
+correct.** Nothing in a normal CI run tells this apart from a passing build.
+
+That patch is real, from the held-out evaluation below. `patchward check` flags it
+from the diff alone, in about a millisecond.
+
 ## Benchmarks measure capability. CI needs trust.
 
-AI coding agents are scored on **resolve rate** — how many bugs they fix. That's
-**capability**, and most widely-used agent benchmarks measure it. The number that
-actually decides whether you can let an agent into your CI is a different, far
-less-reported one: the **false-accept rate** — how often an agent *confidently ships*
+Agents are scored on **resolve rate** — how many bugs they fix. That's capability.
+The number that decides whether you can let an agent into your CI is a different,
+far less-reported one: the **false-accept rate** — how often it *confidently ships*
 a fix that looks right and silently isn't.
 
-It gets worse, because agents grade their own homework:
+It compounds, because agents grade their own homework:
 
 > the agent writes the fix → the agent writes a test for it → the test passes
 > (it encodes the agent's *own* misunderstanding) → the agent reports success.
 
-Green checkmark, hidden bug. On a benchmark that looks like a win. In production it's
-the regression that fires under load.
+Green checkmark, hidden bug.
+
+## What that costs, measured
+
+> On a frozen, pre-registered, held-out set of 50 SWE-bench Lite tasks, the same
+> model silently shipped **17/50** wrong fixes ungated — and **0/50** when an
+> independent verdict layer decided what ships.
+
+Full numbers, exact confidence intervals, every false-reject with its root cause,
+and the disclosed costs: **[RESULTS.md](RESULTS.md)**. The scoring rules were
+published **before the result existed** ([PREREGISTRATION.md](PREREGISTRATION.md),
+2026-07-03; run completed 07-05), so they provably weren't fitted around the
+outcome. Every figure recomputes from [`evaluation-artifacts/`](evaluation-artifacts/)
+with a stdlib-only script.
+
+Read [Current Scope & Limitations](CURRENT_SCOPE_AND_LIMITATIONS.md) before drawing
+any conclusion from that number — it is one evaluation, on Python, on a benchmark,
+not production CI.
+
+## What's in this repository
+
+| | |
+|---|---|
+| **[`check/`](check/)** | `pip install patchward-check` — flags changes that rewrite the tests judging them. Instant, offline, any repo, MIT. **Start here.** |
+| **[`evaluation-artifacts/`](evaluation-artifacts/)** | The proof kit: both arms' predictions as evaluated, raw per-instance reports, paired results, seeded selection, recompute script. |
+| **[`self-check/`](self-check/)** | The research instrument: point it at *your* agent and measure its own silent false-accept rate on a public benchmark. Costs a day and a Docker install. |
+| **[`sim/`](sim/)** | Interactive sim of the verdict logic — accept / review / reject, in the browser, no install. |
+| **[RESULTS.md](RESULTS.md)** · **[PREREGISTRATION.md](PREREGISTRATION.md)** · **[CURRENT_SCOPE_AND_LIMITATIONS.md](CURRENT_SCOPE_AND_LIMITATIONS.md)** | The evidence, the rules that predate it, and the honest limits. |
 
 ## The approach: separate generation from judgement
 
 A probabilistic LLM **proposes**; an independent, deterministic verdict layer
-**decides**. The checks, not the agent itself, render the verdict — and there are
-three honest outcomes, not a binary pass/fail:
+**decides**. The checks, not the agent, render the verdict — and there are three
+honest outcomes, not a binary pass/fail:
 
-- 🟢 **Verified** — independently confirmed (e.g. existing tests pass in an isolated
-  container; the change is in scope and doesn't regress).
-- 🟡 **Unverified** — plausible, but not independently confirmed → flagged for human
-  review. The system is honest about what it *couldn't* check, instead of rubber-stamping.
-- 🔴 **Blocked** — caught by a gate (edit outside declared scope, failed check, regression).
+- 🟢 **Verified** — independently confirmed (existing tests pass in isolation; the
+  change is in scope and doesn't regress).
+- 🟡 **Needs review** — plausible, not independently confirmed → flagged for a human.
+  Being honest about what it *couldn't* check beats rubber-stamping.
+- 🔴 **Blocked** — caught by a gate (edit outside declared scope, failed check,
+  regression).
 
-The point is **accountability**: turn an unaccountable AI patch into one that carries
-a verdict and an audit trail — with or without test execution.
-
-## How the verdict is formed
-
-Independent, deterministic checks — for **scope**, **evidence**, and **regression** —
-render the verdict, not the agent. Most of them don't require executing code, so they
-work offline, air-gapped, in any language; an isolated test run is an additional
-confirmation layer when a runtime is available.
-
-The reasoning behind this — why an independent verdict beats an agent's self-report,
-and why the decision is three-state rather than binary — is documented (abstracted,
-with implementation and tool names stripped) in the companion
+Most of those checks don't require executing code, so they work offline, air-gapped,
+in any language; an isolated test run is an extra confirmation layer when a runtime
+exists. The reasoning — why an independent verdict beats an agent's self-report, and
+why three states beat two — is abstracted in the companion
 [Verdict Layer Framework](https://github.com/kolesnikov-arch/verdict-layer-framework).
-The specific *tuned* engine that implements it stays private.
 
-## What's public — and what isn't
+`patchward check` is the smallest, bluntest instance of that principle: one check,
+no oracle, free.
 
-**Public:**
-- the concept and the measurement methodology;
-- **[RESULTS.md](RESULTS.md)** — the held-out results: headline counts, exact CIs, the full
-  disposition table, the pessimistic sensitivity row, every false-reject with root cause, and
-  the run-integrity log;
-- **[Pre-registered Scoring Contract](PREREGISTRATION.md)** — the scoring rules, the reporting
-  commitments, and the answers to the hard objections, **date-stamped before the results
-  existed** — so the rules provably weren't fitted around the outcome;
-- **[Current Scope & Limitations](CURRENT_SCOPE_AND_LIMITATIONS.md)** — what the measurement
-  does and doesn't yet show (honest by construction);
-- **[`evaluation-artifacts/`](evaluation-artifacts/)** — the reproducible proof-kit: both arms'
-  predictions exactly as evaluated, raw per-instance scoring reports, the paired results table,
-  the seeded task selection, and a stdlib-only script that recomputes every headline figure;
-- an **interactive sim** of the verdict logic in action *(in the
-  [companion repo](https://github.com/kolesnikov-arch/verdict-layer-framework))*.
+## What's private, and why
 
-**Private, by design:** the tuned engine — the gates, the prompts, and the
-failure-memory corpus they're tuned against. That tuning, distilled from hundreds of
-real runs, *is* the work. We open the **evidence**, not the **engine** — so the claims
-are checkable without handing over the moat.
+The tuned engine — the gates, the prompts, and the failure-memory corpus they're
+tuned against — is not published. That tuning, distilled from hundreds of real runs,
+*is* the work, and a version of it running untuned in someone else's repository
+would perform worse than these results claim.
+
+So: the **evidence** is open so the claims are checkable, and the everyday
+**instrument** ([`check/`](check/)) is open and MIT so it's actually usable. What
+stays closed is the part that needs calibration to mean anything. Where each tool
+stops, and why, is written down: [self-check/WHERE_THIS_STOPS.md](self-check/WHERE_THIS_STOPS.md).
 
 ## Status
 
-**Evaluation #1 published (2026-07-05): [RESULTS.md](RESULTS.md).** The scoring rules
-were pre-registered before the outcome existed ([PREREGISTRATION.md](PREREGISTRATION.md),
-2026-07-03) and every number is recomputable from
-[`evaluation-artifacts/`](evaluation-artifacts/) — honesty over hype, by construction.
-The concept and the trust thesis live in the companion repo:
-[verdict-layer-framework](https://github.com/kolesnikov-arch/verdict-layer-framework).
+Evaluation #1 published 2026-07-05. `check` is v0.1 — its predictive power is **not
+yet established** (see its [README](check/README.md); a validation against public
+pull-request history is the next piece of work, and the number will be published
+whichever way it comes out).
 
-Field notes from the evaluation as it runs:
-[Trust in AI Delivery](https://dmitriykolesnikov.substack.com) (newsletter).
+Issues and corrections are welcome and are the fastest way to improve any of this —
+see [CONTRIBUTING.md](CONTRIBUTING.md). Field notes as the work runs:
+[Trust in AI Delivery](https://dmitriykolesnikov.substack.com).
 
 ## License
 
-Concept, documentation, and results: **CC BY-NC 4.0** (matching the
-[Verdict Layer Framework](https://github.com/kolesnikov-arch/verdict-layer-framework)).
-Demo / sample code (when added): MIT. See [LICENSE](LICENSE).
+- **[`check/`](check/)** — MIT throughout, code and prose. It's meant to be installed.
+- Everything else — documentation, results, and prose: **CC BY-NC 4.0**;
+  sample code: MIT. See [LICENSE](LICENSE).
