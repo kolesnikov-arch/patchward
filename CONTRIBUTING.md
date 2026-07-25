@@ -14,7 +14,7 @@ contribution to the thesis, not an annoyance.
 
 Open an issue with the diff, or the smallest reproduction of it, and what you
 expected. Real diffs beat descriptions. Every rule in
-[`check/patchward/detect.py`](check/patchward/detect.py) is a claim about diff
+[`check/patchward_check/detect.py`](check/patchward_check/detect.py) is a claim about diff
 structure, and each one can be wrong.
 
 The current rules came from exactly this: the first version keyed on the word
