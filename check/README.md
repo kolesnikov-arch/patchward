@@ -130,6 +130,13 @@ reported here only so nobody has to discover it later. A larger validation
 against public pull-request history is the next piece of work, and this README
 will carry the number whichever way it comes out.
 
+**This tool is not what produced the 17/50 → 0/50 result.** That came from a
+gated pipeline that executes tests in an isolated container and applies several
+independent checks; the thing you just installed reads a diff and runs nothing.
+On the same 48 ungated patches it would have flagged 4. The evaluation is where
+this rule was *found* — not what this rule achieved. Anyone quoting the two in
+one breath is quoting two different things.
+
 ## Where this stops
 
 This is a flag, not a gate. It tells you the evidence is not independent. It
@@ -142,8 +149,9 @@ The reasoning behind an independent verdict layer is public and abstracted in th
 ## Related
 
 - [RESULTS.md](https://github.com/kolesnikov-arch/patchward/blob/main/RESULTS.md) —
-  the held-out evaluation this rule came out of: same model, 17/50 wrong fixes
-  shipped silently ungated, 0/50 gated.
+  the held-out evaluation this rule was **found in** (not produced by): same model,
+  17/50 wrong fixes shipped silently ungated, 0/50 gated by a pipeline that runs
+  tests. This tool runs none.
 - [self-check/](https://github.com/kolesnikov-arch/patchward/tree/main/self-check) —
   the research-grade instrument: point it at your agent and measure its silent
   false-accept rate on a public benchmark. Costs a day and a Docker install; this
