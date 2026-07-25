@@ -222,7 +222,7 @@ class TestReviewUIBlinding(unittest.TestCase):
             self.ui.PAGE.format(
                 done=0, total=120, pct=0.0, rid="R001", title="t", url="u",
                 changed_lines=1, body_block="<div></div>",
-                diff=self.ui._render_diff("+a\n"), buttons=buttons)
+                diff=self.ui._render_diff("+a\n"), buttons=buttons, undo="")
             self.ui._render_diff("+a\n-b\n")
         finally:
             builtins.open = real_open
@@ -240,17 +240,18 @@ class TestReviewUIBlinding(unittest.TestCase):
             title=row["title"], url=row["url"],
             changed_lines=row["changed_lines"],
             body_block=f'<div>{row["body"]}</div>',
-            diff=self.ui._render_diff("+a\n-b\n"), buttons=buttons)
+            diff=self.ui._render_diff("+a\n-b\n"), buttons=buttons,
+            undo='<a href="/undo">undo R000</a>')
         for leak in ("self-graded", "severity", "was_flagged",
                      "REWRITTEN_EXPECTATION", "SUPPRESSED", "DELETED_TEST"):
             self.assertNotIn(leak, page)
 
     def test_rubric_matches_the_contract(self):
         self.assertEqual([k for k, _, _ in self.ui.RUBRIC],
-                         ["1", "2", "3", "4", "5"])
+                         ["1", "2", "3", "4", "5", "6"])
         joined = " ".join(l for _, l, _ in self.ui.RUBRIC).lower()
-        for expected in ("retracted evidence", "justified", "added coverage",
-                         "unrelated", "undecidable"):
+        for expected in ("retracted evidence", "justified", "nothing retracted",
+                         "unrelated", "undecidable", "no test change"):
             self.assertIn(expected, joined)
 
     def test_diff_rendering_escapes_html(self):
@@ -264,7 +265,7 @@ class TestReviewUIBlinding(unittest.TestCase):
         self.assertIn("more lines", out)
 
     def test_done_page_orders_commit_before_key(self):
-        page = self.ui.DONE_PAGE.format(total=120)
+        page = self.ui.DONE_PAGE.format(total=120, undo="")
         self.assertLess(page.index("review_sample.jsonl"),
                         page.index("study tally"),
                         "the protocol is: commit classifications, THEN unblind")

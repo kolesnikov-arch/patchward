@@ -281,6 +281,56 @@ def render(summary, review=None, instrument_commit="UNPINNED"):
     L += ["", "> If the rate climbs steeply with size, the headline is partly a "
               "proxy for *large pull request* and should be read that way.", ""]
 
+    comp = summary.get("frame_composition")
+    if comp:
+        L += ["## 5b. What the frame is actually made of (disclosure)", "",
+              f"The contract fixes the frame as *top 50 per language group by "
+              f"stars*. In this window that means "
+              f"**{comp['repos_ai']} of {comp['repos_total']} repositories** are AI "
+              f"or agent projects by the published keyword pattern, and because "
+              f"those repositories are unusually busy they carry "
+              f"**{comp['pr_volume_ai_share'] * 100:.0f}% of the merged-PR volume** "
+              f"the sample is drawn from.", ""]
+        L += ["| group | repositories | AI-adjacent |", "|---|---|---|"]
+        for g, v in sorted(comp["by_group"].items()):
+            L.append(f"| {g} | {v['repos']} | {v['ai']} |")
+        L += ["",
+              "The classifier is a keyword pattern, published here so it can be "
+              "disputed, and it **over-counts** — a repository whose description "
+              "merely mentions a model or a chat feature lands in the AI bucket:",
+              "", f"```\n{comp['pattern']}\n```", "",
+              "This is a property of the *repository*, not of who wrote any pull "
+              "request. It is not the AI-versus-human comparison the contract "
+              "declines (§6): that needs author attribution, which is unreliable. "
+              "This cut was added after the frame was built and **before any diff "
+              "was fetched or scored**, so it cannot have been chosen to flatter a "
+              "verdict that did not exist yet.", ""]
+
+        brc = summary.get("base_rate_by_repo_class") or {}
+        if brc:
+            L += ["| repository class | analysed | flagged | rate |",
+                  "|---|---|---|---|"]
+            for cls in sorted(brc):
+                b = brc[cls]
+                rate = f"{b['rate'] * 100:.1f}%" if b["rate"] is not None else "—"
+                L.append(f"| {cls} | {b['analysed']} | {b['flagged']} | {rate} |")
+            L += ["", "> If these two rates differ materially, the headline is "
+                      "partly a statement about which repositories dominate the "
+                      "frame, and should be read that way.", ""]
+
+        conc = summary.get("sample_concentration")
+        if conc:
+            L += [f"**Concentration.** The draw is proportional to volume, as the "
+                  f"contract specifies, so the sample is not spread evenly: "
+                  f"{conc['drawn']} pull requests come from "
+                  f"{conc['distinct_repositories']} repositories, and the busiest "
+                  f"ten supply **{conc['top_share'] * 100:.0f}%** of them.", "",
+                  "| repository | drawn | share |", "|---|---|---|"]
+            for t in conc["top"]:
+                L.append(f"| {t['full_name']} | {t['drawn']} | "
+                         f"{t['share'] * 100:.1f}% |")
+            L.append("")
+
     L += ["## 6. Blind review — the false-positive number (contract §4, §5.4)", ""]
     if not review or not review.get("reviewed"):
         L += ["**Not yet performed.** Until it is, the headline above says nothing "

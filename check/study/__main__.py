@@ -162,6 +162,21 @@ def cmd_report(a):
     second = sorted(ART.glob("review_pass*.jsonl"))
     summary["pass_agreement"] = (
         report_mod.pass_agreement(rp, second[0]) if rp.exists() and second else None)
+
+    # Frame composition and sample concentration: disclosure, not sampling.
+    # Present only if `study composition` has been run.
+    dp, sp = ART / "frame_descriptions.json", ART / "sample.json"
+    if dp.exists():
+        from . import composition as comp
+        frame = _load_frame()
+        c = comp.classify(frame, json.loads(dp.read_text(encoding="utf-8")))
+        summary["frame_composition"] = {k: v for k, v in c.items()
+                                        if k != "repo_classes"}
+        summary["base_rate_by_repo_class"] = comp.base_rate_by_class(
+            rows, c["repo_classes"])
+        if sp.exists():
+            summary["sample_concentration"] = comp.concentration(
+                json.loads(sp.read_text(encoding="utf-8")))
     (ART / "summary.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
     (ART / "RESULTS.md").write_text(
@@ -204,6 +219,20 @@ def cmd_review(a):
 def cmd_serve(a):
     from .review_ui import serve
     serve(port=a.port, open_browser=not a.no_browser, sheet=a.sheet)
+    return 0
+
+
+def cmd_composition(a):
+    """Fetch what the framed repositories say about themselves (disclosure)."""
+    from . import composition
+    frame = _load_frame()
+    desc = composition.fetch_descriptions(frame)
+    c = composition.classify(frame, desc)
+    print(f"frame: {c['repos_ai']}/{c['repos_total']} repositories are AI-adjacent "
+          f"by the published pattern; they carry "
+          f"{c['pr_volume_ai_share'] * 100:.0f}% of the merged-PR volume")
+    for g, v in sorted(c["by_group"].items()):
+        print(f"  {g:<8} {v['ai']:>2}/{v['repos']}")
     return 0
 
 
@@ -289,7 +318,8 @@ def main(argv=None):
     sub = p.add_subparsers(dest="cmd", required=True)
     for name, fn in [("auth", cmd_auth), ("enumerate", cmd_enumerate),
                      ("fetch", cmd_fetch), ("report", cmd_report),
-                     ("tally", cmd_tally), ("verify", cmd_verify)]:
+                     ("tally", cmd_tally), ("verify", cmd_verify),
+                     ("composition", cmd_composition)]:
         sub.add_parser(name).set_defaults(func=fn)
 
     fr = sub.add_parser("frame", help="build + freeze the repository frame")
