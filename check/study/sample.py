@@ -14,6 +14,7 @@ under the cap. Whatever still does not fit is written to `population_meta.json`
 and printed. Nothing is dropped quietly.
 """
 import datetime
+import gzip
 import json
 import pathlib
 import random
@@ -21,6 +22,20 @@ import random
 SEED = 25
 TARGET_N = 3000
 SEARCH_CAP = 1000       # GitHub's hard limit on results returned per search query
+
+
+def open_text(path, mode="rt"):
+    """Open plain or gzipped jsonl transparently.
+
+    The population is written gzipped because 150 repositories over six months
+    run to hundreds of thousands of rows — around 100 MB uncompressed, which
+    GitHub refuses outright, and the draw is not reproducible without it. Gzip
+    takes it to single-digit megabytes and keeps the artifact committable.
+    """
+    path = str(path)
+    if path.endswith(".gz"):
+        return gzip.open(path, mode, encoding="utf-8")
+    return open(path, mode, encoding="utf-8")
 
 
 def _query(repo, d_from, d_to):
@@ -57,7 +72,7 @@ def _enumerate_window(client, repo, d_from, d_to, emit, truncated):
                if emit(item))
 
 
-def enumerate_prs(client, frame, out_path="study-artifacts/population.jsonl"):
+def enumerate_prs(client, frame, out_path="study-artifacts/population.jsonl.gz"):
     """List every merged PR in the window for every framed repository."""
     p = pathlib.Path(out_path)
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -65,7 +80,7 @@ def enumerate_prs(client, frame, out_path="study-artifacts/population.jsonl"):
     seen = set()
     meta = {"window": window, "search_cap": SEARCH_CAP, "repos": []}
 
-    with p.open("w", encoding="utf-8") as out:
+    with open_text(p, "wt") as out:
         for repo in frame["included"]:
             name, group = repo["full_name"], repo["group"]
 
@@ -106,10 +121,10 @@ def enumerate_prs(client, frame, out_path="study-artifacts/population.jsonl"):
     return out_path
 
 
-def draw(population_path="study-artifacts/population.jsonl",
+def draw(population_path="study-artifacts/population.jsonl.gz",
          out_path="study-artifacts/sample.json", target_n=TARGET_N, seed=SEED):
     """Stratified draw by language group, proportional to available volume."""
-    with open(population_path, encoding="utf-8") as f:
+    with open_text(population_path) as f:
         pop = [json.loads(l) for l in f if l.strip()]
     # Sort first: the draw must not depend on file order or API response order.
     pop.sort(key=lambda r: (r["group"], r["full_name"], r["number"]))
