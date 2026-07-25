@@ -74,7 +74,7 @@ not production CI.
 | **[`check/`](check/)** | `pip install patchward-check` — flags changes that rewrite the tests judging them. Instant, offline, any repo, MIT. **Start here.** |
 | **[`evaluation-artifacts/`](evaluation-artifacts/)** | The proof kit: both arms' predictions as evaluated, raw per-instance reports, paired results, seeded selection, recompute script. |
 | **[`self-check/`](self-check/)** | The research instrument: point it at *your* agent and measure its own silent false-accept rate on a public benchmark. Costs a day and a Docker install. |
-| **[`sim/`](sim/)** | Interactive sim of the verdict logic — accept / review / reject, in the browser, no install. |
+| **[`sim/`](sim/)** | Interactive sim of the verdict logic — accept / review / reject. [Runs in the browser](https://kolesnikov-arch.github.io/patchward/sim/), no install. |
 | **[RESULTS.md](RESULTS.md)** · **[PREREGISTRATION.md](PREREGISTRATION.md)** · **[CURRENT_SCOPE_AND_LIMITATIONS.md](CURRENT_SCOPE_AND_LIMITATIONS.md)** | The evidence, the rules that predate it, and the honest limits. |
 
 ## The approach: separate generation from judgement

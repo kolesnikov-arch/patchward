@@ -6,7 +6,9 @@ is a conceptual walkthrough, not a deployable product.
 
 ## Open
 
-Open `index.html` in any browser. No server, no build, no dependencies. Fully static.
+**Live: https://kolesnikov-arch.github.io/patchward/sim/**
+
+Or open `index.html` in any browser. No server, no build, no dependencies. Fully static.
 
 ## What it shows
 
