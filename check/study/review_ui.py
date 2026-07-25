@@ -1,14 +1,17 @@
 """Local blind-review tool — `python -m study serve`.
 
-The review in contract §4 is 120 diffs classified by hand, and it is the part
-of the study most likely to fail. Not because it is hard, but because doing it
-in a text editor over 120 JSON lines gets careless around item forty, and a
+The review in contract §4 is 120 diffs classified one at a time, and it is the
+part of the study most likely to fail. Not because it is hard, but because doing
+it over 120 JSON lines in an editor gets careless around item forty, and a
 careless review produces a precision number that means nothing while looking
 exactly like one that does.
 
-So: one screen per case, the diff already on it, five keys, saved after every
-answer, resumable. The reviewer never opens GitHub and never sees the
-instrument's verdict — `review_key.json` is not read by this server at all.
+So: one screen per case, the diff already on it, six keys, saved after every
+answer, resumable, and undoable. The reviewer never opens GitHub and never sees
+the instrument's verdict — `review_key.json` is not read by this server at all.
+
+`--sheet` exists for the second independent pass (§4): the same 120 cards with
+the labels blanked, so the second pass cannot see the first one's answers.
 
 stdlib only. Binds to localhost. Nothing leaves the machine.
 """
@@ -273,7 +276,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
 
 
-def serve(port=8731, open_browser=True):
+def serve(port=8731, open_browser=True, sheet=None):
+    global SHEET
+    if sheet:
+        SHEET = pathlib.Path(sheet)
     if not SHEET.exists():
         raise SystemExit(f"no review sheet at {SHEET} — run "
                          f"`python -m study review` first")
@@ -282,8 +288,9 @@ def serve(port=8731, open_browser=True):
                if str(r.get("classification", "")).strip())
     url = f"http://127.0.0.1:{port}/"
     print(f"blind review: {done}/{len(Handler.rows)} already classified")
-    print(f"  {url}   (keys 1-5, saved after every answer, close and resume "
-          f"any time)")
+    print(f"  sheet: {SHEET}")
+    print(f"  {url}   (keys 1-6, saved after every answer, undoable, close and "
+          f"resume any time)")
     print(f"  the instrument's verdicts are NOT loaded by this server")
     if open_browser:
         try:

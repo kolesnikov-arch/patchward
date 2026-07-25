@@ -190,6 +190,32 @@ def score_review(review_path="study-artifacts/review_sample.jsonl",
     }
 
 
+def pass_agreement(a_path, b_path):
+    """Per-card agreement between two independent classification passes (§4).
+
+    This is label *stability*, not inter-rater agreement between people, and the
+    contract says so in those words. With no human arm it is the only reliability
+    signal the design can produce, so it is computed and published rather than
+    left as a reassuring adjective.
+    """
+    def _load_pass(p):
+        with open(p, encoding="utf-8") as f:
+            return {r["review_id"]: str(r.get("classification", "")).strip()
+                    for r in (json.loads(l) for l in f if l.strip())}
+
+    a, b = _load_pass(a_path), _load_pass(b_path)
+    both = [rid for rid in a if a[rid] and b.get(rid)]
+    agree = [rid for rid in both if a[rid] == b[rid]]
+    disagree = sorted(rid for rid in both if a[rid] != b[rid])
+    return {
+        "compared": len(both),
+        "agree": len(agree),
+        "disagree": len(disagree),
+        "agreement_rate": (len(agree) / len(both)) if both else None,
+        "disagreeing_cards": {rid: [a[rid], b[rid]] for rid in disagree},
+    }
+
+
 def render(summary, review=None, instrument_commit="UNPINNED"):
     n, k = summary["analysed"], summary["high_severity"]
     lo, hi = summary["ci95_clopper_pearson"]
@@ -280,7 +306,21 @@ def render(summary, review=None, instrument_commit="UNPINNED"):
             "",
             "Undecidable cases are never resolved in the instrument's favour "
             "(contract §4).", "",
+            "**These labels are LLM-rated, not human-rated** (contract §4, §6). The "
+            "judge and the instrument read the same diff, so their errors correlate, "
+            "which biases precision *upward*. Discount accordingly; the base rate "
+            "above carries no such caveat. All 120 cards, both passes and their "
+            "reasons ship with these results so the labels can be re-rated.", "",
         ]
+        pa = summary.get("pass_agreement")
+        if pa and pa.get("compared"):
+            L += [
+                f"Two independent passes over the same {pa['compared']} cards agreed "
+                f"on **{pa['agree']}** and differed on **{pa['disagree']}** "
+                f"({pa['agreement_rate'] * 100:.1f}% stable). This measures label "
+                f"stability, not agreement between people — the study has no human "
+                f"arm and does not claim one.", "",
+            ]
 
     L += ["## 7. Reproducing this", "",
           "```bash", "python -m study verify", "```", "",

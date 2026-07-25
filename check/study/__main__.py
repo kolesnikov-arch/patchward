@@ -8,6 +8,7 @@
     python -m study score      run the pinned instrument over them     (§2)
     python -m study report     emit RESULTS + summary.json             (§5)
     python -m study review     export the blind review sample          (§4)
+    python -m study secondpass blank copy of it for a 2nd blind pass   (§4)
     python -m study tally      fold the filled-in review into numbers  (§4)
     python -m study verify     recompute everything from raw           (§5.8)
 
@@ -46,6 +47,12 @@ def _instrument_commit():
 
 def _load_frame():
     return json.loads((ART / "frame.json").read_text(encoding="utf-8"))
+
+
+def _population():
+    """Gzipped by default; an existing uncompressed file is still honoured."""
+    gz, plain = ART / "population.jsonl.gz", ART / "population.jsonl"
+    return plain if (plain.exists() and not gz.exists()) else gz
 
 
 def cmd_auth(a):
@@ -110,12 +117,12 @@ def cmd_frame(a):
 
 
 def cmd_enumerate(a):
-    sample_mod.enumerate_prs(Client(), _load_frame(), ART / "population.jsonl")
+    sample_mod.enumerate_prs(Client(), _load_frame(), _population())
     return 0
 
 
 def cmd_draw(a):
-    sample_mod.draw(ART / "population.jsonl", ART / "sample.json",
+    sample_mod.draw(_population(), ART / "sample.json",
                     target_n=a.n, seed=a.seed)
     return 0
 
@@ -150,6 +157,11 @@ def cmd_report(a):
 
     summary["instrument_commit"] = _instrument_commit()
     summary["review"] = review
+
+    # Second-pass agreement, if a second pass exists (contract §4).
+    second = sorted(ART.glob("review_pass*.jsonl"))
+    summary["pass_agreement"] = (
+        report_mod.pass_agreement(rp, second[0]) if rp.exists() and second else None)
     (ART / "summary.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
     (ART / "RESULTS.md").write_text(
@@ -191,7 +203,37 @@ def cmd_review(a):
 
 def cmd_serve(a):
     from .review_ui import serve
-    serve(port=a.port, open_browser=not a.no_browser)
+    serve(port=a.port, open_browser=not a.no_browser, sheet=a.sheet)
+    return 0
+
+
+def cmd_secondpass(a):
+    """A blank copy of the sheet for an independent second pass (contract §4).
+
+    Blank, not a continuation: a second pass that can see the first one's labels
+    measures nothing. Reliability comes from the two passes not knowing about
+    each other.
+    """
+    src = ART / "review_sample.jsonl"
+    dst = ART / f"review_pass{a.n}.jsonl"
+    if not src.exists():
+        sys.stderr.write(f"no {src} — run `python -m study review` first\n")
+        return 2
+    if dst.exists() and not a.force:
+        sys.stderr.write(f"{dst} already exists — a pass may be in progress. "
+                         f"--force resets it, discarding its answers.\n")
+        return 2
+
+    rows = [json.loads(l) for l in src.open(encoding="utf-8") if l.strip()]
+    with dst.open("w", encoding="utf-8") as f:
+        for r in rows:
+            blank = {**r, "classification": "", "note": ""}
+            blank.pop("answered_at", None)
+            f.write(json.dumps(blank, ensure_ascii=False) + "\n")
+
+    print(f"pass {a.n}: {len(rows)} cards, labels blank -> {dst}")
+    print(f"  classify it with: python -m study serve --sheet {dst}")
+    print(f"  then `report` folds the agreement between passes in automatically")
     return 0
 
 
@@ -264,7 +306,17 @@ def main(argv=None):
     sv = sub.add_parser("serve", help="review the sheet in a local browser UI")
     sv.add_argument("--port", type=int, default=8731)
     sv.add_argument("--no-browser", action="store_true")
+    sv.add_argument("--sheet", metavar="PATH", default=None,
+                    help="sheet to classify (default: the primary review sheet; "
+                         "point it at a pass file for the second pass)")
     sv.set_defaults(func=cmd_serve)
+
+    sp = sub.add_parser("secondpass",
+                        help="blank copy of the sheet for an independent 2nd pass")
+    sp.add_argument("-n", type=int, default=2, help="pass number (default 2)")
+    sp.add_argument("--force", action="store_true",
+                    help="overwrite an existing pass file, discarding its answers")
+    sp.set_defaults(func=cmd_secondpass)
 
     d = sub.add_parser("draw")
     d.add_argument("--n", type=int, default=sample_mod.TARGET_N)

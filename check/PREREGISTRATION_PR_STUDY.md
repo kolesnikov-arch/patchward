@@ -128,22 +128,37 @@ flags, decide most of them look correct, and publish a flattering precision numb
   person; inter-rater disagreement is reported as a raw number. If no second reviewer
   can be found, that is disclosed and the precision figure is reported as
   single-rater — not quietly presented as if it were adjudicated.
-- **The LLM arm, and how much human labelling is required.** An LLM may classify the
-  review sample, and its labels are published as a separate, disclosed column. It is
-  **never** the source of the headline precision figure and never counts as the second
-  rater above: the instrument under test is itself automated, and validating it against
-  another unvalidated automated judge — whose errors correlate with the instrument's,
-  since both read the same surface features — produces a number nobody can interpret.
-  The LLM arm therefore runs **after** the human labels are committed, so it cannot
-  anchor them.
-  - **At least 30 of the 120 must be human-classified.** If all 120 are, that is the
-    primary precision figure. If only the subsample is, the primary figure is the
-    human subsample — reported with its (wider) interval — and the LLM column is
-    published beside it with the agreement rate between the two arms.
-  - Agreement between the arms is reported as a finding in its own right: it is the
-    first evidence on whether a model can stand in for a human reviewer in later
-    studies of this kind. A high agreement does not retroactively promote the LLM
-    column to primary in *this* study.
+- **Who classifies: an LLM, and what that costs the number.** The 120 diffs are
+  classified by an LLM, in a session that is given the sheet and the diffs and nothing
+  else. **There are no human labels, and the precision figure is therefore an
+  LLM-rated figure** — labelled as such in the headline, never presented as
+  human-validated. The author states this here, before the number exists, rather than
+  in a footnote afterwards.
+
+  This is a real weakness and its direction is knowable: the judge and the instrument
+  read the same diff and the same surface features, so their errors correlate, and
+  correlated errors on a precision measurement bias it **upward — in the instrument's
+  favour**. Any reader should discount the figure accordingly. What is *not* affected
+  is the base rate in §1: that is mechanical and needs no review at all.
+
+  Four things keep an LLM-rated figure honest instead of decorative:
+  1. **The judge is blind.** It never sees the instrument's verdict, the unblinding
+     key, or the scored results — enforced by what the reviewing session is given, and
+     verifiable from the sheet, which carries no verdict field.
+  2. **Two independent passes.** The 120 are classified twice, in two separate
+     sessions, the second on a blank copy so it cannot see the first. Per-card
+     disagreement between passes is published as the reliability signal. It is not
+     inter-rater agreement between people, and is not presented as such — it measures
+     label stability, which is the most this design can measure.
+  3. **Categories 5 and 6 are never resolved in the instrument's favour**, exactly as
+     for a human rater.
+  4. **The sheet ships with the results** — all 120 diffs, both passes' labels, and
+     the one-line reason for each. A reader who thinks the labels are wrong can
+     re-rate the same 120 and publish a different number. The review becomes
+     auditable, which is the property that matters when it cannot be human-rated.
+- **If a human ever does rate them**, that column becomes primary and the LLM columns
+  drop to supporting evidence. Nothing here forbids that; it is simply not what this
+  study claims.
 
 ## 5. Reporting commitments
 
@@ -184,6 +199,11 @@ The results artifact must contain **all** of the following, whatever they say:
 - **No claim of representativeness beyond the frame.** Top-starred repositories in
   three languages are not "software." Small teams, private codebases, and less
   mature projects may differ in either direction.
+- **No claim that the precision figure is human-validated.** It is LLM-rated (§4), by
+  a judge whose errors correlate with the instrument's, which biases precision upward.
+  It is reported because an audited, disclosed, reproducible LLM-rated figure is worth
+  more than no figure at all and more than an undisclosed one — not because it is
+  equivalent to human adjudication. The base rate in §1 carries no such caveat.
 
 ## 7. Anticipated objections — answered before the result
 
