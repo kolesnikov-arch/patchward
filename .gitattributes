@@ -1,0 +1,28 @@
+# Default: every text file uses LF in the repository, regardless of what line
+# endings the working tree happens to have. Without this, a Windows checkout
+# rewrites every line of every file on commit — which, in a repository whose
+# whole point is auditable evidence, would show up as "the author rewrote
+# results_paired.csv" in the history.
+* text=auto eol=lf
+
+# Windows-only scripts: keep CRLF so .cmd/.bat/.ps1 stay executable on Windows.
+*.cmd  text eol=crlf
+*.bat  text eol=crlf
+*.ps1  text eol=crlf
+
+# Evidence artifacts: bytes matter, treat as exact.
+*.jsonl  text eol=lf
+*.csv    text eol=lf
+*.diff   -text
+*.patch  -text
+
+# Binary types (no eol conversion, no text diff)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.gz   binary
+*.tar  binary
