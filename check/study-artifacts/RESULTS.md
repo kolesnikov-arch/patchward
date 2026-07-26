@@ -1,6 +1,6 @@
 # Study #1 results — how often do merged pull requests rewrite the tests that judge them?
 
-**Run date: 2026-07-26. Instrument: `patchward-check` @ `a0c22d0`.**
+**Run date: 2026-07-26. Instrument: `patchward-check` @ `508a191`.**
 Reported against [the pre-registered contract](PREREGISTRATION_PR_STUDY.md), committed before collection began.
 
 ## 1. Disposition first (contract §5.2)
@@ -136,7 +136,24 @@ This is a property of the *repository*, not of who wrote any pull request. It is
 
 ## 6. Blind review — the false-positive number (contract §4, §5.4)
 
-**Not yet performed.** Until it is, the headline above says nothing about whether the instrument is useful — only about how often it fires. This section is the one that decides the former.
+Reviewed blind: **120** pull requests (flagged and unflagged, shuffled, verdicts hidden).
+
+| | count |
+|---|---|
+| Flagged & confirmed *retracted evidence* | 4 |
+| Flagged & judged legitimate (**false positive**) | 54 |
+| Flagged & undecidable from the diff | 0 |
+| **Not** flagged but retracted evidence (**missed**) | 0 |
+| No test change in the pull request at all | 41 |
+| Flagged although no test changed (contradiction — a bug) | 2 |
+
+**Precision: 6.9%** [1.9%, 16.7%]
+
+Undecidable cases are never resolved in the instrument's favour (contract §4).
+
+**These labels are LLM-rated, not human-rated** (contract §4, §6). The judge and the instrument read the same diff, so their errors correlate, which biases precision *upward*. Discount accordingly; the base rate above carries no such caveat. All 120 cards, both passes and their reasons ship with these results so the labels can be re-rated.
+
+Two independent passes over the same 120 cards agreed on **105** and differed on **15** (87.5% stable). This measures label stability, not agreement between people — the study has no human arm and does not claim one.
 
 ## 7. Reproducing this
 
