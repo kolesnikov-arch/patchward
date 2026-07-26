@@ -149,8 +149,9 @@ def main():
     print(f"cards labelled in both passes: {len(both)}")
     print(f"passes disagree on:           {len(differ)}"
           + (f"  ({100 * len(differ) / len(both):.1f}%)" if both else ""))
-    print("\nThis is label stability, not agreement between people, and is not "
-          "presented as the latter.")
+    print("\nThe two passes come from two model families (contract, amendment 3), so this "
+          "is agreement\nbetween families — not label stability within one model, and not "
+          "agreement between people.")
     figures["disagreement"] = {
         "labelled_in_both": len(both), "disagree": len(differ),
         "cards": sorted(differ),
