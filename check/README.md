@@ -126,7 +126,8 @@ The previous version of this README promised a validation against public
 pull-request history, "whichever way it comes out." It came out badly. Here it is.
 
 **Precision 6.9%** — 4 confirmed of 58 scoreable flagged pull requests, 95% CI
-[1.9%, 16.7%]. Of 60 flagged cards read by hand:
+[1.9%, 16.7%]. Of 60 flagged cards classified blind, with the tool's verdict
+hidden (pass 1; pass 2 splits the same cards 4 / 21 / 32 and lands at 7.0%):
 
 | | |
 |---|---|
@@ -135,10 +136,14 @@ pull-request history, "whichever way it comes out." It came out badly. Here it i
 | nothing was actually removed — the tool was wrong | 26 |
 | no test files in the diff at all (a contradiction) | 2 |
 
-**Misses: zero — and that number is much weaker than it looks.** Of 60
-*unflagged* pull requests read the same way, none was judged to have removed
-evidence. But at the underlying rate derived below (~1.7%), 60 unflagged pull
-requests are expected to contain about **one** genuine case, and only 19 of them
+**Misses: zero under one pass, one under the other — and either number is much
+weaker than it looks.** Of 60 *unflagged* pull requests classified the same way,
+pass 1 judged none to have removed evidence. Pass 2 found one: a generated build
+manifest moving a test out of `passed`, which pass 1 had called an unrelated test
+change while asking, in its own note, for a re-rating. The disagreement is
+reported rather than adjudicated. And at the underlying rate derived below
+(~1.7%), 60 unflagged pull requests are expected to contain about **one**
+genuine case, and only 19 of them
 changed a test file at all. **An instrument with zero recall would still have
 shown zero misses here 37% of the time.** The 95% upper bound on the miss rate
 is 5%.
@@ -153,9 +158,9 @@ battery has not been tested.
 a frame of 150 public repositories, 2933 analysed; scoring rules
 [committed before collection began](PREREGISTRATION_PR_STUDY.md); 120 cards
 classified twice, the second pass blind on a clean copy. Passes agreed on 105/120
-(87.5%); every disagreement sat in the middle of the rubric and **both passes
-found the same four confirmed cases**. Precision computed from pass-2 labels:
-7.0%. Full disposition, the card list, and the recompute script:
+(87.5%); **among the flagged cards both passes found the same four**, and the one
+disagreement that changes a headline is the miss above. Precision computed from
+pass-2 labels: 7.0%. Full disposition, the card list, and the recompute script:
 [`study-artifacts/`](study-artifacts/) · [results](study-artifacts/RESULTS.md).
 Labelling was done by an LLM in two passes, disclosed in §4 of the contract; there
 are no human labels, and the direction of that bias is discussed in the results.
