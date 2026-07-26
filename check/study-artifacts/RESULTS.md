@@ -1,6 +1,6 @@
 # Study #1 results — how often do merged pull requests rewrite the tests that judge them?
 
-**Run date: 2026-07-26. Instrument: `patchward-check` @ `508a191`.**
+**Run date: 2026-07-26. Instrument: `patchward-check` @ `d2f14f4`.**
 Reported against [the pre-registered contract](PREREGISTRATION_PR_STUDY.md), committed before collection began.
 
 ## 1. Disposition first (contract §5.2)
@@ -150,6 +150,12 @@ Reviewed blind: **120** pull requests (flagged and unflagged, shuffled, verdicts
 **Precision: 6.9%** [1.9%, 16.7%]
 
 Undecidable cases are never resolved in the instrument's favour (contract §4).
+
+**Misses: 0 of 60 unflagged cards — and this design had almost no power to find one.** At the underlying rate derived below (1.7%), 60 unflagged pull requests are expected to contain about 1.0 genuine case(s), and only 19 of them touched a test file at all. An instrument with **zero** recall would still have produced zero misses here with probability 37%. The 95% upper bound on the miss rate among unflagged pull requests is 5% (rule of three).
+
+**So recall is not established.** "It does not overlook" is not a claim these data can carry, and any use of this instrument as a high-recall sieve rests on a number that was never measured. What the data do support is the narrower finding that it over-fires.
+
+**What the two numbers mean together.** The instrument fires on 24.1% of merged pull requests; about 6.9% of those firings are real. The implied underlying rate — merged changes that quietly retract the evidence that judged them — is **1.7%** as a point estimate, and propagating both intervals naively gives roughly [0.4%, 4.3%]. Anyone quoting 24.1% on its own is quoting the alarm, not the fire.
 
 **These labels are LLM-rated, not human-rated** (contract §4, §6). The judge and the instrument read the same diff, so their errors correlate, which biases precision *upward*. Discount accordingly; the base rate above carries no such caveat. All 120 cards, both passes and their reasons ship with these results so the labels can be re-rated.
 

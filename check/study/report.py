@@ -33,6 +33,19 @@ def _ci_str(k, n):
     return f"[{lo * 100:.1f}%, {hi * 100:.1f}%]"
 
 
+def _review_ci_bounds(review):
+    """Precision interval as numbers, for propagating into the derived rate.
+
+    Recomputed from the counts rather than parsed back out of the formatted
+    string, so the two can never drift apart.
+    """
+    scoreable = (review["true_positive"] + review["false_positive"]
+                 + review["undecidable"])
+    if not scoreable:
+        return None, None
+    return clopper_pearson(review["true_positive"], scoreable)
+
+
 def summarize(rows):
     analysed = [r for r in rows if r["disposition"] == "analysed"]
     excluded = [r for r in rows if r["disposition"] == "excluded"]
@@ -356,6 +369,58 @@ def render(summary, review=None, instrument_commit="UNPINNED"):
             "",
             "Undecidable cases are never resolved in the instrument's favour "
             "(contract §4).", "",
+        ]
+
+        # --- Recall, and the power this design had to measure it.
+        #
+        # "Misses: zero" reads as "recall is high". At a base rate this low it
+        # is mostly a statement about the sample size. Computed here rather
+        # than asserted, and printed next to the zero, because the zero is the
+        # number a reader is most likely to over-credit — and it is the one
+        # holding up the only remaining use for this instrument.
+        n_flagged = (review["true_positive"] + review["false_positive"]
+                     + review["undecidable"]
+                     + review.get("flagged_but_no_test_change", 0))
+        n_unflagged = review["reviewed"] - n_flagged
+        n_live = n_unflagged - review.get("no_test_change", 0)
+        prec = review.get("precision")
+        derived = (k / n) * prec if (prec is not None and n) else None
+
+        if derived and n_unflagged > 0:
+            expected = n_unflagged * derived
+            p_zero = (1.0 - derived) ** n_unflagged
+            bound = 3.0 / n_unflagged          # rule of three, one-sided 95%
+            pl, ph = _review_ci_bounds(review)
+            L += [
+                f"**Misses: {review['missed_by_tool']} of {n_unflagged} unflagged "
+                f"cards — and this design had almost no power to find one.** At the "
+                f"underlying rate derived below ({derived * 100:.1f}%), "
+                f"{n_unflagged} unflagged pull requests are expected to contain "
+                f"about {expected:.1f} genuine case(s), and only {n_live} of them "
+                f"touched a test file at all. An instrument with **zero** recall "
+                f"would still have produced zero misses here with probability "
+                f"{p_zero * 100:.0f}%. The 95% upper bound on the miss rate among "
+                f"unflagged pull requests is {bound * 100:.0f}% (rule of three).",
+                "",
+                "**So recall is not established.** \"It does not overlook\" is not a "
+                "claim these data can carry, and any use of this instrument as a "
+                "high-recall sieve rests on a number that was never measured. What "
+                "the data do support is the narrower finding that it over-fires.",
+                "",
+                f"**What the two numbers mean together.** The instrument fires on "
+                f"{_pct(k, n)} of merged pull requests; about {prec * 100:.1f}% of "
+                f"those firings are real. The implied underlying rate — merged "
+                f"changes that quietly retract the evidence that judged them — is "
+                f"**{derived * 100:.1f}%** as a point estimate"
+                + (f", and propagating both intervals naively gives roughly "
+                   f"[{(lo * pl) * 100:.1f}%, {(hi * ph) * 100:.1f}%]."
+                   if pl is not None else ".")
+                + f" Anyone quoting {_pct(k, n)} on its own is quoting the alarm, "
+                  f"not the fire.",
+                "",
+            ]
+
+        L += [
             "**These labels are LLM-rated, not human-rated** (contract §4, §6). The "
             "judge and the instrument read the same diff, so their errors correlate, "
             "which biases precision *upward*. Discount accordingly; the base rate "
