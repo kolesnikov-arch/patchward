@@ -22,8 +22,16 @@ from concurrent.futures import ThreadPoolExecutor
 
 import adapters
 
-if sys.platform == "win32":
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+def utf8_stdout():
+    """Windows consoles default to a codepage that dies on the first non-ASCII trace.
+    Guarded, because wrapping an already-wrapped stdout closes the buffer underneath it."""
+    if (getattr(sys.stdout, "encoding", "") or "").lower().replace("-", "") != "utf8":
+        sys.stdout = io.TextIOWrapper(
+            sys.stdout.buffer, encoding="utf-8", errors="replace", line_buffering=True
+        )
+
+
+utf8_stdout()
 
 BUCKET = "https://swe-bench-submissions.s3.amazonaws.com/"
 CACHE = "dev-cache"

@@ -261,7 +261,20 @@ or dropping one now requires a dated amendment here. The two excluded from label
 excluded by a structural rule stated in §3, not by their numbers — which have not been
 computed.
 
-## 10. Freeze discipline
+## 10. Amendments
+
+**2026-07-26, before any collection — `keep_think` added to `adapters.py`.**
+§5 requires every figure to be published under both readings of `<think>`, and the
+extractors frozen at `bb1dc78` could only produce the first: the `<think>` rule was
+hard-coded, so the second reading was unreachable. The freeze was incomplete rather than
+wrong. `normalise()` and `extract()` now take `keep_think`, which when true keeps the
+deliberation text instead of dropping it; the default is unchanged and every figure the
+old code could produce, the new code produces identically. Nothing about which text is
+scored under the primary reading has changed. Recorded here rather than edited in
+silently, per §11, and landing before a single card exists rather than after a number
+did.
+
+## 11. Freeze discipline
 
 - This file and `adapters.py` are frozen before collection. Amendments are dated, in
   this file, with the reason — never silent edits.

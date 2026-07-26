@@ -44,7 +44,8 @@ _MACHINERY = re.compile(r"^(?:<[^>]{1,40}>|finish|submit|done|\W)+$", re.I)
 # dropping the <think> rule below, and the study reports the number both ways.
 
 
-def normalise(text):
+def normalise(text, keep_think=False):
+    """`keep_think=True` selects the second reading of §5: deliberation counts as report."""
     if not text:
         return ""
     if text.startswith("[finish]"):
@@ -56,7 +57,10 @@ def normalise(text):
             ) or text
         except (ValueError, SyntaxError):
             pass
-    text = re.sub(r"<think>.*?</think>", " ", text, flags=re.S)
+    if keep_think:
+        text = re.sub(r"</?think>", " ", text)
+    else:
+        text = re.sub(r"<think>.*?</think>", " ", text, flags=re.S)
     text = re.sub(r"(?m)^\s*THOUGHT:\s*", "", text).strip()
     if not text or _MACHINERY.fullmatch(text):
         return NO_REPORT
@@ -234,6 +238,6 @@ ADAPTERS = {
 }
 
 
-def extract(submission, raw):
+def extract(submission, raw, keep_think=False):
     out = ADAPTERS[submission](raw)
-    return out if out == SELECTION_UNCLEAR else normalise(out)
+    return out if out == SELECTION_UNCLEAR else normalise(out, keep_think)
