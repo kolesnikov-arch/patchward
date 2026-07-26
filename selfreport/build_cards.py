@@ -38,6 +38,7 @@ RESULTS = (
 CACHE = "trace-cache"
 SEED = 3
 PER_STRATUM = 60
+BATCH = 80          # cards per labelling session; see LABELLING_PROMPT.md
 
 # §3: labelled only where the adapter can attribute the closing statement to the patch
 # that was submitted. Warp summarises several attempts; Amazon Q names the candidate it
@@ -174,6 +175,18 @@ def main():
     with open(os.path.join(out, "cards.jsonl"), "w", encoding="utf-8") as f:
         for card in cards:
             f.write(json.dumps(card, ensure_ascii=False) + "\n")
+
+    # Labelling happens in sessions, not through the API (PREREGISTRATION.md §6), so
+    # the deck is also written as batches small enough to paste into one. Batching is
+    # presentation only: the shuffle above already fixed the order, and a card's batch
+    # is therefore independent of anything about the card.
+    batches = [cards[i:i + BATCH] for i in range(0, len(cards), BATCH)]
+    for number, batch in enumerate(batches, start=1):
+        path = os.path.join(out, f"batch-{number:02d}.jsonl")
+        with open(path, "w", encoding="utf-8") as f:
+            for card in batch:
+                f.write(json.dumps(card, ensure_ascii=False) + "\n")
+    print(f"{len(batches)} batches of up to {BATCH} -> {out}/batch-NN.jsonl")
     json.dump(key, open(os.path.join(out, "key.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     json.dump({"seed": SEED, "per_stratum": want, "candidates": len(pool_ids),
