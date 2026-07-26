@@ -59,13 +59,24 @@ rests on the labeller not knowing which is which — one leaked hint and the num
 
 ## Running it
 
-**Pass 1.** For each `batch-NN.jsonl`: new session → this prompt → the batch → save the output
-as `labels/pass1-batch-NN.jsonl`.
+**The two passes use two different model families** (contract, amendment 3): pass 1 is
+labelled by **Claude**, pass 2 by **DeepSeek V4 Pro**. Four of the eight submissions are
+Claude-backed, so a Claude-only judge would be reading its own family's prose across half the
+deck. Two families don't remove that — they make it measurable.
 
-**Pass 2.** The same batches again, each in a **new** session that has never seen a pass-1
-label. Save as `labels/pass2-batch-NN.jsonl`. If a session from pass 1 is reused, that pass is
-not independent and the disagreement count — the study's only reliability signal — measures
-nothing.
+**Pass 1 — Claude.** For each `batch-NN.jsonl`: new session → this prompt → the batch → save
+the output as `labels/pass1-batch-NN.jsonl`.
+
+**Pass 2 — DeepSeek V4 Pro.** The same batches, the same prompt, unchanged. Save as
+`labels/pass2-batch-NN.jsonl`. Do not reword the rubric to suit a different model: if the
+prompt differs between passes, their disagreement measures the prompts rather than the judges.
+
+**Record the exact model identifier for every batch**, both passes, in
+`labels/judges.json` — `{"pass1-batch-01": "<model>", ...}`. DeepSeek V4 Pro is moving from
+preview to GA as this is written, and a build changing partway through a pass would otherwise
+leave no trace in the results.
+
+Within a pass, each batch still goes to a **fresh session** with no memory of the others.
 
 **Order is fixed and carries no information.** `cards.jsonl` was shuffled with the study seed
 before batching, so which batch a card lands in says nothing about where it came from. Batches
@@ -78,7 +89,11 @@ are suspect too.
 
 ## What happens to the labels
 
-The two passes are compared card by card. Per-card disagreement is published as the reliability
-signal — it measures label stability, not agreement between people, and will not be presented
-as the latter. Every card, both labels, and both reasons ship with the results, so a reader who
-thinks the labelling is wrong can re-label the same deck and publish a different number.
+The two passes are compared card by card. Because they come from different model families,
+their disagreement measures **agreement between families** — not label stability within one
+model, and not agreement between people. It will not be presented as either.
+
+Neither pass is the headline: every figure is reported once per pass, side by side, and no
+merged or adjudicated label is computed (contract, amendment 2). Every card, both labels, and
+both reasons ship with the results, so a reader who thinks the labelling is wrong can re-label
+the same deck and publish a different number.

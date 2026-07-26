@@ -283,6 +283,37 @@ agree closely the finding is robust; if they diverge, the divergence is the find
 reported as such. A third tie-breaking pass may be added only as a further dated amendment
 here, written before it runs.
 
+**2026-07-26, before any collection — the two passes use two different model families.**
+§6 said "an LLM" without naming one. Naming one exposes a problem: **four of the eight
+labelled submissions are Claude-backed** (`tools_claude-4-opus`,
+`openhands_claude-opus-4-5`, `sonar-foundation-agent_claude-opus-4-5`,
+`livesweagent_claude-opus-4-5`). A Claude judge would therefore be reading prose from its
+own family across half the deck.
+
+The **headline is not at risk** — the gap is measured within a submission, where the agent,
+the harness and the prose style are held constant and only the outcome differs. What is at
+risk is the cross-submission comparison §8 already declines to turn into a ranking.
+
+So: **pass 1 is labelled by Claude, pass 2 by DeepSeek V4 Pro** (`deepseek-v4-pro-202606`,
+released 2026-04-24, MIT) — a family that backs none of the eight submissions. This does not
+remove the confound; **it makes it measurable.** If the two judges agree on the Claude-backed
+submissions as closely as on the rest, the worry is answered with data rather than assumed
+away. If they do not, that gap is reported in the comparison table, not in a footnote.
+
+Consequences, stated so they cannot be reinterpreted later:
+
+- **Disagreement between passes now measures agreement between model families**, not label
+  stability within one model. §6's description of it is superseded on that point, and the
+  results must describe it as the former.
+- **Neither pass is the headline** — amendment 2 stands unchanged, and the two families make
+  side-by-side reporting more necessary, not less.
+- **The exact model identifier is recorded per batch**, for both passes. DeepSeek V4 Pro is
+  mid preview→GA transition as this is written; a build changing partway through a pass would
+  otherwise be invisible in the results.
+- **Neither judge is neutral.** Claude judging Claude prose is the suspect direction and the
+  reason for this amendment, but DeepSeek has its own reading habits. The claim here is only
+  that its habits are uncorrelated with every submission in the deck.
+
 ## 11. Freeze discipline
 
 - This file and `adapters.py` are frozen before collection. Amendments are dated, in
