@@ -1,7 +1,7 @@
 # Study #1 results — how often do merged pull requests rewrite the tests that judge them?
 
 **Run date: 2026-07-26. Instrument: `patchward-check` @ `d2f14f4`.**
-Reported against [the pre-registered contract](PREREGISTRATION_PR_STUDY.md), committed before collection began.
+Reported against [the pre-registered contract](../PREREGISTRATION_PR_STUDY.md), committed before collection began.
 
 ## 1. Disposition first (contract §5.2)
 
