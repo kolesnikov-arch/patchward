@@ -1,0 +1,208 @@
+{
+  "drawn": 3000,
+  "analysed": 2933,
+  "excluded": 67,
+  "excluded_reasons": {
+    "oversize:5502": 1,
+    "oversize:7527": 1,
+    "oversize:12968": 1,
+    "oversize:9679": 1,
+    "empty-diff": 8,
+    "oversize:10008": 1,
+    "oversize:5023": 1,
+    "diff-unavailable": 19,
+    "oversize:10415": 1,
+    "oversize:13876": 1,
+    "oversize:12973": 1,
+    "oversize:22069": 1,
+    "oversize:8303": 1,
+    "oversize:15345": 1,
+    "oversize:10537": 1,
+    "oversize:5286": 1,
+    "oversize:42378": 1,
+    "oversize:28207": 1,
+    "oversize:5021": 1,
+    "oversize:17360": 1,
+    "oversize:7505": 1,
+    "oversize:8804": 1,
+    "oversize:12986": 1,
+    "oversize:14834": 1,
+    "oversize:15245": 1,
+    "oversize:5361": 1,
+    "oversize:5621": 1,
+    "oversize:6733": 1,
+    "oversize:8824": 1,
+    "oversize:18289": 1,
+    "oversize:5499": 1,
+    "oversize:22044": 1,
+    "oversize:5794": 1,
+    "oversize:5337": 1,
+    "oversize:7423": 1,
+    "oversize:6019": 1,
+    "oversize:7803": 1,
+    "oversize:5535": 1,
+    "oversize:11090": 1,
+    "oversize:10834": 1,
+    "oversize:5904": 1,
+    "oversize:11975": 1
+  },
+  "verdicts": {
+    "clean": 1612,
+    "note": 567,
+    "self-graded": 707,
+    "review": 47
+  },
+  "high_severity": 707,
+  "rate": 0.24105011933174225,
+  "ci95_clopper_pearson": [
+    0.2256647294193636,
+    0.2569537462744872
+  ],
+  "ci95_wilson": [
+    0.22591591674081948,
+    0.2568617471886583
+  ],
+  "by_finding_kind": {
+    "REWRITTEN_EXPECTATION": 667,
+    "DELETED_TEST": 229,
+    "SUPPRESSED": 37
+  },
+  "by_language_group": {
+    "go": {
+      "n": 523,
+      "high": 124,
+      "ci": "[20.1%, 27.6%]"
+    },
+    "js-ts": {
+      "n": 1234,
+      "high": 304,
+      "ci": "[22.3%, 27.1%]"
+    },
+    "python": {
+      "n": 1176,
+      "high": 279,
+      "ci": "[21.3%, 26.3%]"
+    }
+  },
+  "by_diff_size": {
+    "0-20": {
+      "n": 886,
+      "high": 36,
+      "rate": 0.040632054176072234
+    },
+    "21-100": {
+      "n": 828,
+      "high": 170,
+      "rate": 0.20531400966183574
+    },
+    "101-500": {
+      "n": 823,
+      "high": 284,
+      "rate": 0.3450789793438639
+    },
+    "501-2000": {
+      "n": 317,
+      "high": 170,
+      "rate": 0.5362776025236593
+    },
+    "2001-5000": {
+      "n": 79,
+      "high": 47,
+      "rate": 0.5949367088607594
+    }
+  },
+  "instrument_commit": "a0c22d0",
+  "review": null,
+  "pass_agreement": null,
+  "frame_composition": {
+    "pattern": "\\b(ai|a\\.i\\.|llm|llms|gpt|agent|agents|agentic|chatbot|copilot|prompt|prompts|rag|inference|embedding|embeddings|transformer|transformers|diffusion|openai|anthropic|claude|gemini|deepseek|qwen|llama|mistral|ollama|vllm|langchain|mcp|assistant|coding-agent)\\b",
+    "by_group": {
+      "python": {
+        "repos": 50,
+        "ai": 32
+      },
+      "js-ts": {
+        "repos": 50,
+        "ai": 20
+      },
+      "go": {
+        "repos": 50,
+        "ai": 12
+      }
+    },
+    "repos_ai": 64,
+    "repos_total": 150,
+    "pr_volume_ai": 104552,
+    "pr_volume_total": 192978,
+    "pr_volume_ai_share": 0.5417819647835505
+  },
+  "base_rate_by_repo_class": {
+    "ai-adjacent": {
+      "analysed": 1575,
+      "flagged": 408,
+      "rate": 0.259047619047619
+    },
+    "other": {
+      "analysed": 1358,
+      "flagged": 299,
+      "rate": 0.22017673048600883
+    }
+  },
+  "sample_concentration": {
+    "drawn": 3000,
+    "distinct_repositories": 147,
+    "top": [
+      {
+        "full_name": "openclaw/openclaw",
+        "drawn": 179,
+        "share": 0.059666666666666666
+      },
+      {
+        "full_name": "getsentry/sentry",
+        "drawn": 152,
+        "share": 0.050666666666666665
+      },
+      {
+        "full_name": "microsoft/vscode",
+        "drawn": 146,
+        "share": 0.048666666666666664
+      },
+      {
+        "full_name": "NousResearch/hermes-agent",
+        "drawn": 128,
+        "share": 0.042666666666666665
+      },
+      {
+        "full_name": "home-assistant/core",
+        "drawn": 119,
+        "share": 0.03966666666666667
+      },
+      {
+        "full_name": "grafana/grafana",
+        "drawn": 113,
+        "share": 0.03766666666666667
+      },
+      {
+        "full_name": "n8n-io/n8n",
+        "drawn": 105,
+        "share": 0.035
+      },
+      {
+        "full_name": "cockroachdb/cockroach",
+        "drawn": 93,
+        "share": 0.031
+      },
+      {
+        "full_name": "vllm-project/vllm",
+        "drawn": 80,
+        "share": 0.02666666666666667
+      },
+      {
+        "full_name": "BerriAI/litellm",
+        "drawn": 77,
+        "share": 0.025666666666666667
+      }
+    ],
+    "top_share": 0.3973333333333333
+  }
+}

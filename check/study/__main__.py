@@ -32,13 +32,21 @@ ART = pathlib.Path("study-artifacts")
 
 
 def _instrument_commit():
+    """HEAD, marked dirty only if THE INSTRUMENT is uncommitted.
+
+    Scoped to `patchward_check/` on purpose. What §2 pins is the instrument; the
+    unscoped check called the tree dirty because scoring had just written its own
+    results next to it, so the artifact ended up claiming the instrument was
+    unpinned when the instrument had not been touched. A pin that goes off for
+    the wrong reason teaches you to ignore it.
+    """
+    root = pathlib.Path(__file__).resolve().parents[1]
     try:
         out = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                             capture_output=True, text=True,
-                             cwd=pathlib.Path(__file__).resolve().parents[1])
-        dirty = subprocess.run(["git", "status", "--porcelain"],
-                               capture_output=True, text=True,
-                               cwd=pathlib.Path(__file__).resolve().parents[1])
+                             capture_output=True, text=True, cwd=root)
+        dirty = subprocess.run(["git", "status", "--porcelain",
+                                "--", "patchward_check"],
+                               capture_output=True, text=True, cwd=root)
         sha = out.stdout.strip() or "UNKNOWN"
         return sha + ("-dirty" if dirty.stdout.strip() else "")
     except Exception:
