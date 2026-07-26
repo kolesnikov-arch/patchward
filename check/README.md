@@ -111,24 +111,77 @@ tool only answers the second one. A fix that rewrites the failing test is not
 proven wrong — it is *unfalsified by construction*, which is a different and
 more slippery problem.
 
-**It will flag legitimate work.** Renaming an API, changing an intentional
-output format, tightening a loose assertion — all of these rewrite existing
-expectations for good reasons. On the repository this was developed against,
-**6.6% of 467 commits** were flagged. That rate is the point: it is small enough
-to read, and every hit is a place where the diff moved its own goalposts. Read
-them, don't obey them.
+**It will flag legitimate work — most of what it flags, in fact.** Renaming an
+API, changing an intentional output format, tightening a loose assertion: all of
+these rewrite existing expectations for good reasons. This is now measured rather
+than estimated — see below.
 
 **It does not run your tests, call a model, or phone home.** Pure stdlib, one
 pass over the diff. Works offline, air-gapped, on any language whose tests live
 in recognisable places.
 
-**Its predictive power is not established.** On the 50-task held-out set in
-[RESULTS.md](https://github.com/kolesnikov-arch/patchward/blob/main/RESULTS.md)
-it flagged 4 of 48 ungated patches; 2 of those
-4 were confirmed wrong, against a 35% base rate. **n=4 proves nothing** and is
-reported here only so nobody has to discover it later. A larger validation
-against public pull-request history is the next piece of work, and this README
-will carry the number whichever way it comes out.
+### Its predictive power is now established, and it is poor
+
+The previous version of this README promised a validation against public
+pull-request history, "whichever way it comes out." It came out badly. Here it is.
+
+**Precision 6.9%** — 4 confirmed of 58 scoreable flagged pull requests, 95% CI
+[1.9%, 16.7%]. Of 60 flagged cards read by hand:
+
+| | |
+|---|---|
+| genuinely removed the evidence, undeclared | **4** |
+| expectation change **declared in the pull request itself** | 28 |
+| nothing was actually removed — the tool was wrong | 26 |
+| no test files in the diff at all (a contradiction) | 2 |
+
+**Misses: zero — and that number is much weaker than it looks.** Of 60
+*unflagged* pull requests read the same way, none was judged to have removed
+evidence. But at the underlying rate derived below (~1.7%), 60 unflagged pull
+requests are expected to contain about **one** genuine case, and only 19 of them
+changed a test file at all. **An instrument with zero recall would still have
+shown zero misses here 37% of the time.** The 95% upper bound on the miss rate
+is 5%.
+
+So: **recall is not established.** "It does not overlook" is not a claim these
+data can carry, and if you were reaching for this as a high-recall sieve, that
+use rests on a number nobody has measured. What the data do support is the
+narrower half — it over-fires. A smoke alarm that goes off at toast, and whose
+battery has not been tested.
+
+**Method, so you can discount it properly.** 3000 merged pull requests drawn from
+a frame of 150 public repositories, 2933 analysed; scoring rules
+[committed before collection began](PREREGISTRATION_PR_STUDY.md); 120 cards
+classified twice, the second pass blind on a clean copy. Passes agreed on 105/120
+(87.5%); every disagreement sat in the middle of the rubric and **both passes
+found the same four confirmed cases**. Precision computed from pass-2 labels:
+7.0%. Full disposition, the card list, and the recompute script:
+[`study-artifacts/`](study-artifacts/) · [results](study-artifacts/RESULTS.md).
+Labelling was done by an LLM in two passes, disclosed in §4 of the contract; there
+are no human labels, and the direction of that bias is discussed in the results.
+
+**What the two numbers mean together.** The detector fires on 24.1% of merged pull
+requests [22.6%, 25.7%]; about 6.9% of those firings are real. So the underlying
+rate — merged changes that quietly remove the evidence that judged them — is
+**~1.7%**, not a quarter. Propagating both intervals naively puts it somewhere
+around **0.4%–4.3%**, so read it as *a few percent*, not as a figure with two
+significant digits. Anyone quoting 24.1% on its own is quoting the alarm, not the
+fire.
+
+**What happens next, and what will not.** 28 of 58 flags were changes the pull
+request *announced*. Reading the pull-request body and downgrading those is the
+obvious repair — but be clear what it buys: `4/30` = **13.3%**, roughly double
+and still nowhere near usable as an alarm, which needs something like 60–70%
+before people stop switching it off. The remaining gap is not mechanical. It
+requires judging whether an expectation change was *warranted*, and that means a
+model in the loop — which costs the offline, no-key, one-millisecond property
+that is the only reason to prefer this over a code review. The two contradiction
+cases are simpler: path heuristics blind to Rust inline tests and to config files
+with "test" in the name.
+
+None of that is being changed on the strength of *these* data — §2 and §7 of the
+contract forbid it. Any fix ships after this publication and is measured on a
+fresh sample, and that number will be published the same way.
 
 **This tool is not what produced the 17/50 → 0/50 result.** That came from a
 gated pipeline that executes tests in an isolated container and applies several

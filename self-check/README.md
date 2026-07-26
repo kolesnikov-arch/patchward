@@ -4,9 +4,11 @@
 ships silently.**
 
 > **Looking for something you can run in a second?** This isn't it — this is the
-> research instrument, and it costs a day and a Docker install. For the everyday
-> tool, see **[`../check/`](../check/)**: `pip install patchward-check` flags changes
-> that rewrite the tests judging them, instantly, on any repository, offline.
+> research instrument, and it costs a day and a Docker install. The one-second tool
+> is **[`../check/`](../check/)** (`pip install patchward-check`), but know what it
+> is before you reach for it: **precision 6.9%, recall unmeasured** on 2933 merged
+> pull requests. A wide sieve for auditing history, not an alarm. This instrument
+> here is the one that produces a number you can report.
 >
 > *Naming note: on PyPI this instrument is `fa-patchward` — `fa-` is the false-accept
 > rate it measures — and the everyday tool is `patchward-check`. The bare `patchward`
