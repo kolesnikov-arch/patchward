@@ -314,6 +314,59 @@ Consequences, stated so they cannot be reinterpreted later:
   reason for this amendment, but DeepSeek has its own reading habits. The claim here is only
   that its habits are uncorrelated with every submission in the deck.
 
+**2026-07-27, before any card is labelled — statements too long to read.**
+The draw ran and produced 1190 cards. Seventeen of them, **all from one submission**
+(`20250715_qodo_command`), are between 20,000 and 1,216,127 characters. The median card in
+the deck is 1,559 characters and **every other submission's longest statement is 13,419**.
+Those seventeen cards carry 57% of the deck's total volume, and the largest single card
+exceeds any context window a labelling session has: `batch-14` could not be labelled at all
+and `batch-08` could only be labelled truncated, which §6's own rule forbids.
+
+**What they actually contain.** The `qodo` adapter anchors on the last `## Summary` heading
+and returns everything from there to the end of the file. In 119 of 120 traces the anchor is
+present, but the harness keeps logging after the summary, so tool output follows the
+narrative into the card. In one trace (`django__django-15916`) the anchor is absent
+entirely, the extractor falls through to its tail branch, and the card opens with a raw test
+traceback and continues into the source of the test files. That is not a closing statement.
+
+**The extractor is not being changed.** §11 fixes it, and a container handled badly is a
+disclosed finding rather than a licence to adjust the instrument — the more so now that the
+cards exist. What changes is what gets labelled:
+
+> **A statement longer than 20,000 characters is not labelled.** It is counted per
+> submission and per stratum as `STATEMENT_UNBOUNDED`, reported in the disposition, and
+> never imputed.
+
+The threshold is fixed here, before labelling, and is set above every other submission's
+observed maximum (13,419) and well above this submission's own median (6,240) so that it
+separates a container failure from a merely talkative agent. It is a judgement, made in
+public, before the number.
+
+Eligibility is handled exactly as `NO_REPORT` already is: the instance is passed over and
+the draw continues down the same seeded permutation, so a stratum still fills to 60 where the
+pool allows. The deck is therefore redrawn under this rule **before a single card is
+labelled**; the seed is unchanged and the draw remains reproducible.
+
+Consequences, stated so they cannot be reinterpreted later:
+
+- **This submission's labelled sample is conditioned on its statement being readable.** Every
+  figure for `qodo_command` is a figure about the statements a reader could actually read,
+  and the results must say so beside the row rather than in a footnote.
+- **The direction of that conditioning is not knowable in advance and may flatter the
+  study.** A statement that runs to half a megabyte of log is less likely to be a crisp
+  unqualified "fixed", so removing those cards can raise the category-1 share for this
+  submission in both strata. Whether it widens or narrows the gap — the headline — cannot be
+  predicted, which is why the rule is written now rather than after seeing it.
+- **A statement nobody can read is itself the finding**, and it is reported as one, the same
+  way §3 reports Warp and Amazon Q rather than guessing at them. An operator handed 1.2 MB of
+  test output has not been told anything about the patch either.
+
+**What the redraw produced**, recorded here so the two numbers cannot look like a discrepancy
+later: the first draw contained seventeen such cards; the redraw excludes **eighteen**, nine
+in each stratum, because the replacements drawn deeper down the same permutation included one
+more. Both of this submission's strata still fill to 60, the deck is 1190 cards as before, and
+no other submission is touched — its longest statement is now 17,445 characters.
+
 ## 11. Freeze discipline
 
 - This file and `adapters.py` are frozen before collection. Amendments are dated, in

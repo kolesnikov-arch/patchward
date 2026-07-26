@@ -38,7 +38,16 @@ RESULTS = (
 CACHE = "trace-cache"
 SEED = 3
 PER_STRATUM = 60
-BATCH = 80          # cards per labelling session; see LABELLING_PROMPT.md
+
+# PREREGISTRATION.md, amendment 4 (2026-07-27): a statement this long is not a closing
+# statement, it is a slab of tool log, and no session can read it. Counted, never imputed.
+MAX_STATEMENT = 20_000
+
+# A labelling session has to hold the batch, the rubric and its own output at once, so a
+# batch closes on whichever limit it reaches first. Batching is presentation only — the
+# shuffle below fixes the order, and these bounds only decide where it is cut.
+BATCH_CARDS = 80
+BATCH_CHARS = 240_000
 
 # §3: labelled only where the adapter can attribute the closing statement to the patch
 # that was submitted. Warp summarises several attempts; Amazon Q names the candidate it
@@ -110,6 +119,9 @@ def collect(submission, trace_index, resolved, pool, want):
             if primary == adapters.NO_REPORT:
                 disposition[f"{stratum}_no_report"] += 1
                 continue
+            if len(primary) > MAX_STATEMENT:
+                disposition[f"{stratum}_statement_unbounded"] += 1
+                continue
             found[stratum].append((instance, primary, alternative))
             disposition[f"{stratum}_drawn"] += 1
     return found, disposition
@@ -154,12 +166,17 @@ def main():
     for submission in LABELLED:
         resolved = resolved_set(submission)
         found, disposition = collect(submission, trace_index, resolved, pool_ids, want)
-        dispositions[submission] = dict(disposition)
         for stratum, rows in found.items():
             for instance, primary, alternative in rows:
                 for reading, text in (("primary", primary), ("keep_think", alternative)):
                     if reading == "keep_think" and alternative == primary:
                         continue          # nothing to label twice
+                    if len(text) > MAX_STATEMENT:
+                        # amendment 4. The primary reading is already filtered in
+                        # collect(); this catches a second reading that only exceeds the
+                        # bound once the deliberation is kept.
+                        disposition[f"{stratum}_{reading}_statement_unbounded"] += 1
+                        continue
                     cid = card_id(submission, instance, reading)
                     cards.append({"card_id": cid, "text": text})
                     key[cid] = {
@@ -168,6 +185,7 @@ def main():
                         "resolved": instance in resolved,
                         "reading": reading,
                     }
+        dispositions[submission] = dict(disposition)
         drawn = sum(len(v) for v in found.values())
         print(f"  {submission:<50} {drawn:>3} statements  {dict(disposition)}")
 
@@ -180,13 +198,27 @@ def main():
     # the deck is also written as batches small enough to paste into one. Batching is
     # presentation only: the shuffle above already fixed the order, and a card's batch
     # is therefore independent of anything about the card.
-    batches = [cards[i:i + BATCH] for i in range(0, len(cards), BATCH)]
+    #
+    # A fixed card count is the wrong bound: statement length varies by three orders of
+    # magnitude, so 80 cards is a comfortable session in one place and an impossible one
+    # in another. Cut on whichever bound arrives first, walking the fixed order.
+    batches, current, budget = [], [], 0
+    for card in cards:
+        if current and (len(current) >= BATCH_CARDS or budget + len(card["text"]) > BATCH_CHARS):
+            batches.append(current)
+            current, budget = [], 0
+        current.append(card)
+        budget += len(card["text"])
+    if current:
+        batches.append(current)
     for number, batch in enumerate(batches, start=1):
         path = os.path.join(out, f"batch-{number:02d}.jsonl")
         with open(path, "w", encoding="utf-8") as f:
             for card in batch:
                 f.write(json.dumps(card, ensure_ascii=False) + "\n")
-    print(f"{len(batches)} batches of up to {BATCH} -> {out}/batch-NN.jsonl")
+    widest = max((sum(len(c["text"]) for c in b) for b in batches), default=0)
+    print(f"{len(batches)} batches -> {out}/batch-NN.jsonl "
+          f"(at most {BATCH_CARDS} cards / {BATCH_CHARS:,} chars; widest {widest:,})")
     json.dump(key, open(os.path.join(out, "key.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     json.dump({"seed": SEED, "per_stratum": want, "candidates": len(pool_ids),
