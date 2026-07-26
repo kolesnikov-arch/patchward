@@ -1,0 +1,910 @@
+{
+  "window": {
+    "from": "2026-01-01",
+    "to": "2026-06-30"
+  },
+  "search_cap": 1000,
+  "repos": [
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "frame_total_count": 7163,
+      "enumerated": 7163,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "Significant-Gravitas/AutoGPT",
+      "frame_total_count": 910,
+      "enumerated": 910,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "yt-dlp/yt-dlp",
+      "frame_total_count": 227,
+      "enumerated": 227,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "langflow-ai/langflow",
+      "frame_total_count": 1384,
+      "enumerated": 1384,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "open-webui/open-webui",
+      "frame_total_count": 768,
+      "enumerated": 768,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "langchain-ai/langchain",
+      "frame_total_count": 1362,
+      "enumerated": 1362,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "github/spec-kit",
+      "frame_total_count": 750,
+      "enumerated": 750,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "Comfy-Org/ComfyUI",
+      "frame_total_count": 1074,
+      "enumerated": 1074,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "browser-use/browser-use",
+      "frame_total_count": 282,
+      "enumerated": 282,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "pytorch/pytorch",
+      "frame_total_count": 203,
+      "enumerated": 203,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "fastapi/fastapi",
+      "frame_total_count": 433,
+      "enumerated": 433,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "home-assistant/core",
+      "frame_total_count": 7833,
+      "enumerated": 7833,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "django/django",
+      "frame_total_count": 428,
+      "enumerated": 428,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "vllm-project/vllm",
+      "frame_total_count": 5688,
+      "enumerated": 5688,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "PaddlePaddle/PaddleOCR",
+      "frame_total_count": 146,
+      "enumerated": 146,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "OpenHands/OpenHands",
+      "frame_total_count": 1251,
+      "enumerated": 1251,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "bytedance/deer-flow",
+      "frame_total_count": 868,
+      "enumerated": 868,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "apache/superset",
+      "frame_total_count": 2665,
+      "enumerated": 2665,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "python/cpython",
+      "frame_total_count": 4693,
+      "enumerated": 4693,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "hiyouga/LlamaFactory",
+      "frame_total_count": 157,
+      "enumerated": 157,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "OpenBB-finance/OpenBB",
+      "frame_total_count": 113,
+      "enumerated": 113,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "unslothai/unsloth",
+      "frame_total_count": 1402,
+      "enumerated": 1402,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "docling-project/docling",
+      "frame_total_count": 329,
+      "enumerated": 329,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "scrapy/scrapy",
+      "frame_total_count": 182,
+      "enumerated": 182,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "commaai/openpilot",
+      "frame_total_count": 774,
+      "enumerated": 774,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "headroomlabs-ai/headroom",
+      "frame_total_count": 644,
+      "enumerated": 644,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "odysseus-dev/odysseus",
+      "frame_total_count": 1257,
+      "enumerated": 1257,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "Panniantong/Agent-Reach",
+      "frame_total_count": 152,
+      "enumerated": 152,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "ultralytics/ultralytics",
+      "frame_total_count": 837,
+      "enumerated": 837,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "1c7/chinese-independent-developer",
+      "frame_total_count": 248,
+      "enumerated": 248,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "ZhuLinsen/daily_stock_analysis",
+      "frame_total_count": 562,
+      "enumerated": 562,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "MemPalace/mempalace",
+      "frame_total_count": 497,
+      "enumerated": 497,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "crewAIInc/crewAI",
+      "frame_total_count": 729,
+      "enumerated": 729,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "BerriAI/litellm",
+      "frame_total_count": 5109,
+      "enumerated": 5109,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "mvanhorn/last30days-skill",
+      "frame_total_count": 319,
+      "enumerated": 319,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "freqtrade/freqtrade",
+      "frame_total_count": 377,
+      "enumerated": 377,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "run-llama/llama_index",
+      "frame_total_count": 473,
+      "enumerated": 473,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "pandas-dev/pandas",
+      "frame_total_count": 1466,
+      "enumerated": 1466,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "roboflow/supervision",
+      "frame_total_count": 292,
+      "enumerated": 292,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "exo-explore/exo",
+      "frame_total_count": 511,
+      "enumerated": 511,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "apache/airflow",
+      "frame_total_count": 5562,
+      "enumerated": 5562,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "HKUDS/nanobot",
+      "frame_total_count": 1106,
+      "enumerated": 1106,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "HKUDS/CLI-Anything",
+      "frame_total_count": 156,
+      "enumerated": 156,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "streamlit/streamlit",
+      "frame_total_count": 1498,
+      "enumerated": 1498,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "getsentry/sentry",
+      "frame_total_count": 9914,
+      "enumerated": 9914,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "usestrix/strix",
+      "frame_total_count": 131,
+      "enumerated": 131,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "paperless-ngx/paperless-ngx",
+      "frame_total_count": 517,
+      "enumerated": 517,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "ccxt/ccxt",
+      "frame_total_count": 987,
+      "enumerated": 987,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "frame_total_count": 162,
+      "enumerated": 162,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "ray-project/ray",
+      "frame_total_count": 2349,
+      "enumerated": 2349,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "openclaw/openclaw",
+      "frame_total_count": 11855,
+      "enumerated": 11855,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "react/react",
+      "frame_total_count": 329,
+      "enumerated": 329,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "affaan-m/ECC",
+      "frame_total_count": 846,
+      "enumerated": 846,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "n8n-io/n8n",
+      "frame_total_count": 5227,
+      "enumerated": 5227,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "anomalyco/opencode",
+      "frame_total_count": 4193,
+      "enumerated": 4193,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "microsoft/vscode",
+      "frame_total_count": 9264,
+      "enumerated": 9264,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "firecrawl/firecrawl",
+      "frame_total_count": 603,
+      "enumerated": 603,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "langgenius/dify",
+      "frame_total_count": 3112,
+      "enumerated": 3112,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "vercel/next.js",
+      "frame_total_count": 2279,
+      "enumerated": 2279,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "clash-verge-rev/clash-verge-rev",
+      "frame_total_count": 250,
+      "enumerated": 250,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "excalidraw/excalidraw",
+      "frame_total_count": 130,
+      "enumerated": 130,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "shadcn-ui/ui",
+      "frame_total_count": 420,
+      "enumerated": 420,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "nodejs/node",
+      "frame_total_count": 1231,
+      "enumerated": 1231,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "mrdoob/three.js",
+      "frame_total_count": 804,
+      "enumerated": 804,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "microsoft/TypeScript",
+      "frame_total_count": 103,
+      "enumerated": 103,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "axios/axios",
+      "frame_total_count": 330,
+      "enumerated": 330,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "immich-app/immich",
+      "frame_total_count": 1523,
+      "enumerated": 1523,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "supabase/supabase",
+      "frame_total_count": 3106,
+      "enumerated": 3106,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "google-gemini/gemini-cli",
+      "frame_total_count": 2661,
+      "enumerated": 2661,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "angular/angular",
+      "frame_total_count": 2048,
+      "enumerated": 2048,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "ant-design/ant-design",
+      "frame_total_count": 1224,
+      "enumerated": 1224,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "mui/material-ui",
+      "frame_total_count": 766,
+      "enumerated": 766,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "tailwindlabs/tailwindcss",
+      "frame_total_count": 176,
+      "enumerated": 176,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "puppeteer/puppeteer",
+      "frame_total_count": 416,
+      "enumerated": 416,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "microsoft/playwright",
+      "frame_total_count": 1522,
+      "enumerated": 1522,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "storybookjs/storybook",
+      "frame_total_count": 861,
+      "enumerated": 861,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "louislam/uptime-kuma",
+      "frame_total_count": 328,
+      "enumerated": 328,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "mermaid-js/mermaid",
+      "frame_total_count": 246,
+      "enumerated": 246,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "DietrichGebert/ponytail",
+      "frame_total_count": 119,
+      "enumerated": 119,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "thedotmack/claude-mem",
+      "frame_total_count": 312,
+      "enumerated": 312,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "sveltejs/svelte",
+      "frame_total_count": 460,
+      "enumerated": 460,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "vitejs/vite",
+      "frame_total_count": 565,
+      "enumerated": 565,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "nexu-io/open-design",
+      "frame_total_count": 1846,
+      "enumerated": 1846,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "lobehub/lobehub",
+      "frame_total_count": 2997,
+      "enumerated": 2997,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "hoppscotch/hoppscotch",
+      "frame_total_count": 143,
+      "enumerated": 143,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "coder/code-server",
+      "frame_total_count": 115,
+      "enumerated": 115,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "earendil-works/pi",
+      "frame_total_count": 554,
+      "enumerated": 554,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "nestjs/nest",
+      "frame_total_count": 669,
+      "enumerated": 669,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "grafana/grafana",
+      "frame_total_count": 7021,
+      "enumerated": 7021,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "paperclipai/paperclip",
+      "frame_total_count": 931,
+      "enumerated": 931,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "koala73/worldmonitor",
+      "frame_total_count": 3338,
+      "enumerated": 3338,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "strapi/strapi",
+      "frame_total_count": 706,
+      "enumerated": 706,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "toeverything/AFFiNE",
+      "frame_total_count": 360,
+      "enumerated": 360,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "code-yeongyu/oh-my-openagent",
+      "frame_total_count": 1868,
+      "enumerated": 1868,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "webpack/webpack",
+      "frame_total_count": 604,
+      "enumerated": 604,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "cline/cline",
+      "frame_total_count": 1157,
+      "enumerated": 1157,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "nocodb/nocodb",
+      "frame_total_count": 720,
+      "enumerated": 720,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "Mintplex-Labs/anything-llm",
+      "frame_total_count": 289,
+      "enumerated": 289,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "Fission-AI/OpenSpec",
+      "frame_total_count": 204,
+      "enumerated": 204,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "mem0ai/mem0",
+      "frame_total_count": 539,
+      "enumerated": 539,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "ollama/ollama",
+      "frame_total_count": 556,
+      "enumerated": 556,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "kubernetes/kubernetes",
+      "frame_total_count": 1815,
+      "enumerated": 1815,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "fatedier/frp",
+      "frame_total_count": 101,
+      "enumerated": 101,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "gohugoio/hugo",
+      "frame_total_count": 292,
+      "enumerated": 292,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "infiniflow/ragflow",
+      "frame_total_count": 2110,
+      "enumerated": 2110,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "jesseduffield/lazygit",
+      "frame_total_count": 171,
+      "enumerated": 171,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "netdata/netdata",
+      "frame_total_count": 1010,
+      "enumerated": 1010,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "caddyserver/caddy",
+      "frame_total_count": 150,
+      "enumerated": 150,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "moby/moby",
+      "frame_total_count": 675,
+      "enumerated": 675,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "prometheus/prometheus",
+      "frame_total_count": 659,
+      "enumerated": 659,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "traefik/traefik",
+      "frame_total_count": 469,
+      "enumerated": 469,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "usememos/memos",
+      "frame_total_count": 163,
+      "enumerated": 163,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "rclone/rclone",
+      "frame_total_count": 163,
+      "enumerated": 163,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "go-gitea/gitea",
+      "frame_total_count": 1073,
+      "enumerated": 1073,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "etcd-io/etcd",
+      "frame_total_count": 439,
+      "enumerated": 439,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "ethereum/go-ethereum",
+      "frame_total_count": 524,
+      "enumerated": 524,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "hashicorp/terraform",
+      "frame_total_count": 406,
+      "enumerated": 406,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "mudler/LocalAI",
+      "frame_total_count": 1462,
+      "enumerated": 1462,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "gogs/gogs",
+      "frame_total_count": 165,
+      "enumerated": 165,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "cli/cli",
+      "frame_total_count": 289,
+      "enumerated": 289,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "milvus-io/milvus",
+      "frame_total_count": 2026,
+      "enumerated": 2026,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "router-for-me/CLIProxyAPI",
+      "frame_total_count": 386,
+      "enumerated": 386,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "MHSanaei/3x-ui",
+      "frame_total_count": 291,
+      "enumerated": 291,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "danielmiessler/Fabric",
+      "frame_total_count": 110,
+      "enumerated": 110,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "juanfont/headscale",
+      "frame_total_count": 157,
+      "enumerated": 157,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "multica-ai/multica",
+      "frame_total_count": 2108,
+      "enumerated": 2108,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "XTLS/Xray-core",
+      "frame_total_count": 268,
+      "enumerated": 268,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "pingcap/tidb",
+      "frame_total_count": 1590,
+      "enumerated": 1590,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "gofiber/fiber",
+      "frame_total_count": 332,
+      "enumerated": 332,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "istio/istio",
+      "frame_total_count": 1168,
+      "enumerated": 1168,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "docker/compose",
+      "frame_total_count": 155,
+      "enumerated": 155,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "aquasecurity/trivy",
+      "frame_total_count": 255,
+      "enumerated": 255,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "1Panel-dev/1Panel",
+      "frame_total_count": 733,
+      "enumerated": 733,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "filebrowser/filebrowser",
+      "frame_total_count": 117,
+      "enumerated": 117,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "wailsapp/wails",
+      "frame_total_count": 376,
+      "enumerated": 376,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "restic/restic",
+      "frame_total_count": 144,
+      "enumerated": 144,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "tailscale/tailscale",
+      "frame_total_count": 878,
+      "enumerated": 878,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "derailed/k9s",
+      "frame_total_count": 110,
+      "enumerated": 110,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "Wei-Shaw/sub2api",
+      "frame_total_count": 777,
+      "enumerated": 777,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "seaweedfs/seaweedfs",
+      "frame_total_count": 1519,
+      "enumerated": 1519,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "k3s-io/k3s",
+      "frame_total_count": 444,
+      "enumerated": 444,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "podman-container-tools/podman",
+      "frame_total_count": 587,
+      "enumerated": 587,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "cockroachdb/cockroach",
+      "frame_total_count": 4696,
+      "enumerated": 4696,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "kubernetes/minikube",
+      "frame_total_count": 386,
+      "enumerated": 386,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "github/github-mcp-server",
+      "frame_total_count": 290,
+      "enumerated": 290,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "grafana/k6",
+      "frame_total_count": 325,
+      "enumerated": 325,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "helm/helm",
+      "frame_total_count": 246,
+      "enumerated": 246,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "hashicorp/consul",
+      "frame_total_count": 309,
+      "enumerated": 309,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "projectdiscovery/nuclei",
+      "frame_total_count": 177,
+      "enumerated": 177,
+      "truncated_windows": []
+    },
+    {
+      "full_name": "sipeed/picoclaw",
+      "frame_total_count": 1016,
+      "enumerated": 1016,
+      "truncated_windows": []
+    }
+  ],
+  "complete": true
+}
