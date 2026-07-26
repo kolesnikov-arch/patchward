@@ -10,7 +10,7 @@ existed**, and each recomputes from raw artifacts with a stdlib-only script.
 | | |
 |---|---|
 | **17/50 → 0/50** | On 50 held-out benchmark tasks, the same model silently shipped 17 wrong fixes ungated — and 0 when an independent layer decided what ships. [RESULTS.md](RESULTS.md) |
-| **a few %** | of merged pull requests in the wild quietly remove the evidence that judged them. Derived, not observed: 707 of 2933 flagged (24.1%), 6.9% of flags confirmed by hand → ~1.7%, interval roughly 0.4–4.3%. [Study #1](check/study-artifacts/RESULTS.md) |
+| **a few %** | of merged pull requests in the wild quietly remove the evidence that judged them. Derived, not observed: 707 of 2933 flagged (24.1%), 6.9% of flags confirmed on blind re-reading → ~1.7%, interval roughly 0.4–4.3%. [Study #1](check/study-artifacts/RESULTS.md) |
 | **6.9%** | precision of the free detector in this repo — it cries wolf nine times in ten, and its recall was never established. Published because the previous README promised the number whichever way it came out. [`check/`](check/) |
 
 **Where to go, by what you want**
@@ -139,9 +139,10 @@ Where each tool stops, and why, is written down:
 
 **Study #1** — published 2026-07-26. The validation this README promised for `check`
 has been run and reported, and it went badly for the tool: 2933 merged pull requests,
-base rate 24.1% flagged, precision **6.9%**, inter-pass agreement 87.5%. Zero misses
-were found, but the design had almost no power to find one — so **recall is not
-established**, and the report says so rather than banking the zero. `check` stays at
+base rate 24.1% flagged, precision **6.9%**, inter-pass agreement 87.5%. One labelling
+pass found zero misses and the other found one, and the design had almost no power to
+find either — so **recall is not established**, and the report says so rather than
+banking the zero. `check` stays at
 v0.1. The known repairs are listed in [its README](check/README.md) along with what
 they are actually worth (13.3%, not "fixed"), and are deliberately *not* being applied
 to these data; they ship afterwards and get measured on a fresh sample.
