@@ -32,17 +32,24 @@ ART = pathlib.Path("study-artifacts")
 
 
 def _instrument_commit():
-    """HEAD, marked dirty only if THE INSTRUMENT is uncommitted.
+    """The last commit that changed THE INSTRUMENT, marked dirty if uncommitted.
 
     Scoped to `patchward_check/` on purpose. What §2 pins is the instrument; the
     unscoped check called the tree dirty because scoring had just written its own
     results next to it, so the artifact ended up claiming the instrument was
     unpinned when the instrument had not been touched. A pin that goes off for
     the wrong reason teaches you to ignore it.
+
+    It is the instrument's own last commit rather than HEAD for the same reason.
+    HEAD moves for every unrelated edit — a fix to this file, a paragraph in a
+    README — and stamping published verdicts with it claimed they came from code
+    that had never seen the data. The scoring code and the pin have to name the
+    same thing or the pin is decoration.
     """
     root = pathlib.Path(__file__).resolve().parents[1]
     try:
-        out = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+        out = subprocess.run(["git", "log", "-1", "--format=%h",
+                              "--", "patchward_check"],
                              capture_output=True, text=True, cwd=root)
         dirty = subprocess.run(["git", "status", "--porcelain",
                                 "--", "patchward_check"],
@@ -140,6 +147,21 @@ def cmd_fetch(a):
     return 0
 
 
+def _scored_with():
+    """The instrument commit as recorded when the verdicts were produced.
+
+    Provenance belongs to the scoring run, not to whenever `report` last ran.
+    Recomputing HEAD at report time meant an unrelated commit — a typo fix in
+    this very file — silently re-stamped published results with an instrument
+    version that never saw the data. Falls back to HEAD only when the record
+    is missing, and says so.
+    """
+    p = ART / "instrument.json"
+    if p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))["commit"]
+    return _instrument_commit() + " (unrecorded — inferred from HEAD)"
+
+
 def cmd_score(a):
     commit = _instrument_commit()
     if commit.endswith("-dirty") and not a.allow_dirty:
@@ -149,6 +171,10 @@ def cmd_score(a):
             "       --allow-dirty for a throwaway run whose numbers you discard.\n")
         return 2
     collect.score(ART / "sample.json", ART / "results.jsonl")
+    (ART / "instrument.json").write_text(
+        json.dumps({"commit": commit,
+                    "scored_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")},
+                   indent=2), encoding="utf-8")
     return 0
 
 
@@ -163,7 +189,7 @@ def cmd_report(a):
         if not review["reviewed"]:
             review = None
 
-    summary["instrument_commit"] = _instrument_commit()
+    summary["instrument_commit"] = _scored_with()
     summary["review"] = review
 
     # Second-pass agreement, if a second pass exists (contract §4).
