@@ -138,20 +138,49 @@ This is a property of the *repository*, not of who wrote any pull request. It is
 
 Reviewed blind: **120** pull requests (flagged and unflagged, shuffled, verdicts hidden).
 
-| | count |
-|---|---|
-| Flagged & confirmed *retracted evidence* | 4 |
-| Flagged & judged legitimate (**false positive**) | 54 |
-| Flagged & undecidable from the diff | 0 |
-| **Not** flagged but retracted evidence (**missed**) | 0 |
-| No test change in the pull request at all | 41 |
-| Flagged although no test changed (contradiction — a bug) | 2 |
+**Both passes are reported side by side.** Neither is adjudicated into the other, and the
+figures below are not merged; where they differ, the difference is the finding.
 
-**Precision: 6.9%** [1.9%, 16.7%]
+| | pass 1 | pass 2 |
+|---|---:|---:|
+| Flagged & confirmed *retracted evidence* | 4 | 4 |
+| Flagged & judged legitimate (**false positive**) | 54 | 53 |
+| Flagged & undecidable from the diff | 0 | 2 |
+| **Not** flagged but retracted evidence (**missed**) | 0 | **1** |
+| No test change in the pull request at all | 41 | 41 |
+| Flagged although no test changed (contradiction — a bug) | 2 | 1 |
+
+**Precision: 6.9%** [1.9%, 16.7%] under pass 1; **7.0%** [1.9%, 17.0%] under pass 2.
 
 Undecidable cases are never resolved in the instrument's favour (contract §4).
 
-**Misses: 0 of 60 unflagged cards — and this design had almost no power to find one.** At the underlying rate derived below (1.7%), 60 unflagged pull requests are expected to contain about 1.0 genuine case(s), and only 19 of them touched a test file at all. An instrument with **zero** recall would still have produced zero misses here with probability 37%. The 95% upper bound on the miss rate among unflagged pull requests is 5% (rule of three).
+**What the false positives are made of**, since the repair below depends on the split
+(rubric categories, contract §4; flagged cards only):
+
+| | pass 1 | pass 2 |
+|---|---:|---:|
+| 1 — retracted evidence | 4 | 4 |
+| 2 — justified, and the pull request says so | 28 | 21 |
+| 3 — nothing retracted (the tool was simply wrong) | 26 | 32 |
+| 5 — undecidable | 0 | 2 |
+| 6 — no test change (contradiction) | 2 | 1 |
+
+Reading the pull-request description and downgrading category 2 would take precision to
+**13.3%** under pass 1 and **11.1%** under pass 2 — double, and still not an instrument
+you would leave switched on. It is not applied here: the contract forbids tuning on the
+data that produced the verdict (§7).
+
+**Misses: 0 of 60 unflagged cards under pass 1, 1 under pass 2 — and this design had
+almost no power to find either.** The passes disagree on the one card: `R052`
+([vercel/next.js#89147](https://github.com/vercel/next.js/pull/89147)), a generated build
+manifest that moves a test out of `passed`. Pass 2 read that as a retracted expectation;
+pass 1 called it an unrelated test change and flagged it in its own note for re-rating.
+It is reported here rather than resolved, because resolving it means choosing the pass
+whose answer is more convenient. At the underlying rate derived below (1.7%), 60 unflagged
+pull requests are expected to contain about 1.0 genuine case(s), and only 19 of them
+touched a test file at all. An instrument with **zero** recall would still have produced
+zero misses here with probability 37%. The 95% upper bound on the miss rate among
+unflagged pull requests is 5% (rule of three).
 
 **So recall is not established.** "It does not overlook" is not a claim these data can carry, and any use of this instrument as a high-recall sieve rests on a number that was never measured. What the data do support is the narrower finding that it over-fires.
 
