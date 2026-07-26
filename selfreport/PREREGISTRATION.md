@@ -274,6 +274,15 @@ scored under the primary reading has changed. Recorded here rather than edited i
 silently, per §11, and landing before a single card exists rather than after a number
 did.
 
+**2026-07-26, before any collection — how the two passes combine.**
+§6 requires two passes and publishes their disagreement, but never said which pass supplies
+the headline. Left open, that becomes a choice made after seeing two numbers, which is the
+exact move this document exists to prevent. Fixed now: **every figure is reported once per
+pass, side by side, and no merged or adjudicated label is computed at all.** If the two passes
+agree closely the finding is robust; if they diverge, the divergence is the finding and is
+reported as such. A third tie-breaking pass may be added only as a further dated amendment
+here, written before it runs.
+
 ## 11. Freeze discipline
 
 - This file and `adapters.py` are frozen before collection. Amendments are dated, in
