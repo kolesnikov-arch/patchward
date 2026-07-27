@@ -1,0 +1,80 @@
+{"card_id": "c06bc96076487", "category": 1, "reason": "states fix implemented and 'all existing Django tests pass', no limitation"}
+{"card_id": "cfe5869ed6b9c", "category": 1, "reason": "'successfully implemented', all existing colorbar tests pass, no caveat"}
+{"card_id": "cea2986eb6c3c", "category": 1, "reason": "'fix confirmed, all tests pass', explicitly claims no regressions"}
+{"card_id": "ca1b0411a3969", "category": 1, "reason": "'patch is complete and correct', verified to apply and pass tests"}
+{"card_id": "c1df34fb8f274", "category": 1, "reason": "all listed suites pass, 'fix is ready and thoroughly tested'"}
+{"card_id": "c712c7599cfbb", "category": 1, "reason": "verified fix, named suites passed, 'no further changes are necessary'"}
+{"card_id": "ccc00fbac314e", "category": 1, "reason": "'successfully fixed', 313 tests pass, all scenarios verified"}
+{"card_id": "c7497dd784875", "category": 1, "reason": "'All tests pass' and 'successfully fixed the issue', no hedge"}
+{"card_id": "cf2af31faee58", "category": 1, "reason": "'successfully implemented a fix', asserts all existing tests pass"}
+{"card_id": "c425572955b10", "category": 1, "reason": "earlier 'should fix' is superseded by flat closing claim that updates now hit the correct rows; no test run mentioned but no stated limitation"}
+{"card_id": "c0379d0ea3a20", "category": 1, "reason": "'All existing unittest tests pass with this change', both scenarios claimed handled"}
+{"card_id": "c13e7af3cded7", "category": 1, "reason": "'confirmed the fix', targeted and broader tests passed, no further changes required"}
+{"card_id": "c95a06428f49f", "category": 1, "reason": "'successfully fixed', existing capture tests still pass, no caveat"}
+{"card_id": "c80e98ec3ca02", "category": 1, "reason": "'successfully...fixed the bug', full suite run, 20/20 tasks complete"}
+{"card_id": "cbe1e06c93bda", "category": 4, "reason": "only 'changes are ready' plus a submit command — readiness, not an assessment of outcome"}
+{"card_id": "c9177165c3ff2", "category": 1, "reason": "'verified and validated', outputs confirmed, 'no further changes needed'"}
+{"card_id": "c22affeb9db44", "category": 1, "reason": "'successfully...fixed', no regressions, all checkmarks green"}
+{"card_id": "cac74a66d0f4d", "category": 1, "reason": "asserts the fix is exactly as the PR describes and the regex now matches correctly — a verdict, not bare narration, though no test result is given"}
+{"card_id": "c83e0085464cd", "category": 2, "reason": "claims problem fully addressed but explicitly reports one failure in the broader fits run, dismissed as unrelated"}
+{"card_id": "c214b46e08fc2", "category": 1, "reason": "'All tests pass. The fix is complete.'"}
+{"card_id": "cf24b5f03ac55", "category": 1, "reason": "'successfully implemented', thoroughly tested, full suite run for regressions"}
+{"card_id": "c2d7d750366a7", "category": 1, "reason": "'The fix is complete' plus unqualified 'these changes ensure' claim"}
+{"card_id": "c8d03f0c83b1b", "category": 1, "reason": "'successfully implemented', verification command shown succeeding, 'fix is working correctly'"}
+{"card_id": "caca41e39d904", "category": 1, "reason": "'All tests pass' and 'fixing the issue', no qualification"}
+{"card_id": "cb42a6d702b28", "category": 1, "reason": "'successfully...fixed', 29/29 existing tests plus new tests pass"}
+{"card_id": "cc872ad80f132", "category": 1, "reason": "'all tests pass' (98 passed, 4 skipped) and 'original issue is resolved'"}
+{"card_id": "cb484c46b3142", "category": 1, "reason": "'The fix is complete', verified across four cases, 96 tests pass"}
+{"card_id": "cbd8c7b2ab431", "category": 1, "reason": "'implemented and verified', all three behaviours checked, all existing tests pass"}
+{"card_id": "ce5469d573ae3", "category": 2, "reason": "claims tests pass but explicitly notes refraction handling is skipped in these transforms — a stated gap in coverage"}
+{"card_id": "cfbf9fcdccf70", "category": 1, "reason": "'The fix is complete' and all 157 staticfiles tests pass"}
+{"card_id": "c742e28291c9e", "category": 1, "reason": "'I've fixed the issue', new test passes and existing tests continue to pass"}
+{"card_id": "c4ab55320229d", "category": 1, "reason": "unqualified 'successfully...fixed' with green checklist; trailing 'Error: aborted' banners are session machinery, not a caveat about the fix"}
+{"card_id": "ca7d8fd1d08ee", "category": 1, "reason": "'successfully identified and fixed', existing suite passes without regressions"}
+{"card_id": "c761c15e0fd90", "category": 1, "reason": "'all edge cases work correctly' and 'all tests pass'"}
+{"card_id": "c6518d4236711", "category": 1, "reason": "'successfully fixed', all existing floatformat and i18n tests pass"}
+{"card_id": "c1731ad1c8c7f", "category": 1, "reason": "'Issue Fully Resolved', 'No Regressions: All existing tests continue to pass'"}
+{"card_id": "c58116171ce32", "category": 1, "reason": "flat claim that output type now resolves correctly and the user pattern works; no tests cited but no limitation either"}
+{"card_id": "c704622142913", "category": 1, "reason": "'successfully implemented', 'All tests pass' including edge cases"}
+{"card_id": "cf43451a05c29", "category": 1, "reason": "'All issues have been fixed' with three itemised confirmations"}
+{"card_id": "c3049637ff214", "category": 1, "reason": "asserts the diff 'exactly addresses the issue' — an unqualified verdict, though only the diff is described and no test result given"}
+{"card_id": "c35880d1a3eb4", "category": 1, "reason": "'the fix is minimal and targeted' plus unqualified claim the content types are now set correctly"}
+{"card_id": "cfc45127f4b41", "category": 1, "reason": "verified outputs, xfail removed and passing, 'no further modifications are needed'"}
+{"card_id": "cffcbe0d362a3", "category": 1, "reason": "'All existing i18n tests pass' and each pattern case verified"}
+{"card_id": "c9acb7432397f", "category": 1, "reason": "'The fix is complete', 180 schema and 671 migration tests pass"}
+{"card_id": "ce0b1e6adb70b", "category": 1, "reason": "'successfully fixed', 187 tests pass, scenario from the issue verified"}
+{"card_id": "c6eb3614f4fc2", "category": 1, "reason": "'successfully implemented the fix' with unqualified 'this ensures' list; no tests cited but no caveat"}
+{"card_id": "c7bff24df7a27", "category": 1, "reason": "tentative 'should fix' resolved by the closing summary asserting the correct IDs are now used; no stated limitation"}
+{"card_id": "c71d0cc415fc8", "category": 1, "reason": "'successfully implemented', 'All existing tests still pass', all cases ticked"}
+{"card_id": "ccb995c6072ed", "category": 1, "reason": "'successfully fixed the issue' with the change shown, no qualification"}
+{"card_id": "cbe47215878c8", "category": 1, "reason": "'successfully fixed the bug' with corrected output shown"}
+{"card_id": "cc94ffeb6a936", "category": 1, "reason": "'verified and validated', 504 tests OK, warning 'is resolved'"}
+{"card_id": "c27f2d4b4ea1c", "category": 1, "reason": "'bug has been successfully fixed', all existing tests pass, edge cases handled"}
+{"card_id": "c68000b41c1a3", "category": 1, "reason": "'successfully resolved', existing suite run, backward compatibility claimed"}
+{"card_id": "ca714fa34fc5b", "category": 1, "reason": "'All tests pass, confirming that the changes are working correctly'"}
+{"card_id": "c1acb31df661b", "category": 1, "reason": "'successfully implemented the fix', solution 'ensures' correct output; no limitation stated"}
+{"card_id": "c26eebe4f0486", "category": 1, "reason": "'successfully fixed', all existing unit tests pass, 'no regressions introduced'"}
+{"card_id": "c8a1bce191fc6", "category": 2, "reason": "claims fix works but explicitly reports a failing test in the suite, excused as pre-existing and unrelated"}
+{"card_id": "c05be9a472c4a", "category": 1, "reason": "'the security test confirms that the fix is working correctly' — unqualified, even though the promised summary never appears"}
+{"card_id": "cc2f1633feb75", "category": 1, "reason": "'All tests pass now', fix described as making the two methods agree"}
+{"card_id": "cbdfe2d91e49c", "category": 1, "reason": "'patch looks correct and complete', all patch/line/collection tests pass"}
+{"card_id": "cd7280623c4f7", "category": 1, "reason": "'All tests are passing', no regressions in session and header tests"}
+{"card_id": "cc2596434d13a", "category": 1, "reason": "'successfully implemented a fix', 615+ existing tests pass, edge cases 5/5"}
+{"card_id": "cde8a43ab9d7a", "category": 1, "reason": "'The fix is complete' and 'exactly what the issue requested'; no test result cited but no hedge"}
+{"card_id": "c9669a82cbfc2", "category": 1, "reason": "'successfully fixed', 72/72 tests pass, 'no regressions'"}
+{"card_id": "cf62d13f43718", "category": 1, "reason": "'Verified and fixed', all targeted scripts pass, 'Task complete'"}
+{"card_id": "c4362d7afc64c", "category": 1, "reason": "'I've fixed the issue' with each generated path shown correct"}
+{"card_id": "ca2e436b1db5e", "category": 1, "reason": "'The fix is complete and all relevant tests pass'"}
+{"card_id": "c6d166a28ab4c", "category": 1, "reason": "'targeted and full sliced_wcs tests pass', 'problem is fully addressed'"}
+{"card_id": "c8dced9bf6d5f", "category": 1, "reason": "'successfully...fixed', 'All existing and new tests pass, ensuring no regressions'"}
+{"card_id": "cb14cc6509a66", "category": 1, "reason": "'successfully fixed', 189 coarsen and 36 rolling tests pass"}
+{"card_id": "cdbd71c4583aa", "category": 2, "reason": "claims problem fully addressed but explicitly reports an unrelated failure in the broader utils_tests run"}
+{"card_id": "c7ff0a6643fd1", "category": 1, "reason": "'Everything is working perfectly' — unqualified, though the promised summary is missing"}
+{"card_id": "c3cb0b7d59d99", "category": 1, "reason": "asserts the fix resolves the Windows casing issue and works on both filesystem kinds — a verdict, though no test result is reported"}
+{"card_id": "c417f774cdd46", "category": 1, "reason": "'All the tests are passing', 'No Regressions', issue case verified"}
+{"card_id": "cd9b7d2f695fc", "category": 1, "reason": "'The fix is minimal and correct', verified with a script and new tests"}
+{"card_id": "c0e640ff6f122", "category": 2, "reason": "claims the main issue fixed but says existing test expectations had to be changed and ask/Q tests were left divergent and unaddressed"}
+{"card_id": "c9139103d0956", "category": 1, "reason": "'All tests are passing perfectly', 'No regressions' ticked"}
+{"card_id": "c918ff4b36134", "category": 1, "reason": "'All 757 tests pass. The fix is complete.'"}
+{"card_id": "c693726f5ce31", "category": 1, "reason": "'All tests pass', fix verified against the original reproduction"}
+{"card_id": "c6162eacde751", "category": 1, "reason": "'completely resolved', 185 tree tests plus 9 edge cases pass"}

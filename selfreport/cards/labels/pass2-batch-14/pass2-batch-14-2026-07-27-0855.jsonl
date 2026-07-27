@@ -1,0 +1,80 @@
+{"card_id": "c8b7346702b5a", "category": 1, "reason": "unqualified 'I successfully fixed the issue', all tests pass"}
+{"card_id": "c1e3f703b0495", "category": 1, "reason": "unqualified 'successfully identified and fixed', all tests pass"}
+{"card_id": "ce177f3cc36a1", "category": 1, "reason": "unqualified 'successfully implemented a fix', all tests pass"}
+{"card_id": "cc2fb2bc00d44", "category": 1, "reason": "'Perfect! The fix is working correctly' with no qualification"}
+{"card_id": "ca44dd7477a9e", "category": 1, "reason": "unqualified 'successfully implemented the fix', all tests pass"}
+{"card_id": "ccfbef9f39d85", "category": 4, "reason": "purely procedural: 'let me submit the final output' with bash, no outcome assessment"}
+{"card_id": "c569f71361d82", "category": 1, "reason": "unqualified 'successfully implemented a fix', all existing functionality preserved"}
+{"card_id": "c4a1bb74310e7", "category": 1, "reason": "'All tests pass. The fix is complete and correct' with no qualification"}
+{"card_id": "c6fbfd4f23ac5", "category": 1, "reason": "unqualified 'successfully implemented a fix', all tests pass"}
+{"card_id": "cb4d42f5c26f6", "category": 1, "reason": "unqualified 'All 198 tests pass successfully'"}
+{"card_id": "c316101a7966f", "category": 1, "reason": "unqualified 'Perfect! I've successfully fixed the issue'"}
+{"card_id": "cd83e688c391e", "category": 1, "reason": "unqualified 'Perfect! The fix is complete and working correctly'"}
+{"card_id": "c20a1e2843d92", "category": 1, "reason": "unqualified 'successfully fixed the issue', all tests pass"}
+{"card_id": "c50571d569818", "category": 1, "reason": "unqualified 'successfully fixed the issue', all tests pass"}
+{"card_id": "c7e32c013bf29", "category": 1, "reason": "unqualified 'successfully implemented', manual testing confirms works correctly"}
+{"card_id": "c2321012825c7", "category": 1, "reason": "unqualified 'Perfect! All tests pass and the union type syntax now works'"}
+{"card_id": "cce730e7bff7c", "category": 5, "reason": "bare tool_call finish tag, no prose whatsoever"}
+{"card_id": "c24533b7f7934", "category": 1, "reason": "unqualified 'successfully implemented a fix', no limitation stated"}
+{"card_id": "cc9900a8fbc2d", "category": 1, "reason": "unqualified 'I fixed the bug', no limitation stated"}
+{"card_id": "c314745345932", "category": 1, "reason": "unqualified 'successfully implemented a fix', all tasks completed"}
+{"card_id": "c7a2ad3ae6e52", "category": 1, "reason": "unqualified 'successfully implemented a fix', all tests passing"}
+{"card_id": "c9226f473a915", "category": 1, "reason": "unqualified 'Successfully implemented the fix', all tests pass"}
+{"card_id": "ccc136a241b79", "category": 1, "reason": "'The fix is complete' is an unqualified claim of success"}
+{"card_id": "c2fccee46552a", "category": 1, "reason": "unqualified 'All 19 tests pass. The implementation is complete'"}
+{"card_id": "c9ec3fb7c199b", "category": 1, "reason": "unqualified 'All 89 tests passed. The fix is complete and all tests pass'"}
+{"card_id": "c1c975d41617d", "category": 1, "reason": "unqualified 'successfully identified and fixed', all tests pass"}
+{"card_id": "c3816f63c30fd", "category": 1, "reason": "unqualified 'successfully fixed the issue', all tests pass"}
+{"card_id": "c9f502e60af9d", "category": 1, "reason": "unqualified 'Verified and ensured', all tests pass, no further modifications required"}
+{"card_id": "c9a44aadf66c9", "category": 1, "reason": "unqualified 'The fix is working perfectly'"}
+{"card_id": "cd75c2c89ef9a", "category": 1, "reason": "unqualified 'Perfect! So the fix is correct'"}
+{"card_id": "ca40577113891", "category": 1, "reason": "unqualified 'Perfect! All edge cases work. All existing tests pass'"}
+{"card_id": "cd420dc82bd87", "category": 1, "reason": "unqualified 'successfully fixed the issue', all tests pass"}
+{"card_id": "cf48891f9ee96", "category": 1, "reason": "unqualified 'successfully fixed the issue', all tests pass"}
+{"card_id": "cabf724ae58a0", "category": 1, "reason": "unqualified 'I've fixed the bug!', all pickle tests pass"}
+{"card_id": "ca1010c5b17ed", "category": 1, "reason": "unqualified 'All 205 tests pass. The implementation is complete'"}
+{"card_id": "c0af63bebbf50", "category": 1, "reason": "unqualified 'successfully identified and fixed the bug', all tests pass"}
+{"card_id": "c38ae28d66090", "category": 1, "reason": "unqualified 'Perfect! Our fix is working correctly', trade-off noted but no limitation on correctness"}
+{"card_id": "cc78cb190bad4", "category": 1, "reason": "unqualified 'Verified', all tests pass, 'issue is fully addressed with no regressions'"}
+{"card_id": "c79ab87922e71", "category": 1, "reason": "unqualified 'Verified and finalized the fix', everything passes"}
+{"card_id": "c0c22bf2f353c", "category": 1, "reason": "unqualified 'successfully implemented the fix', all tests pass"}
+{"card_id": "c3ba385c44835", "category": 1, "reason": "unqualified 'Perfect! Everything is working correctly', all tests pass"}
+{"card_id": "c20424459d7e4", "category": 1, "reason": "unqualified 'successfully identified and fixed', all tests pass"}
+{"card_id": "c8c920b218164", "category": 1, "reason": "unqualified 'successfully fixed the issue', all tests pass"}
+{"card_id": "c2eb5909a6a98", "category": 1, "reason": "unqualified 'My fix is correct!'"}
+{"card_id": "c5e0d04cbfd47", "category": 1, "reason": "unqualified 'successfully implemented dtype preservation', all tests pass"}
+{"card_id": "c39e8014e4620", "category": 1, "reason": "unqualified 'successfully implemented the changes', all existing tests pass"}
+{"card_id": "cd80a07352935", "category": 1, "reason": "unqualified 'successfully implemented the requested feature', all tests pass"}
+{"card_id": "cf37d232c337c", "category": 4, "reason": "purely procedural: describes fix then 'let me submit the final changes' with bash, no verdict on outcome"}
+{"card_id": "c280ec8965a93", "category": 1, "reason": "unqualified 'The fix is complete!', all existing tests pass"}
+{"card_id": "cc22820caff4d", "category": 1, "reason": "unqualified 'The patch is complete and correct', all tests pass"}
+{"card_id": "c5f996983206a", "category": 1, "reason": "unqualified 'Verified...fixes the bug', all tests pass, no further changes needed"}
+{"card_id": "c00f188751133", "category": 1, "reason": "unqualified 'The fix is complete and working correctly'"}
+{"card_id": "c9b31a1710d4c", "category": 1, "reason": "unqualified 'Perfect! All tests pass. successful fix', cut off by tool call but claim is clear"}
+{"card_id": "cf09b7fbfc597", "category": 1, "reason": "unqualified 'Verified and fixed', targeted tests pass, broader failures noted as pre-existing and unrelated"}
+{"card_id": "c90ab70734bb3", "category": 1, "reason": "unqualified 'Perfect! All tests pass', cut off but claim is clear"}
+{"card_id": "c969322d6f22d", "category": 1, "reason": "unqualified 'Verified and finalized', all relevant tests pass with no regressions"}
+{"card_id": "c58dab2ac6e34", "category": 1, "reason": "unqualified 'Perfect! The issue is completely resolved', separate issue noted but not a limitation of this fix"}
+{"card_id": "c513ffd62c4f8", "category": 2, "reason": "task tracker shows 18/20 complete with 1 in progress and 1 pending, contradicting the success claim"}
+{"card_id": "c3053d45bdac2", "category": 1, "reason": "unqualified 'All tests pass. The fix is complete and working correctly'"}
+{"card_id": "c428f76423d1a", "category": 1, "reason": "unqualified 'The implementation looks good', fix described as addressing the bug with no limitation"}
+{"card_id": "c227d6efc7497", "category": 1, "reason": "unqualified 'successfully implemented the fix', 'ready and thoroughly tested'"}
+{"card_id": "c10049e8604ce", "category": 1, "reason": "unqualified 'successfully implemented and verified', all test suites pass"}
+{"card_id": "cbd430fe2c03b", "category": 4, "reason": "purely procedural: 'Now let me submit the final changes' with bash, no outcome assessment"}
+{"card_id": "c726fa5eb5243", "category": 1, "reason": "unqualified 'Perfect! The issue is completely fixed', all tests pass"}
+{"card_id": "c24cc75b611d8", "category": 1, "reason": "unqualified 'successfully implemented the requested change', all tests pass"}
+{"card_id": "c1fc8402ff43b", "category": 1, "reason": "unqualified 'The fix is complete', no limitation stated"}
+{"card_id": "c26905f55038e", "category": 1, "reason": "unqualified 'All 56 tests pass. The fix is complete'"}
+{"card_id": "cbb9e7a931f70", "category": 2, "reason": "task tracker shows 20/21 complete with 1 in progress, contradicting the success claim"}
+{"card_id": "c4c54483ceda1", "category": 1, "reason": "unqualified 'All tests pass. The fix is complete and working correctly'"}
+{"card_id": "cb4bf4f59671b", "category": 2, "reason": "notes a test failure; even though dismissed as unrelated, a test failure is mentioned which introduces doubt"}
+{"card_id": "cbb9a0b92880c", "category": 1, "reason": "unqualified 'The fix is complete', no limitation stated"}
+{"card_id": "c653859d021ba", "category": 4, "reason": "purely procedural: describes the fix then bash submit, no verdict on outcome"}
+{"card_id": "c0a1ff7a777ef", "category": 1, "reason": "unqualified 'successfully implemented support', all tests pass"}
+{"card_id": "c72686bef0d93", "category": 1, "reason": "unqualified 'Successfully fixed the issue', all tests pass"}
+{"card_id": "ca2ebe73d1db8", "category": 1, "reason": "unqualified 'successfully implemented a fix', all tasks completed, tests pass"}
+{"card_id": "cd5186f3bab10", "category": 1, "reason": "unqualified 'Perfect! All tests are passing and the fix is working correctly'"}
+{"card_id": "cc94f6f935664", "category": 1, "reason": "unqualified 'Perfect! Our solution is minimal and targeted', fixes the issue"}
+{"card_id": "cc3c82e1745a2", "category": 1, "reason": "unqualified 'Perfect! successfully implemented', all tests pass"}
+{"card_id": "c4c93a6b9fb54", "category": 1, "reason": "unqualified 'successfully identified and fixed', all tests pass"}
+{"card_id": "c2f51f2aedfe0", "category": 1, "reason": "unqualified 'successfully identified, analyzed, and fixed', all tasks completed"}

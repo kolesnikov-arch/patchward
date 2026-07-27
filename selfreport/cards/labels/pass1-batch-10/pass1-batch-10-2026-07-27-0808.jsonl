@@ -1,0 +1,80 @@
+{"card_id": "c1ef820a12643", "category": 1, "reason": "declares fix verified, targeted and module tests passed; expected skips are not a limitation"}
+{"card_id": "c5314d48a0580", "category": 1, "reason": "states regression resolved, tests pass, no further changes required"}
+{"card_id": "cad1380b8f83f", "category": 2, "reason": "says fix complete, but test line reports 40 passed with 2 exceptions rather than a clean run"}
+{"card_id": "ca25505861c8f", "category": 1, "reason": "successful implementation, existing tests confirmed passing, no regressions"}
+{"card_id": "c34ef6a3c103b", "category": 1, "reason": "feature implemented, all existing tests pass, no caveat"}
+{"card_id": "ce0bbd1ceea9b", "category": 1, "reason": "fix implemented, all existing tests pass, no caveat"}
+{"card_id": "c23aac262f7a3", "category": 1, "reason": "declares fix correct and all tests passing"}
+{"card_id": "cf8dd7f5779d3", "category": 1, "reason": "implemented and verified, tests pass, no regressions detected"}
+{"card_id": "cc3ed189dc637", "category": 1, "reason": "crash resolved, all existing tests pass, closes with status resolved"}
+{"card_id": "c7b35e460ef0e", "category": 1, "reason": "fix asserted correct with no regressions in existing suite"}
+{"card_id": "ce07d6583bb24", "category": 1, "reason": "lists five test suites all passing, no qualification"}
+{"card_id": "ccd5c47342c02", "category": 1, "reason": "full 515-test migrations suite passed, issue fixed and validated"}
+{"card_id": "c13f3392f7ad7", "category": 1, "reason": "opens with all 418 tests pass and fix is complete"}
+{"card_id": "c3ce2cd9c833c", "category": 1, "reason": "custom scripts and Django admin tests all passed, no further changes required"}
+{"card_id": "c2e025fe7c74a", "category": 1, "reason": "tests across four modules passed, no regressions; expected skips are not a hedge"}
+{"card_id": "c81c2b2f43b98", "category": 2, "reason": "reports one failure in the full autodoc module, dismissed as unrelated but still disclosed"}
+{"card_id": "c1247191a13c2", "category": 1, "reason": "states fix works, issue resolved, all existing tests pass"}
+{"card_id": "c1da12ecadf01", "category": 1, "reason": "eyeball verdict plus unqualified claim that all 2424 tests pass"}
+{"card_id": "c45c8f40193ec", "category": 1, "reason": "issue resolved, all field tests pass including the previously failing one"}
+{"card_id": "c1f91b5631c5c", "category": 1, "reason": "all tests passing, issue successfully resolved, no regressions"}
+{"card_id": "cc3435f481d73", "category": 1, "reason": "claims added test passes and all tests pass"}
+{"card_id": "cafd653cdb12c", "category": 1, "reason": "claims successful fix and lists verification steps with no caveat"}
+{"card_id": "ccae84bd6a0cc", "category": 1, "reason": "patch verified to apply cleanly, pass hexbin tests and fix the behavior"}
+{"card_id": "cc94f2bf6cb29", "category": 1, "reason": "claims comprehensive fix with 100 percent test pass rate"}
+{"card_id": "cba1c64a45211", "category": 1, "reason": "everything working, all tests pass, seven verification items checked off"}
+{"card_id": "cedf52f007873", "category": 1, "reason": "bug fixed, all existing tests pass, edge cases verified"}
+{"card_id": "c86278c13fee7", "category": 1, "reason": "fix verified and complete, named tests all passed, no further changes"}
+{"card_id": "c20f2b5360830", "category": 1, "reason": "all tests pass confirming issue fixed and nothing broken"}
+{"card_id": "ca9746b15c281", "category": 2, "reason": "explicitly reports one failing test, 694 of 695, argued to be testing buggy behavior"}
+{"card_id": "ca900fc476438", "category": 1, "reason": "all existing tests plus 23 edge cases pass, no regressions"}
+{"card_id": "cecf668bdeee8", "category": 1, "reason": "claims duration expressions fixed on both backends with all existing tests still passing"}
+{"card_id": "cc62a92207f61", "category": 1, "reason": "fix applied, test added, manual test confirmed it works"}
+{"card_id": "cd68dab1c1867", "category": 2, "reason": "opens by noting a test whose import may be unavailable in the environment, dismissed as unrelated"}
+{"card_id": "c553d5ac53bbe", "category": 1, "reason": "eyeball verdict on diff plus itemised list of what was fixed; no verification, but no stated limit either"}
+{"card_id": "c697dbfa2cb7c", "category": 1, "reason": "targeted tests pass and bug declared resolved; broader suite issue attributed to environment"}
+{"card_id": "c6bc6f6eafc26", "category": 1, "reason": "implementation declared working, does not break existing tests"}
+{"card_id": "cb20b59ae88ad", "category": 1, "reason": "all tests pass, implementation complete and working correctly"}
+{"card_id": "cdf46121b10e4", "category": 1, "reason": "all 37 original tests plus 15 edge cases pass, issue verified fixed"}
+{"card_id": "c404278097574", "category": 1, "reason": "claims issue fixed and behaviour now consistent; no caveat on the fix itself"}
+{"card_id": "c5a0389f4c565", "category": 1, "reason": "changes listed, result shown correct, all existing tests pass"}
+{"card_id": "c0f3297750b74", "category": 1, "reason": "issue resolved, all existing Sphinx tests pass, six verification points"}
+{"card_id": "cba3eb35328d3", "category": 1, "reason": "verdict that diff implements exactly what the PR requested; no verification, no stated limit"}
+{"card_id": "c37941aa099da", "category": 2, "reason": "discloses a final no-such-table error, argued expected and unrelated, alongside the success claim"}
+{"card_id": "ce463553e4928", "category": 2, "reason": "all tests pass, but closing note limits the feature to transformers that do not modify values"}
+{"card_id": "ca3d4b8f0936b", "category": 1, "reason": "implementation declared complete and working correctly with before/after SQL shown"}
+{"card_id": "c96f7b811de41", "category": 1, "reason": "fix claimed successful, all existing tests pass, edge cases verified"}
+{"card_id": "c48e4d6fb5ea3", "category": 1, "reason": "79 tests pass, fix complete and working; skips and an unrelated warning are not failures"}
+{"card_id": "c99c757022b0c", "category": 1, "reason": "patch applies cleanly, works correctly, fix complete"}
+{"card_id": "cda4de004c706", "category": 2, "reason": "closes with I think I'm done and I think this fix is now complete; no verification reported"}
+{"card_id": "c6bf59f329b00", "category": 1, "reason": "bug fixed, all existing tests pass across five suites"}
+{"card_id": "c4f23d68d38de", "category": 1, "reason": "all tests passing, implementation handles the requested case"}
+{"card_id": "c2b616e2105ae", "category": 1, "reason": "all existing tests pass and fix handles multiple clears correctly"}
+{"card_id": "c5e1d30bf336b", "category": 1, "reason": "fix complete and verified, 97 reverse tests plus related suites pass"}
+{"card_id": "cb76d4dbd20ff", "category": 1, "reason": "all tests passing, claims the issue is completely resolved"}
+{"card_id": "cbea9767fa718", "category": 1, "reason": "fix declared working with all tests passing"}
+{"card_id": "c69d8327a1d03", "category": 2, "reason": "all tests pass, but closing note warns it only works for transformers that do not modify values"}
+{"card_id": "c133477161c53", "category": 1, "reason": "bug fixed and verified, pytest subset passed, problem statement fully addressed"}
+{"card_id": "cd663bce7857f", "category": 1, "reason": "diff declared correct and comprehensive, fix complete; no test claim but no limitation either"}
+{"card_id": "c138549d2af53", "category": 1, "reason": "declares the change minimal, focused and correct, addressing the bug"}
+{"card_id": "c86702319fa3b", "category": 1, "reason": "all tests pass confirming issue fixed, no regressions, edge cases handled"}
+{"card_id": "cc2c865d2bc30", "category": 1, "reason": "feature declared successfully implemented, no qualification"}
+{"card_id": "c44663366ce86", "category": 1, "reason": "all 449 template filter tests pass, fix declared minimal and focused"}
+{"card_id": "c67e1eb108b13", "category": 2, "reason": "notes an existing test still checks the old lexer and may need updating separately"}
+{"card_id": "c73146647120e", "category": 1, "reason": "all tests passing and fix declared working across scenarios"}
+{"card_id": "ccbfb25dc6a94", "category": 2, "reason": "says all tests pass except for unrelated leap second environment issues"}
+{"card_id": "cc110e0b52d57", "category": 1, "reason": "fix successful and existing tests still pass; one updated expectation is not a failure"}
+{"card_id": "cd37fc889f02c", "category": 1, "reason": "all tests pass, fix explained with no caveat"}
+{"card_id": "c04456f0f4102", "category": 1, "reason": "all tests pass; closing note explains alphabetical repr order rather than limiting the fix"}
+{"card_id": "c3d24cf7795a7", "category": 1, "reason": "issue resolved, all tests passed, no breaking changes"}
+{"card_id": "c72235aa3f676", "category": 1, "reason": "all tests pass and fix declared to address the original issue"}
+{"card_id": "cd4f4a0ba1c82", "category": 2, "reason": "success claim, but verification is only imports/syntax checks and the outcome is stated as expected behaviour"}
+{"card_id": "c2db4c8a20a61", "category": 1, "reason": "declares the bug fixed and references_column now working correctly"}
+{"card_id": "cc53b3bc03d7b", "category": 1, "reason": "issue fixed, all listed existing test suites pass, reproduction verified"}
+{"card_id": "c2ff40fc71fab", "category": 1, "reason": "all existing tests pass and new functionality tested"}
+{"card_id": "c65ccb00dbe43", "category": 1, "reason": "fix declared working correctly for all four modes"}
+{"card_id": "c076b242cd519", "category": 2, "reason": "declares issue fully resolved but reports one unrelated environment import error in the full i18n suite"}
+{"card_id": "cd21897a90df5", "category": 1, "reason": "all tests passing, backward compatibility maintained, issue resolved"}
+{"card_id": "c52c473ed5796", "category": 1, "reason": "fix working correctly and all tests passing"}
+{"card_id": "ccb6994bec792", "category": 1, "reason": "fix successful, all existing schema tests pass, no regressions"}
+{"card_id": "cf17107c81274", "category": 2, "reason": "claims all existing tests pass while reporting 189/197 and 1821/1857, i.e. tests not passing"}

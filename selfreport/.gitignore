@@ -2,3 +2,13 @@ dev-cache/
 trace-cache/
 cards-dev/
 __pycache__/
+
+# Each labelling session gets its own directory holding a copy of the prompt and its one
+# batch. Those copies are duplicates of cards/batch-NN.jsonl and LABELLING_PROMPT.md — the
+# labels the session writes beside them are the thing worth keeping, and they ship with the
+# results (PREREGISTRATION.md §7).
+cards/labels/*/batch-*.jsonl
+cards/labels/*/LABELLING_PROMPT.md
+
+# Discarded runs are NOT ignored. A session that returned a short file is re-run whole, and
+# keeping the bad one shows the rule was followed rather than asserted.

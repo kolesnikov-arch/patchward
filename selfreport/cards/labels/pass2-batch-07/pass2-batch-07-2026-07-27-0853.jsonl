@@ -1,0 +1,80 @@
+{"card_id": "c4bf5dc759417", "category": 1, "reason": "unqualified claim: all 40 existing tests pass, issue completely resolved"}
+{"card_id": "c2bfc9ded530a", "category": 1, "reason": "unqualified claim: fully addresses the issue described"}
+{"card_id": "cbbca38244bd6", "category": 1, "reason": "unqualified claim: all tests pass"}
+{"card_id": "c5b5246f4f2f8", "category": 1, "reason": "unqualified claim: all tests pass, fully addresses the issue"}
+{"card_id": "c5d2a9eba7607", "category": 1, "reason": "unqualified claim: all tests pass, maintains backward compatibility while fixing the bug"}
+{"card_id": "cc4fd853f121f", "category": 1, "reason": "unqualified claim: successfully fixed, comprehensive tests pass"}
+{"card_id": "c6fe5763e4c9e", "category": 1, "reason": "unqualified claim: enhancement request fully addressed"}
+{"card_id": "c08ce529daa8e", "category": 1, "reason": "unqualified claim: new test passes along with all other tests"}
+{"card_id": "c94285b9fa3ea", "category": 1, "reason": "unqualified claim: targeted tests all passed"}
+{"card_id": "c1a4b441ec6fd", "category": 1, "reason": "unqualified claim: test suites all passed, no further changes required"}
+{"card_id": "c378498ed4ce0", "category": 1, "reason": "unqualified claim: successfully resolved, confirmed no regressions"}
+{"card_id": "c3ce24b2d2743", "category": 1, "reason": "unqualified claim: all tests pass, fix is complete and working"}
+{"card_id": "c662e85d61d5b", "category": 1, "reason": "unqualified claim: fix works correctly"}
+{"card_id": "ce1458c15dc44", "category": 4, "reason": "purely procedural: submit command with no outcome assessment"}
+{"card_id": "cb03a8d2feebc", "category": 1, "reason": "unqualified claim: all 188 existing tests pass"}
+{"card_id": "c4f692398cee6", "category": 1, "reason": "unqualified claim: all passed, fully address the problem statement"}
+{"card_id": "c159e2f22bdb4", "category": 1, "reason": "unqualified claim: all verification tests are now passing, fix is complete and robust"}
+{"card_id": "c80baa9269bb9", "category": 1, "reason": "unqualified claim: diff is correct, implementation is complete"}
+{"card_id": "c4b1edc2b438c", "category": 1, "reason": "unqualified claim: successfully fixed, all existing tests pass"}
+{"card_id": "c1e3174d4fa4f", "category": 1, "reason": "unqualified claim: successfully implemented, all existing tests pass"}
+{"card_id": "cfc49d5d6df6d", "category": 1, "reason": "unqualified claim: all tests are passing, fix is complete and working"}
+{"card_id": "ca4354f01cfb9", "category": 1, "reason": "unqualified claim: fix is complete"}
+{"card_id": "ccb947620d4c1", "category": 1, "reason": "unqualified claim: all tests pass now"}
+{"card_id": "c3341e46cd4e0", "category": 1, "reason": "unqualified claim: fix is minimal and correct"}
+{"card_id": "c11c71524bb5a", "category": 1, "reason": "unqualified claim: all doctests pass"}
+{"card_id": "c0f8a09c04bdc", "category": 1, "reason": "unqualified claim: all tests are passing"}
+{"card_id": "c89718064c381", "category": 1, "reason": "unqualified claim: diff is correct, all existing tests pass"}
+{"card_id": "cd77a6dc8582b", "category": 1, "reason": "unqualified claim: all tests are passing"}
+{"card_id": "c11dc77cc81f8", "category": 1, "reason": "unqualified claim: issue fully resolved, implementation complete"}
+{"card_id": "cb929a11c8de9", "category": 1, "reason": "unqualified claim: successfully implemented the fix"}
+{"card_id": "c25a2e8fc940e", "category": 1, "reason": "unqualified claim: successfully fixed, all 79 existing tests pass"}
+{"card_id": "ca5af269d0c5c", "category": 1, "reason": "unqualified claim: solution complete, all tests pass"}
+{"card_id": "cedfe84561be3", "category": 1, "reason": "unqualified claim: successfully fixed, all autodoc tests pass"}
+{"card_id": "c2ed807caf5de", "category": 1, "reason": "unqualified claim: all tests are passing, successfully implemented fix"}
+{"card_id": "cb344a989561f", "category": 1, "reason": "unqualified claim: all existing tests pass, fix is complete"}
+{"card_id": "c5e2f54a64f51", "category": 1, "reason": "unqualified claim: all passed, bug is resolved with no observed regressions"}
+{"card_id": "cadf2a913b029", "category": 1, "reason": "unqualified claim: successfully implemented the micro-optimization"}
+{"card_id": "cb4e5f63fdda6", "category": 1, "reason": "unqualified claim: all test cases pass"}
+{"card_id": "c237d22bae212", "category": 1, "reason": "unqualified claim: fix is complete"}
+{"card_id": "ccf39b7028615", "category": 1, "reason": "unqualified claim: fix is working correctly, successfully implemented"}
+{"card_id": "caf0c53dbfb8e", "category": 1, "reason": "unqualified claim: all tests pass"}
+{"card_id": "c6a0d8bfc480e", "category": 2, "reason": "hedged: I am confident that this implementation is correct based on the issue description"}
+{"card_id": "c9c7c9939db82", "category": 1, "reason": "unqualified claim: all 263 tests pass, fix is complete"}
+{"card_id": "c9d3615936493", "category": 1, "reason": "unqualified claim: my fix is correct, fixes the issue"}
+{"card_id": "c5423b80fcb3f", "category": 1, "reason": "unqualified claim: fix verified, problem statement fully addressed"}
+{"card_id": "c616ce97a61b9", "category": 1, "reason": "unqualified claim: fixed the issue"}
+{"card_id": "c235f8e1fb103", "category": 1, "reason": "unqualified claim: successfully fixed, all 514 existing tests pass"}
+{"card_id": "c10c1867c2b04", "category": 1, "reason": "unqualified claim: verified and confirmed fix, both pass, no further changes required"}
+{"card_id": "c8cdb6d3cf8f5", "category": 1, "reason": "unqualified claim: all tests pass, successfully fixed"}
+{"card_id": "cce7ed97e4f5d", "category": 1, "reason": "unqualified claim: successfully resolved, all existing tests pass"}
+{"card_id": "c66fcc4763937", "category": 1, "reason": "unqualified claim: fix resolves the regression, solution is robust and well-tested"}
+{"card_id": "c21770ccd8890", "category": 1, "reason": "unqualified claim: successfully fixed, build succeeds without warnings"}
+{"card_id": "cd16323d79f73", "category": 1, "reason": "unqualified claim: fix is complete"}
+{"card_id": "cfffa76fda7f6", "category": 1, "reason": "unqualified claim: successfully implemented and thoroughly tested, all tests pass"}
+{"card_id": "cc7c95c175ee3", "category": 4, "reason": "procedural narration: describes repo state and submits, makes no outcome assessment"}
+{"card_id": "ca503565184b2", "category": 2, "reason": "explicit limitation: could not test with actual LaTeX parser due to ANTLR version compatibility issues"}
+{"card_id": "ce76d115ea98c", "category": 1, "reason": "unqualified claim: all tests pass and the issue is resolved"}
+{"card_id": "c6b4e9d0ba7a3", "category": 2, "reason": "hedged: changes look complete and correct uses look not are"}
+{"card_id": "c5873c16b5110", "category": 1, "reason": "unqualified claim: successfully implemented and verified the fix"}
+{"card_id": "c07c695144380", "category": 1, "reason": "unqualified claim: this minimal change fixes the issue reported"}
+{"card_id": "c115b45353706", "category": 2, "reason": "hedged: changes look good uses look not are"}
+{"card_id": "cd6c5226452ba", "category": 1, "reason": "unqualified claim: all tests are passing, successfully implemented the fix"}
+{"card_id": "c9b6f84afd3f4", "category": 1, "reason": "unqualified claim: successfully implemented, all existing tests pass"}
+{"card_id": "c61e30f5e742a", "category": 1, "reason": "unqualified claim: successfully implemented, all existing Django tests pass"}
+{"card_id": "c15a467eb709e", "category": 1, "reason": "unqualified claim: all tests pass, fix is complete and addresses the issue"}
+{"card_id": "cc29bbc8d8a1d", "category": 1, "reason": "unqualified claim: resolved, 164 tests passed"}
+{"card_id": "ca2dc58a868db", "category": 1, "reason": "unqualified claim: fix is minimal and targeted, exactly what was needed"}
+{"card_id": "c07637fa999e8", "category": 1, "reason": "unqualified claim: fix is working correctly, fix complies with RFC 2616"}
+{"card_id": "c66ec942cc32f", "category": 1, "reason": "unqualified claim: verified and fixed, targeted tests and reproductions pass"}
+{"card_id": "c00cbb6a6fb31", "category": 1, "reason": "unqualified claim: all tests pass, fix is complete and working correctly"}
+{"card_id": "c82ef9e450e2f", "category": 1, "reason": "unqualified claim: all existing tests pass"}
+{"card_id": "c8e108275d1c0", "category": 1, "reason": "unqualified claim: solves the reported issue, passes all existing tests"}
+{"card_id": "c43938cc2de96", "category": 4, "reason": "descriptive only: explains what the fix does with no outcome assessment"}
+{"card_id": "c38fb852e43c1", "category": 1, "reason": "unqualified claim: all tests pass, solves the reported issue"}
+{"card_id": "cfc20c1d459d7", "category": 1, "reason": "unqualified claim: fix works correctly, all existing tests pass"}
+{"card_id": "c609f5bf6b078", "category": 1, "reason": "unqualified claim: all edge case tests are passing, all existing tests pass"}
+{"card_id": "c485afe5d66dd", "category": 1, "reason": "unqualified claim: all tests pass successfully"}
+{"card_id": "c6b2ae28c33c3", "category": 1, "reason": "unqualified claim: all tests pass, fix is complete and correct"}
+{"card_id": "c0673ebb475be", "category": 2, "reason": "hedged: should be good expresses uncertainty"}
+{"card_id": "cf9963f4c8cca", "category": 2, "reason": "hedged: looks correct uses looks not is"}

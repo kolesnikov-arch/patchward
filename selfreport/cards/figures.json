@@ -1,0 +1,689 @@
+{
+ "per_pass": {
+  "pass1": {
+   "labels": 1190,
+   "unlabelled": 0,
+   "rows": [
+    {
+     "submission": "20250928_trae_doubao_seed_code",
+     "reading": "keep_think",
+     "not_resolved": {
+      "claims_success": 43,
+      "labelled": 60,
+      "interval": [
+       0.5855639310501688,
+       0.8254947164856268
+      ]
+     },
+     "resolved": {
+      "claims_success": 50,
+      "labelled": 60,
+      "interval": [
+       0.7147807451712966,
+       0.9170711898409363
+      ]
+     },
+     "gap_pp": 11.666666666666657,
+     "gap_interval_pp": [
+      -3.357387630510364,
+      26.112322370748466
+     ]
+    },
+    {
+     "submission": "20250930_zai_glm4-6",
+     "reading": "keep_think",
+     "not_resolved": {
+      "claims_success": 45,
+      "labelled": 53,
+      "interval": [
+       0.7240788211452833,
+       0.932507461884037
+      ]
+     },
+     "resolved": {
+      "claims_success": 54,
+      "labelled": 57,
+      "interval": [
+       0.853800935689476,
+       0.989011744101413
+      ]
+     },
+     "gap_pp": 9.831181727904678,
+     "gap_interval_pp": [
+      -1.8037576942434062,
+      22.280726909184818
+     ]
+    },
+    {
+     "submission": "20250522_tools_claude-4-opus",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "gap_pp": 0.0,
+     "gap_interval_pp": [
+      -10.103249229879639,
+      10.103249229879639
+     ]
+    },
+    {
+     "submission": "20250715_qodo_command",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "resolved": {
+      "claims_success": 57,
+      "labelled": 60,
+      "interval": [
+       0.8607567532789269,
+       0.989567670355652
+      ]
+     },
+     "gap_pp": 1.6666666666666714,
+     "gap_interval_pp": [
+      -7.927669134634241,
+      11.490866612139166
+     ]
+    },
+    {
+     "submission": "20250902_atlassian-rovo-dev",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 51,
+      "labelled": 60,
+      "interval": [
+       0.7342595522427044,
+       0.9290438047429097
+      ]
+     },
+     "resolved": {
+      "claims_success": 50,
+      "labelled": 60,
+      "interval": [
+       0.7147807451712966,
+       0.9170711898409363
+      ]
+     },
+     "gap_pp": -1.6666666666666714,
+     "gap_interval_pp": [
+      -14.96355861263669,
+      11.660294756472714
+     ]
+    },
+    {
+     "submission": "20250928_trae_doubao_seed_code",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 52,
+      "labelled": 60,
+      "interval": [
+       0.7540777788695783,
+       0.9406355772946438
+      ]
+     },
+     "resolved": {
+      "claims_success": 55,
+      "labelled": 60,
+      "interval": [
+       0.8161422166234125,
+       0.9723866896625735
+      ]
+     },
+     "gap_pp": 5.0,
+     "gap_interval_pp": [
+      -6.661411207016778,
+      16.816049222191225
+     ]
+    },
+    {
+     "submission": "20250930_zai_glm4-6",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 55,
+      "labelled": 60,
+      "interval": [
+       0.8161422166234125,
+       0.9723866896625735
+      ]
+     },
+     "resolved": {
+      "claims_success": 54,
+      "labelled": 60,
+      "interval": [
+       0.7949422632919352,
+       0.9624087308914346
+      ]
+     },
+     "gap_pp": -1.6666666666666714,
+     "gap_interval_pp": [
+      -12.860512809794791,
+      9.435222703944172
+     ]
+    },
+    {
+     "submission": "20251127_openhands_claude-opus-4-5",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 53,
+      "labelled": 60,
+      "interval": [
+       0.7742838468543511,
+       0.9517851581286585
+      ]
+     },
+     "resolved": {
+      "claims_success": 53,
+      "labelled": 60,
+      "interval": [
+       0.7742838468543511,
+       0.9517851581286585
+      ]
+     },
+     "gap_pp": 0.0,
+     "gap_interval_pp": [
+      -12.054138694231167,
+      12.054138694231167
+     ]
+    },
+    {
+     "submission": "20251205_sonar-foundation-agent_claude-opus-4-5",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "resolved": {
+      "claims_success": 54,
+      "labelled": 60,
+      "interval": [
+       0.7949422632919352,
+       0.9624087308914346
+      ]
+     },
+     "gap_pp": -3.3333333333333286,
+     "gap_interval_pp": [
+      -14.25871326705653,
+      7.352789612710511
+     ]
+    },
+    {
+     "submission": "20251215_livesweagent_claude-opus-4-5",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 38,
+      "labelled": 60,
+      "interval": [
+       0.49896928235629123,
+       0.7540593895627132
+      ]
+     },
+     "resolved": {
+      "claims_success": 42,
+      "labelled": 60,
+      "interval": [
+       0.5679168661239367,
+       0.8115485545802803
+      ]
+     },
+     "gap_pp": 6.666666666666664,
+     "gap_interval_pp": [
+      -10.020944519765242,
+      22.855488886406096
+     ]
+    }
+   ]
+  },
+  "pass2": {
+   "labels": 1190,
+   "unlabelled": 0,
+   "rows": [
+    {
+     "submission": "20250928_trae_doubao_seed_code",
+     "reading": "keep_think",
+     "not_resolved": {
+      "claims_success": 48,
+      "labelled": 60,
+      "interval": [
+       0.6766995761987091,
+       0.8921588774756375
+      ]
+     },
+     "resolved": {
+      "claims_success": 49,
+      "labelled": 60,
+      "interval": [
+       0.6956039452592231,
+       0.904764177083436
+      ]
+     },
+     "gap_pp": 1.6666666666666714,
+     "gap_interval_pp": [
+      -12.511431345683926,
+      15.782966289287655
+     ]
+    },
+    {
+     "submission": "20250930_zai_glm4-6",
+     "reading": "keep_think",
+     "not_resolved": {
+      "claims_success": 47,
+      "labelled": 53,
+      "interval": [
+       0.7697100836291373,
+       0.9573036050637265
+      ]
+     },
+     "resolved": {
+      "claims_success": 52,
+      "labelled": 57,
+      "interval": [
+       0.807042669430295,
+       0.9709014171828974
+      ]
+     },
+     "gap_pp": 2.5488248924197308,
+     "gap_interval_pp": [
+      -9.275823520898962,
+      14.85170924143887
+     ]
+    },
+    {
+     "submission": "20250522_tools_claude-4-opus",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 57,
+      "labelled": 60,
+      "interval": [
+       0.8607567532789269,
+       0.989567670355652
+      ]
+     },
+     "resolved": {
+      "claims_success": 60,
+      "labelled": 60,
+      "interval": [
+       0.9403705077138322,
+       1.0
+      ]
+     },
+     "gap_pp": 5.0,
+     "gap_interval_pp": [
+      -1.8555138379676372,
+      13.700516476348534
+     ]
+    },
+    {
+     "submission": "20250715_qodo_command",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "gap_pp": 0.0,
+     "gap_interval_pp": [
+      -10.103249229879639,
+      10.103249229879639
+     ]
+    },
+    {
+     "submission": "20250902_atlassian-rovo-dev",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 51,
+      "labelled": 60,
+      "interval": [
+       0.7342595522427044,
+       0.9290438047429097
+      ]
+     },
+     "resolved": {
+      "claims_success": 48,
+      "labelled": 60,
+      "interval": [
+       0.6766995761987091,
+       0.8921588774756375
+      ]
+     },
+     "gap_pp": -5.0,
+     "gap_interval_pp": [
+      -18.654899288747686,
+      8.79519537549054
+     ]
+    },
+    {
+     "submission": "20250928_trae_doubao_seed_code",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "resolved": {
+      "claims_success": 57,
+      "labelled": 60,
+      "interval": [
+       0.8607567532789269,
+       0.989567670355652
+      ]
+     },
+     "gap_pp": 1.6666666666666714,
+     "gap_interval_pp": [
+      -7.927669134634241,
+      11.490866612139166
+     ]
+    },
+    {
+     "submission": "20250930_zai_glm4-6",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 58,
+      "labelled": 60,
+      "interval": [
+       0.884718955580748,
+       0.9959373753579066
+      ]
+     },
+     "resolved": {
+      "claims_success": 57,
+      "labelled": 60,
+      "interval": [
+       0.8607567532789269,
+       0.989567670355652
+      ]
+     },
+     "gap_pp": -1.6666666666666714,
+     "gap_interval_pp": [
+      -10.69597013441995,
+      7.0097112519674765
+     ]
+    },
+    {
+     "submission": "20251127_openhands_claude-opus-4-5",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 56,
+      "labelled": 60,
+      "interval": [
+       0.8380132448022704,
+       0.9815382224241185
+      ]
+     },
+     "resolved": {
+      "claims_success": 54,
+      "labelled": 60,
+      "interval": [
+       0.7949422632919352,
+       0.9624087308914346
+      ]
+     },
+     "gap_pp": -3.3333333333333286,
+     "gap_interval_pp": [
+      -14.25871326705653,
+      7.352789612710511
+     ]
+    },
+    {
+     "submission": "20251205_sonar-foundation-agent_claude-opus-4-5",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 55,
+      "labelled": 60,
+      "interval": [
+       0.8161422166234125,
+       0.9723866896625735
+      ]
+     },
+     "resolved": {
+      "claims_success": 54,
+      "labelled": 60,
+      "interval": [
+       0.7949422632919352,
+       0.9624087308914346
+      ]
+     },
+     "gap_pp": -1.6666666666666714,
+     "gap_interval_pp": [
+      -12.860512809794791,
+      9.435222703944172
+     ]
+    },
+    {
+     "submission": "20251215_livesweagent_claude-opus-4-5",
+     "reading": "primary",
+     "not_resolved": {
+      "claims_success": 35,
+      "labelled": 60,
+      "interval": [
+       0.44883779775401045,
+       0.7093193335295764
+      ]
+     },
+     "resolved": {
+      "claims_success": 36,
+      "labelled": 60,
+      "interval": [
+       0.46540543731142603,
+       0.7243784212644648
+      ]
+     },
+     "gap_pp": 1.6666666666666643,
+     "gap_interval_pp": [
+      -15.486525869481765,
+      18.682804079380986
+     ]
+    }
+   ]
+  }
+ },
+ "disagreement": {
+  "labelled_in_both": 1190,
+  "disagree": 104,
+  "cards": [
+   "c0673ebb475be",
+   "c06e34402ec9f",
+   "c09586914c250",
+   "c0e640ff6f122",
+   "c0f78547427c6",
+   "c0ff8d3cf5df4",
+   "c115b45353706",
+   "c12dfcf306d17",
+   "c13cbacf784e8",
+   "c1f5b3c4dcc0d",
+   "c23697dafb665",
+   "c24533b7f7934",
+   "c24cc75b611d8",
+   "c2d7d750366a7",
+   "c3049637ff214",
+   "c34bbb647fa86",
+   "c370dd9558869",
+   "c37941aa099da",
+   "c382fc80c61c0",
+   "c38ae28d66090",
+   "c39ce5a608dec",
+   "c3cb0b7d59d99",
+   "c43938cc2de96",
+   "c440e36b0fbc8",
+   "c4ab55320229d",
+   "c4c874c455b84",
+   "c513ffd62c4f8",
+   "c52ab73059ec4",
+   "c58dab2ac6e34",
+   "c59197d32a6df",
+   "c5b64c2fb4217",
+   "c5c93a9e662b4",
+   "c5d2f68a7d725",
+   "c62f9e2bbc32b",
+   "c653859d021ba",
+   "c66eb551e45ef",
+   "c676540b3363f",
+   "c697dbfa2cb7c",
+   "c69d8327a1d03",
+   "c6a0d8bfc480e",
+   "c6b4e9d0ba7a3",
+   "c6d9254e8320d",
+   "c74563aecea5d",
+   "c75d565c01c92",
+   "c76b185c34172",
+   "c79333364b490",
+   "c7bf534b747f3",
+   "c7e32c013bf29",
+   "c7f0c1dc0d64c",
+   "c80438014489d",
+   "c807fb8b90c9c",
+   "c82635360f31d",
+   "c8a1bce191fc6",
+   "c8c6e7c51b679",
+   "c8e26e653feb5",
+   "c96a445892948",
+   "c99443c71fe6c",
+   "c9b4c2553333b",
+   "c9db7eaa3bb48",
+   "c9e57598c0773",
+   "c9ec3fb7c199b",
+   "ca15a43cfd077",
+   "ca299e23eb83a",
+   "ca2dc58a868db",
+   "ca55ca72cb485",
+   "ca5af269d0c5c",
+   "ca70855f05951",
+   "ca74f5d41b7f3",
+   "caaa657401e1f",
+   "cab4d69ce5d28",
+   "cac74a66d0f4d",
+   "cad1380b8f83f",
+   "caf253f0168c7",
+   "cb4c4154c2de7",
+   "cb7f276fe554e",
+   "cbb9e7a931f70",
+   "cbe47215878c8",
+   "cc0a5f3839be2",
+   "cc3dd2638ec42",
+   "cc781084a2eb0",
+   "cca693c569905",
+   "cce5e2da9d9be",
+   "cced55aa41a14",
+   "cd0be39669253",
+   "cdafe40d1106a",
+   "cdb29e407f27c",
+   "cdbb303036f23",
+   "cdbd71c4583aa",
+   "cdd5f8eeb93fb",
+   "cde3d14b7faa3",
+   "cdf7e9d8bb2fc",
+   "ce23add9ff156",
+   "ce463553e4928",
+   "ce63566d5883f",
+   "ce75af3e02f75",
+   "ce8d4ce6d2147",
+   "ceb49dba6d52f",
+   "ceb636231be2c",
+   "cf09b7fbfc597",
+   "cf37d232c337c",
+   "cf9395a8853fa",
+   "cf9963f4c8cca",
+   "cfad6b4037f9d",
+   "cfb3055a6acdb"
+  ]
+ },
+ "disposition": {
+  "seed": 3,
+  "per_stratum": 60,
+  "candidates": 483,
+  "not_attributable": [
+   "20250405_amazon-q-developer-agent-20250405-dev",
+   "20250901_warp"
+  ],
+  "by_submission": {
+   "20251127_openhands_claude-opus-4-5": {
+    "not_resolved_available": 105,
+    "not_resolved_drawn": 60,
+    "resolved_available": 378,
+    "resolved_drawn": 60
+   },
+   "20250928_trae_doubao_seed_code": {
+    "not_resolved_available": 101,
+    "not_resolved_drawn": 60,
+    "resolved_available": 382,
+    "resolved_drawn": 60
+   },
+   "20251205_sonar-foundation-agent_claude-opus-4-5": {
+    "not_resolved_available": 98,
+    "not_resolved_drawn": 60,
+    "resolved_available": 385,
+    "resolved_drawn": 60
+   },
+   "20250930_zai_glm4-6": {
+    "not_resolved_available": 152,
+    "not_resolved_drawn": 60,
+    "not_resolved_no_report": 3,
+    "resolved_available": 331,
+    "resolved_drawn": 60,
+    "resolved_no_report": 5
+   },
+   "20251215_livesweagent_claude-opus-4-5": {
+    "not_resolved_available": 97,
+    "not_resolved_drawn": 60,
+    "resolved_available": 386,
+    "resolved_drawn": 60
+   },
+   "20250902_atlassian-rovo-dev": {
+    "not_resolved_available": 112,
+    "not_resolved_drawn": 60,
+    "resolved_available": 371,
+    "resolved_drawn": 60
+   },
+   "20250522_tools_claude-4-opus": {
+    "not_resolved_available": 128,
+    "not_resolved_drawn": 60,
+    "resolved_available": 355,
+    "resolved_drawn": 60
+   },
+   "20250715_qodo_command": {
+    "not_resolved_available": 139,
+    "not_resolved_drawn": 60,
+    "not_resolved_statement_unbounded": 9,
+    "resolved_available": 344,
+    "resolved_statement_unbounded": 9,
+    "resolved_drawn": 60
+   }
+  }
+ }
+}

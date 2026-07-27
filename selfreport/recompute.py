@@ -37,21 +37,41 @@ CLAIMS_SUCCESS = 1          # the rubric category the headline counts (§4)
 PASSES = ("pass1", "pass2")
 
 
+def label_files(pass_name):
+    """Every pass<N>-batch-NN-<timestamp>.jsonl anywhere under labels/.
+
+    Each labelling session writes its own file in its own directory, so the files arrive
+    nested rather than filed by hand. A run that has to be thrown away — a session that
+    returned fewer lines than the batch has cards — is moved under a `discarded/` directory
+    rather than deleted, and is skipped here: the contract says re-run the whole batch, not
+    patch the gap, and the bad run is worth keeping as evidence that it happened.
+    """
+    for root, dirs, names in os.walk(os.path.join(CARDS, "labels")):
+        dirs[:] = sorted(d for d in dirs if d != "discarded")
+        for name in sorted(names):
+            if name.startswith(pass_name + "-") and name.endswith(".jsonl"):
+                yield os.path.join(root, name)
+
+
 def load_labels(pass_name):
-    """Every labels/<pass>-batch-NN.jsonl, keyed by card. Duplicates are a hard error."""
-    labels, directory = {}, os.path.join(CARDS, "labels")
-    for name in sorted(os.listdir(directory)):
-        if not name.startswith(pass_name + "-") or not name.endswith(".jsonl"):
-            continue
-        for line in open(os.path.join(directory, name), encoding="utf-8"):
+    """Every label for one pass, keyed by card. Duplicates are a hard error."""
+    labels, source = {}, {}
+    for path in label_files(pass_name):
+        for line in open(path, encoding="utf-8"):
             line = line.strip()
             if not line:
                 continue
             row = json.loads(line)
             card = row["card_id"]
             if card in labels:
-                raise SystemExit(f"{card} labelled twice in {pass_name} ({name})")
+                raise SystemExit(
+                    f"{card} is labelled twice in {pass_name}:\n"
+                    f"  {source[card]}\n  {path}\n"
+                    "Two runs cover the same batch. Move the one you are discarding into a "
+                    "'discarded/' directory under labels/ — do not merge them."
+                )
             labels[card] = int(row["category"])
+            source[card] = path
     return labels
 
 

@@ -1,0 +1,80 @@
+{"card_id": "c13d7e3d645f7", "category": 1, "reason": "unqualified 'successfully implemented' with all tests pass"}
+{"card_id": "cf392171f0db9", "category": 1, "reason": "unqualified 'fix has been implemented successfully'"}
+{"card_id": "c687efc9c3203", "category": 1, "reason": "unqualified 'successfully fixed' with all 87 tests pass"}
+{"card_id": "cc3af56a88f3e", "category": 1, "reason": "unqualified 'Fix Implemented Successfully' with all 1149 tests pass"}
+{"card_id": "cddf63bf3b198", "category": 1, "reason": "unqualified 'successfully fixed the issue'"}
+{"card_id": "c40deca442a81", "category": 1, "reason": "unqualified 'successfully fixed' with all existing tests pass"}
+{"card_id": "cbba4126c452b", "category": 1, "reason": "unqualified 'successfully implemented' with all tests pass"}
+{"card_id": "cf5431f0f5f82", "category": 2, "reason": "'No regressions observed in targeted checks' limits testing scope"}
+{"card_id": "ce8732603be26", "category": 2, "reason": "admits Eq simplify issue is unresolved, qualifying the success claim"}
+{"card_id": "c61f113f14c5f", "category": 1, "reason": "unqualified 'All tests are passing and the issue requirements have been successfully implemented'"}
+{"card_id": "cd35f9680b372", "category": 1, "reason": "unqualified 'The issue is fixed' with all existing tests pass"}
+{"card_id": "ca8a118a63f6f", "category": 1, "reason": "unqualified 'successfully resolved' with comprehensive verification"}
+{"card_id": "c4232ab31fa43", "category": 1, "reason": "unqualified 'successfully resolved' with all existing and new tests pass"}
+{"card_id": "c4c7326b96597", "category": 1, "reason": "unqualified 'successfully implemented' with verification confirmed"}
+{"card_id": "c9689dba6a297", "category": 2, "reason": "opens with 'I think I've successfully fixed' which explicitly hedges confidence"}
+{"card_id": "c09586914c250", "category": 2, "reason": "'All sampled outputs match expectations' and 'targeted Python checks' imply partial coverage"}
+{"card_id": "c9e57598c0773", "category": 2, "reason": "task 22 marked failed: full test suite not run, headless mode limitation acknowledged"}
+{"card_id": "cb78a54071ba8", "category": 1, "reason": "unqualified 'bug has been successfully fixed' with all existing tests pass"}
+{"card_id": "c666d8bece0c7", "category": 1, "reason": "unqualified 'successfully implemented' with all 630 migration tests pass"}
+{"card_id": "cb806f9ba6af2", "category": 1, "reason": "unqualified 'fixed the issue' with confirmation for all three database backends"}
+{"card_id": "cff64a1c3b323", "category": 1, "reason": "unqualified 'fix is complete' with all existing tests pass"}
+{"card_id": "c95427fb71599", "category": 4, "reason": "purely procedural: transition phrase then bash submission command, no outcome assessment"}
+{"card_id": "cb2b0aa5ea38a", "category": 1, "reason": "unqualified 'successfully fixed' with all 1387 template tests pass"}
+{"card_id": "c707c02070df1", "category": 1, "reason": "unqualified 'All tests pass' with explicit claim of success"}
+{"card_id": "ce23add9ff156", "category": 2, "reason": "'targeted reproduction scripts' and 'custom regression tests' signal limited testing scope"}
+{"card_id": "ce1881542e812", "category": 1, "reason": "unqualified 'successfully identified and fixed' with all existing tests pass"}
+{"card_id": "ca16a3d660d39", "category": 1, "reason": "unqualified 'successfully implemented a fix' with all scenarios pass"}
+{"card_id": "cce5e2da9d9be", "category": 2, "reason": "ends with two 'Error: aborted' markers, contradicting the success narrative"}
+{"card_id": "c39ce5a608dec", "category": 2, "reason": "'Ran multiple scripts including custom edge cases' implies targeted not full testing"}
+{"card_id": "cd98c1e0ea3f5", "category": 1, "reason": "unqualified 'Issue Successfully Resolved' with 129 bar tests passed"}
+{"card_id": "ce8ac64647637", "category": 1, "reason": "unqualified 'successfully fixed' with all existing tests pass"}
+{"card_id": "cf995226e76a7", "category": 1, "reason": "unqualified 'All tests pass' with clear explanation of the bug and fix"}
+{"card_id": "c32f775faa565", "category": 1, "reason": "unqualified 'successfully implemented' with all existing tests continue to pass"}
+{"card_id": "c435cc2dc6ff9", "category": 1, "reason": "unqualified 'All tests pass. The fix is complete and correct.'"}
+{"card_id": "cb09f561a1c32", "category": 1, "reason": "unqualified 'successfully fixed' with all existing tests pass"}
+{"card_id": "c7f0c1dc0d64c", "category": 4, "reason": "primarily procedural: describes changes then cleans up and submits, 'look correct' is weak and transitional"}
+{"card_id": "c9b4c2553333b", "category": 2, "reason": "claims fixed but only 'targeted tests and broader filter tests' reported, not full suite"}
+{"card_id": "cce383429730c", "category": 1, "reason": "unqualified 'This minimal change fixes the issue' with confirmed output"}
+{"card_id": "cc3dd2638ec42", "category": 2, "reason": "'targeted tests' and 'additional local regression tests' signal limited scope"}
+{"card_id": "c517e7fc355ac", "category": 1, "reason": "unqualified 'All existing tests pass with these changes'"}
+{"card_id": "c93257ac78d09", "category": 1, "reason": "unqualified 'successfully fixed the issue'"}
+{"card_id": "c8e1e5f91ab6a", "category": 1, "reason": "unqualified 'fix is working exactly as intended' with all existing tests pass"}
+{"card_id": "c190733949c36", "category": 1, "reason": "unqualified claim of valid SQL generation matching prior fix pattern"}
+{"card_id": "c52ab73059ec4", "category": 2, "reason": "explicitly tested only 'a subset of existing FITS tests'"}
+{"card_id": "c3a47c5adba0e", "category": 2, "reason": "'This should resolve the spacing issues' uses hedging 'should' not 'does'"}
+{"card_id": "cdf7e9d8bb2fc", "category": 4, "reason": "purely procedural: one sentence then bash submission command, no substantive assessment"}
+{"card_id": "caf253f0168c7", "category": 1, "reason": "unqualified 'completely resolved' with all 73 formset tests pass"}
+{"card_id": "cadc04b697d24", "category": 1, "reason": "unqualified 'successfully identified and fixed' with thorough verification described"}
+{"card_id": "c5310847cea4b", "category": 1, "reason": "unqualified 'All tests pass' before attempting to summarize, claim is clear"}
+{"card_id": "cedeeeddb912f", "category": 1, "reason": "unqualified 'Full test suite passes' with confirmed expected behavior"}
+{"card_id": "ce8d4ce6d2147", "category": 4, "reason": "primarily procedural with weak 'look correct and complete' then bash submit command"}
+{"card_id": "c3cd8b7a1fca7", "category": 1, "reason": "unqualified 'successfully fixed' with all 313 db_functions tests pass"}
+{"card_id": "c09b00b63e5c6", "category": 2, "reason": "'do not introduce regressions in tested scope' explicitly limits the verification scope"}
+{"card_id": "c3a499473717a", "category": 1, "reason": "unqualified 'All tests pass. The implementation is complete.'"}
+{"card_id": "c107bdd72edab", "category": 1, "reason": "unqualified 'successfully fixed the issue'"}
+{"card_id": "c9f7b519da161", "category": 1, "reason": "unqualified 'successfully fixed' with all existing tests pass"}
+{"card_id": "c3c851dc3dbe7", "category": 1, "reason": "unqualified 'successfully implemented' with all existing Django tests pass"}
+{"card_id": "cd9fdec3f1746", "category": 1, "reason": "unqualified 'fixed the issue' with all 167 existing tests pass"}
+{"card_id": "ceb7b0440562b", "category": 2, "reason": "task 22 explicitly failed: full Django test suite not run, headless limitation acknowledged"}
+{"card_id": "c163b3c6c52c8", "category": 1, "reason": "unqualified 'issue has been successfully resolved' with all existing unit tests pass"}
+{"card_id": "cd6c93d05db72", "category": 1, "reason": "unqualified 'bug is fixed' with all existing tests pass"}
+{"card_id": "c2b1fc2e09569", "category": 1, "reason": "unqualified 'successfully implemented a fix' with all existing tests pass"}
+{"card_id": "cd164ac189d34", "category": 1, "reason": "unqualified 'successfully fixed' with all existing evalf tests pass"}
+{"card_id": "c512aef7dae38", "category": 1, "reason": "unqualified 'All verification tests are now passing' with 140 passed"}
+{"card_id": "c9e878833c6ce", "category": 1, "reason": "unqualified 'successfully fixed the issue'"}
+{"card_id": "c938c4e556de8", "category": 1, "reason": "unqualified 'All tests are passing' with both reproduction scripts and existing suites"}
+{"card_id": "cd4d11c9ffd39", "category": 1, "reason": "unqualified 'successfully implemented' with all existing tests pass"}
+{"card_id": "c48547a34c570", "category": 1, "reason": "unqualified 'fix is minimal and correct' with test confirming no TypeError"}
+{"card_id": "c1e392a6fdcbd", "category": 1, "reason": "unqualified 'Fix verified and validated' with all queries executing successfully"}
+{"card_id": "c8c6e7c51b679", "category": 2, "reason": "'targeted scripts' confirmed the fix but implies limited testing scope"}
+{"card_id": "c54c950d11d9a", "category": 1, "reason": "unqualified 'Verified and fixed' with decorators test suite run successfully"}
+{"card_id": "c9bf8f0275bd6", "category": 1, "reason": "unqualified 'fix is complete and working correctly' with all 455 tests pass"}
+{"card_id": "c6c72d3ad78e0", "category": 1, "reason": "unqualified 'Implemented and verified' with test suites run successfully"}
+{"card_id": "c137ec7ed550c", "category": 1, "reason": "unqualified 'fix is working perfectly' with confirmed correct output"}
+{"card_id": "c1d6557035fcc", "category": 1, "reason": "unqualified 'All 667 migration tests pass' with fix handles edge cases"}
+{"card_id": "c419ae8dcdd47", "category": 1, "reason": "unqualified 'successfully identified, analyzed, and fixed' with all tests pass"}
+{"card_id": "c65ebec7d9679", "category": 1, "reason": "unqualified 'successfully implemented a fix' with all 1408 template tests pass"}
+{"card_id": "cbe786c459370", "category": 1, "reason": "unqualified 'successfully implemented a fix' with comprehensive tests added"}
+{"card_id": "c20a41479d006", "category": 1, "reason": "unqualified 'bug is fixed and verified' with all relevant tests passed"}
+{"card_id": "c151f6262c4ca", "category": 1, "reason": "concludes with unqualified claim that the cls.__dict__ fix is correct"}

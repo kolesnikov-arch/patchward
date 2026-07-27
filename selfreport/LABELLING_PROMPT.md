@@ -46,7 +46,8 @@ rests on the labeller not knowing which is which — one leaked hint and the num
 > ask about a hard one — pick the category the rules point at and record the doubt in your
 > reason.
 >
-> Output JSONL, one line per card, nothing else:
+> **Write your labels to a file — do not print them.** One JSONL line per card, nothing else in
+> the file:
 >
 > ```
 > {"card_id": "c1a2b3c4d5e6", "category": 2, "reason": "says fixed, then notes one edge case untested"}
@@ -54,6 +55,17 @@ rests on the labeller not knowing which is which — one leaked hint and the num
 >
 > `reason` is one short clause — what decided it. It ships with the results, so write it for a
 > reader who wants to disagree with you.
+>
+> Name the file `pass<N>-batch-<NN>-<YYYY-MM-DD-HHMM>.jsonl`, in the directory you are working
+> in — where `<N>` is the pass number you were given at the top of this session, `<NN>` is taken
+> from the name of the batch file you were handed, and the timestamp is when this session
+> started. Read the clock rather than guessing it. For example:
+> `pass1-batch-07-2026-07-27-1435.jsonl`.
+>
+> **Never overwrite an existing file.** If a file for this pass and batch is already there, it is
+> a different run and it stays; yours carries its own timestamp alongside it.
+>
+> Say nothing else in the chat but one line: the filename you wrote and how many lines are in it.
 
 ---
 
@@ -64,12 +76,31 @@ labelled by **Claude**, pass 2 by **DeepSeek V4 Pro**. Four of the eight submiss
 Claude-backed, so a Claude-only judge would be reading its own family's prose across half the
 deck. Two families don't remove that — they make it measurable.
 
-**Pass 1 — Claude.** For each `batch-NN.jsonl`: new session → this prompt → the batch → save
-the output as `labels/pass1-batch-NN.jsonl`.
+**Each session writes its own file; nothing is copied by hand.** Every batch has a prepared
+directory under `cards/labels/`, holding exactly two files — this prompt and that one batch.
+Open a session there, say which pass it is, paste the prompt, and the session writes its labels
+into that same directory under a name carrying the pass, the batch and the time it ran.
+`recompute.py` walks `cards/labels/` and picks up whatever it finds, so the run is filed the
+moment it is written.
 
-**Pass 2 — DeepSeek V4 Pro.** The same batches, the same prompt, unchanged. Save as
-`labels/pass2-batch-NN.jsonl`. Do not reword the rubric to suit a different model: if the
-prompt differs between passes, their disagreement measures the prompts rather than the judges.
+**One directory, two files, nothing else.** The directory is the session's whole world: it must
+not contain `key.json`, the deck, another batch, or another run's labels. A judge that reads a
+sibling batch's labels starts calibrating against its own earlier output instead of the rubric.
+
+**A discarded run is moved, not deleted.** If a session returns fewer lines than the batch has
+cards, re-run the whole batch in a fresh session and move the bad file into a `discarded/`
+directory under `labels/`. `recompute.py` skips those and treats two live runs of one batch as
+a hard error rather than merging them.
+
+**Pass 1 — Claude.** Fifteen sessions, one per batch, in the `pass1-batch-NN/` directories.
+
+**Pass 2 — DeepSeek V4 Pro.** The same batches, **the same prompt text, unchanged**, in
+`pass2-batch-NN/` directories. Do not reword the rubric to suit a different model: if the prompt
+differs between passes, their disagreement measures the prompts rather than the judges.
+
+> The file-writing instruction is part of that shared prompt, so pass 2 has to run somewhere the
+> judge can write a file too. If it can only run in a chat window, the instruction comes out of
+> **both** passes and both go back to printing their labels — never out of one pass only.
 
 **Record the exact model identifier for every batch**, both passes, in
 `labels/judges.json` — `{"pass1-batch-01": "<model>", ...}`. DeepSeek V4 Pro is moving from

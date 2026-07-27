@@ -1,0 +1,204 @@
+{
+ "pass1": {
+  "model": "claude-opus-5",
+  "harness": "Claude Code"
+ },
+ "pass2": {
+  "model": "deepseek-v4-pro",
+  "harness": "Claude Code via local Anthropic-compatible proxy to api.deepseek.com",
+  "launcher_label": "deepseek-v4-pro[1m]",
+  "effort": "max"
+ },
+ "by_batch": {
+  "pass1-batch-01": {
+   "model": "claude-opus-5",
+   "session": "158cc444",
+   "file": "pass1-batch-01-2026-07-27-1329.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-02": {
+   "model": "claude-opus-5",
+   "session": "12f3765a",
+   "file": "pass1-batch-02-2026-07-27-0043.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-03": {
+   "model": "claude-opus-5",
+   "session": "a283c408",
+   "file": "pass1-batch-03-2026-07-27-1330.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-04": {
+   "model": "claude-opus-5",
+   "session": "922bf48e",
+   "file": "pass1-batch-04-2026-07-27-1330.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-05": {
+   "model": "claude-opus-5",
+   "session": "13bb722e",
+   "file": "pass1-batch-05-2026-07-27-0043.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-06": {
+   "model": "claude-opus-5",
+   "session": "f5610899",
+   "file": "pass1-batch-06-2026-07-27-1330.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-07": {
+   "model": "claude-opus-5",
+   "session": "50da32e5",
+   "file": "pass1-batch-07-2026-07-27-0808.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-08": {
+   "model": "claude-opus-5",
+   "session": "dfe41422",
+   "file": "pass1-batch-08-2026-07-27-1330.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-09": {
+   "model": "claude-opus-5",
+   "session": "f2d57e02",
+   "file": "pass1-batch-09-2026-07-27-0809.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-10": {
+   "model": "claude-opus-5",
+   "session": "5dd34101",
+   "file": "pass1-batch-10-2026-07-27-0808.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-11": {
+   "model": "claude-opus-5",
+   "session": "50da32e5",
+   "file": "pass1-batch-11-2026-07-27-0809.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-12": {
+   "model": "claude-opus-5",
+   "session": "50da32e5",
+   "file": "pass1-batch-12-2026-07-27-0809.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-13": {
+   "model": "claude-opus-5",
+   "session": "50da32e5",
+   "file": "pass1-batch-13-2026-07-27-0809.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-14": {
+   "model": "claude-opus-5",
+   "session": "50da32e5",
+   "file": "pass1-batch-14-2026-07-27-0809.jsonl",
+   "status": "live"
+  },
+  "pass1-batch-15": {
+   "model": "claude-opus-5",
+   "session": "66078468",
+   "file": "pass1-batch-15-2026-07-27-0809.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-01": {
+   "model": "deepseek-v4-pro",
+   "session": "50da32e5",
+   "file": "pass2-batch-01-2026-07-27-0845.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-02": {
+   "model": "deepseek-v4-pro",
+   "session": "a634706b",
+   "file": "pass2-batch-02-2026-07-27-0850.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-03": {
+   "model": "deepseek-v4-pro",
+   "session": "336b9a6e",
+   "file": "pass2-batch-03-2026-07-27-0852.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-04": {
+   "model": "deepseek-v4-pro",
+   "session": "78a8f26d",
+   "file": "pass2-batch-04-2026-07-27-0854.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-05": {
+   "model": "deepseek-v4-pro",
+   "session": "13bb722e",
+   "file": "pass2-batch-05-2026-07-27-1341.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-06": {
+   "model": "deepseek-v4-pro",
+   "session": "12f3765a",
+   "file": "pass2-batch-06-2026-07-27-0853.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-07": {
+   "model": "deepseek-v4-pro",
+   "session": "9c1dc515",
+   "file": "pass2-batch-07-2026-07-27-0853.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-08": {
+   "model": "deepseek-v4-pro",
+   "session": "50da32e5",
+   "file": "pass2-batch-08-2026-07-27-0855.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-09": {
+   "model": "deepseek-v4-pro",
+   "session": "f2d57e02",
+   "file": "pass2-batch-09-2026-07-27-1342.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-10": {
+   "model": "deepseek-v4-pro",
+   "session": "5dd34101",
+   "file": "pass2-batch-10-2026-07-27-0857.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-11": {
+   "model": "deepseek-v4-pro",
+   "session": "316d58d6",
+   "file": "pass2-batch-11-2026-07-27-0857.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-12": {
+   "model": "deepseek-v4-pro",
+   "session": "336b9a6e",
+   "file": "pass2-batch-12-2026-07-27-0855.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-13": {
+   "model": "deepseek-v4-pro",
+   "session": "63cf56a0",
+   "file": "pass2-batch-13-2026-07-27-0557.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-14": {
+   "model": "deepseek-v4-pro",
+   "session": "584f4aeb",
+   "file": "pass2-batch-14-2026-07-27-0855.jsonl",
+   "status": "live"
+  },
+  "pass2-batch-15": {
+   "model": "deepseek-v4-pro",
+   "session": "66078468",
+   "file": "pass2-batch-15-2026-07-27-0856.jsonl",
+   "status": "live"
+  }
+ },
+ "discarded": [
+  "pass1-batch-01-2026-07-27-0036.jsonl",
+  "pass1-batch-03-2026-07-27-0043.jsonl",
+  "pass1-batch-04-2026-07-27-0043.jsonl",
+  "pass1-batch-06-2026-07-27-0043.jsonl",
+  "pass1-batch-08-2026-07-27-0808.jsonl",
+  "pass2-batch-05-2026-07-27-0852.jsonl",
+  "pass2-batch-05-2026-07-27-1331.jsonl",
+  "pass2-batch-09-2026-07-27-0856.jsonl"
+ ]
+}

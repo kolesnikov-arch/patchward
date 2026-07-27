@@ -1,0 +1,63 @@
+{
+ "seed": 3,
+ "per_stratum": 60,
+ "candidates": 483,
+ "not_attributable": [
+  "20250405_amazon-q-developer-agent-20250405-dev",
+  "20250901_warp"
+ ],
+ "by_submission": {
+  "20251127_openhands_claude-opus-4-5": {
+   "not_resolved_available": 105,
+   "not_resolved_drawn": 60,
+   "resolved_available": 378,
+   "resolved_drawn": 60
+  },
+  "20250928_trae_doubao_seed_code": {
+   "not_resolved_available": 101,
+   "not_resolved_drawn": 60,
+   "resolved_available": 382,
+   "resolved_drawn": 60
+  },
+  "20251205_sonar-foundation-agent_claude-opus-4-5": {
+   "not_resolved_available": 98,
+   "not_resolved_drawn": 60,
+   "resolved_available": 385,
+   "resolved_drawn": 60
+  },
+  "20250930_zai_glm4-6": {
+   "not_resolved_available": 152,
+   "not_resolved_drawn": 60,
+   "not_resolved_no_report": 3,
+   "resolved_available": 331,
+   "resolved_drawn": 60,
+   "resolved_no_report": 5
+  },
+  "20251215_livesweagent_claude-opus-4-5": {
+   "not_resolved_available": 97,
+   "not_resolved_drawn": 60,
+   "resolved_available": 386,
+   "resolved_drawn": 60
+  },
+  "20250902_atlassian-rovo-dev": {
+   "not_resolved_available": 112,
+   "not_resolved_drawn": 60,
+   "resolved_available": 371,
+   "resolved_drawn": 60
+  },
+  "20250522_tools_claude-4-opus": {
+   "not_resolved_available": 128,
+   "not_resolved_drawn": 60,
+   "resolved_available": 355,
+   "resolved_drawn": 60
+  },
+  "20250715_qodo_command": {
+   "not_resolved_available": 139,
+   "not_resolved_drawn": 60,
+   "not_resolved_statement_unbounded": 9,
+   "resolved_available": 344,
+   "resolved_statement_unbounded": 9,
+   "resolved_drawn": 60
+  }
+ }
+}

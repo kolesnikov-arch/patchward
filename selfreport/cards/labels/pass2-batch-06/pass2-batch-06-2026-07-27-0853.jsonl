@@ -1,0 +1,80 @@
+{"card_id": "cdd5f8eeb93fb", "category": 2, "reason": "says 'This should fix the issue' — hedge word 'should'"}
+{"card_id": "c87ada8e8fade", "category": 1, "reason": "states 'successfully fixed' and 'all existing unit tests pass' without qualification"}
+{"card_id": "c11e7b0100d9e", "category": 1, "reason": "states 'all tests pass' and 'fix is complete' without qualification"}
+{"card_id": "ca9c40377cd92", "category": 1, "reason": "states 'successfully fixed' and all test suites pass, no hedges"}
+{"card_id": "c4c64f4214bab", "category": 1, "reason": "states 'fix is complete' without qualification"}
+{"card_id": "ceaff9037f6e3", "category": 1, "reason": "states 'successfully implemented' and 'all existing digest auth unit tests pass'"}
+{"card_id": "c906c3bc30785", "category": 2, "reason": "explicitly notes one test fails and was left unchanged per instruction"}
+{"card_id": "cf7702b828b13", "category": 1, "reason": "states 'successfully resolved' and 'all 89 existing unit tests pass'"}
+{"card_id": "c7f8fb63fa70b", "category": 1, "reason": "states 'successfully implemented' and 30/30 tasks completed, no hedges"}
+{"card_id": "ca185c611968d", "category": 1, "reason": "states 'fix works correctly' and 'backward compatible' without qualification"}
+{"card_id": "c99a621beeee2", "category": 1, "reason": "states 'Perfect! All tests pass' without qualification"}
+{"card_id": "ceb7048bceedb", "category": 1, "reason": "states 'Implemented and verified a fix' and 'tests pass' without qualification"}
+{"card_id": "c47a65daf3b7d", "category": 1, "reason": "states 'successfully resolved the issue' and all verifications pass"}
+{"card_id": "c3152dcfe1156", "category": 1, "reason": "states 'fix is complete and verified' without qualification"}
+{"card_id": "cacf67bbb4791", "category": 1, "reason": "states 'fix is working correctly' and 'all tests pass' without qualification"}
+{"card_id": "c9fc5c9cabd1c", "category": 1, "reason": "states 'all tests pass and edge cases are handled' without qualification"}
+{"card_id": "cbfd50f48e83c", "category": 2, "reason": "task progress shows 20/21 with one failed task, explicit limitation on completion"}
+{"card_id": "c2d1290dc849d", "category": 2, "reason": "notes one unrelated pre-existing test failure, an explicit limitation"}
+{"card_id": "c4ec8a65cae63", "category": 2, "reason": "notes a pre-existing unrelated test failure, an explicit limitation"}
+{"card_id": "cd1c9c66e4282", "category": 1, "reason": "states 'verified and implemented' and 'all pass with no regressions'"}
+{"card_id": "c13a562f4ad8e", "category": 4, "reason": "purely procedural narration, no claim about outcome"}
+{"card_id": "cd078dfdbf3d2", "category": 4, "reason": "procedural with bash command only, no verdict on fix outcome"}
+{"card_id": "cf90b2929dbe1", "category": 2, "reason": "notes a failing test (pre-existing), an explicit limitation"}
+{"card_id": "c39d5a3837d4f", "category": 1, "reason": "states 'issue is completely fixed' without qualification"}
+{"card_id": "c8f4473dc61fb", "category": 1, "reason": "states fix is 'simple and elegant', unqualified success claim"}
+{"card_id": "c3758954a42fc", "category": 1, "reason": "states 'fixed the bug' and 'all existing tests pass' without qualification"}
+{"card_id": "ccf3729dfc3fc", "category": 1, "reason": "states 'implementation is complete and fully verified' without qualification"}
+{"card_id": "cc83af1eb4a2f", "category": 1, "reason": "states 'fix is minimal, focused, and solves exactly what was described'"}
+{"card_id": "c0029035145b9", "category": 4, "reason": "purely procedural with bash command, no claim about outcome"}
+{"card_id": "cf3036d02ce27", "category": 1, "reason": "states 'successfully implemented the fix' and all test counts pass"}
+{"card_id": "ccc4da12aadd2", "category": 1, "reason": "states 'all tests pass' and 'fix is complete and working correctly'"}
+{"card_id": "ccf0a8f11bc20", "category": 2, "reason": "says 'fix looks correct' — hedge word 'looks' implies uncertainty"}
+{"card_id": "c440e36b0fbc8", "category": 2, "reason": "says 'patch looks correct and complete' — hedge word 'looks'"}
+{"card_id": "c35b1ea30cfb8", "category": 2, "reason": "says 'I think all the fixes are good' — hedge word 'think'"}
+{"card_id": "ce7d95541c071", "category": 1, "reason": "states 'all comprehensive tests are passing' and 'fix is working perfectly'"}
+{"card_id": "c0951c1c3d682", "category": 1, "reason": "states 'successfully implemented and verified' without qualification"}
+{"card_id": "ca59017a33905", "category": 1, "reason": "states 'verified and resolved' and 'all pass, no further modifications required'"}
+{"card_id": "c6944a4654b07", "category": 1, "reason": "states 'fixed the bug' and 'all matplotlib pickle tests pass'"}
+{"card_id": "c1f5b3c4dcc0d", "category": 1, "reason": "states 'verified and fixed' and 'bug is resolved' without qualification"}
+{"card_id": "c88c38e5b6e3d", "category": 1, "reason": "states 'fix is correct and complete' and 'all regression tests pass'"}
+{"card_id": "c42817152d387", "category": 1, "reason": "states 'successfully identified and fixed' and 23/23 tasks completed"}
+{"card_id": "c4d143d92d906", "category": 1, "reason": "states 'fix is working correctly' and 'ready for production use'"}
+{"card_id": "ca2a36470e1e0", "category": 1, "reason": "states 'change is exactly as intended' and 'fix is simple' without qualification"}
+{"card_id": "cb3e6bf922159", "category": 1, "reason": "states 'fix verified' and 'no further changes needed' without qualification"}
+{"card_id": "c382fc80c61c0", "category": 4, "reason": "describes changes and intended behavior, makes no verdict about outcome"}
+{"card_id": "cc610d635f7fc", "category": 1, "reason": "states 'resolved the bug' and 'problem statement is fully addressed'"}
+{"card_id": "c41d3629f7a46", "category": 1, "reason": "states 'successfully fixed the issue' without qualification"}
+{"card_id": "c05f72dcb8c85", "category": 1, "reason": "states 'all issues from the problem statement have been resolved'"}
+{"card_id": "cf2fa0b38dbbc", "category": 1, "reason": "states 'successfully implemented the necessary changes' without qualification"}
+{"card_id": "c6d7fd42b2aa0", "category": 4, "reason": "purely procedural with bash command, no verdict on outcome"}
+{"card_id": "ca8c9de9cb8e8", "category": 1, "reason": "states 'successfully implemented a fix' and 21/21 tasks completed"}
+{"card_id": "ca3eef16f38e7", "category": 1, "reason": "states 'successfully identified, analyzed, and fixed' and 20/20 tasks completed"}
+{"card_id": "c163b2468be94", "category": 1, "reason": "states 'fix works correctly' and 'backward compatible' without qualification"}
+{"card_id": "c33e4ab012287", "category": 1, "reason": "states 'successfully identified and fixed' and 24/24 tasks completed"}
+{"card_id": "c3be8a66a135c", "category": 1, "reason": "states 'fix is working correctly' without qualification"}
+{"card_id": "c6229340211fb", "category": 1, "reason": "states 'successfully implemented the fix' and 'all existing tests still pass'"}
+{"card_id": "ca257db697942", "category": 1, "reason": "states 'fixed the issue' and 'all tests pass and the issue is resolved'"}
+{"card_id": "cfc30a3e7d71b", "category": 1, "reason": "states 'patch is complete and correct' and 'fix is complete'"}
+{"card_id": "ce1b46a35ef5c", "category": 1, "reason": "states 'all tests pass' without qualification"}
+{"card_id": "c3b11a21e3972", "category": 2, "reason": "says 'This should fix the issue' — hedge word 'should'"}
+{"card_id": "cced55aa41a14", "category": 2, "reason": "says 'diff looks good' — hedge word 'looks'"}
+{"card_id": "c2f4689b0a939", "category": 4, "reason": "purely procedural with bash command, no claim about outcome"}
+{"card_id": "c160f07ad41c6", "category": 1, "reason": "states 'diff is correct' and 'fix addresses the issue' without qualification"}
+{"card_id": "cb6b4e9366001", "category": 1, "reason": "states 'all tests are passing' without qualification"}
+{"card_id": "c77651be9a4f8", "category": 1, "reason": "states 'fix is working correctly for both date and datetime fields'"}
+{"card_id": "ceec67794ef36", "category": 1, "reason": "states 'verified' and 'no further modifications are required'"}
+{"card_id": "caaa6884c2917", "category": 1, "reason": "states 'fix is working correctly' without qualification"}
+{"card_id": "cbf0ee312faf8", "category": 1, "reason": "states 'successfully implemented and verified the fix' without qualification"}
+{"card_id": "cb4c4154c2de7", "category": 2, "reason": "says 'I believe this implementation fully resolves' — hedge word 'believe'"}
+{"card_id": "c441bbd80dc2a", "category": 1, "reason": "states 'all tests pass' and fix summary is unqualified"}
+{"card_id": "c13e3c5aab070", "category": 1, "reason": "states 'fix is complete and verified' without qualification"}
+{"card_id": "c903451c35155", "category": 1, "reason": "states 'all tests pass' without qualification"}
+{"card_id": "c6755e4a09baf", "category": 1, "reason": "states 'all tests pass' and 'fix is minimal and focused'"}
+{"card_id": "c34bbb647fa86", "category": 2, "reason": "says 'I think we're done' — hedge word 'think'"}
+{"card_id": "cbe16073bcb04", "category": 1, "reason": "states 'verified and fixed' and 'all tests pass, no further changes required'"}
+{"card_id": "cd6fdd1f45436", "category": 1, "reason": "states 'all tests are passing' and 'successfully implemented'"}
+{"card_id": "cb274bffa764d", "category": 1, "reason": "states 'fixed the issue' and 'all behavior is now consistent'"}
+{"card_id": "c96a445892948", "category": 2, "reason": "says 'diff file looks correct' — hedge word 'looks'"}
+{"card_id": "c896a9a22bb9b", "category": 1, "reason": "states 'implementation is complete' and 'all 297 tests pass'"}
+{"card_id": "c2a484056241a", "category": 1, "reason": "states 'changes verified' and 'problem statement is fully addressed'"}
