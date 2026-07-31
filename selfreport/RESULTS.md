@@ -4,6 +4,9 @@
 Contract: [PREREGISTRATION.md](PREREGISTRATION.md), committed before the labelling.
 Execution log, including what went wrong: [LABELLING_LOG.md](LABELLING_LOG.md).
 
+> Written up, with the held-out evaluation and Study #1, in a preprint:
+> [doi.org/10.5281/zenodo.21721312](https://doi.org/10.5281/zenodo.21721312)
+
 Ten SWE-bench Verified submissions publish their agents' reasoning traces. The benchmark
 checks whether each patch worked. Nothing checks the sentence the agent wrote about its own
 patch — and that sentence is what a human operator actually reads.

@@ -6,6 +6,9 @@
 model silently shipped 17/50 wrong fixes when ungated — and 0/50 when an
 independent verdict layer decided what ships.**
 
+> Written up, with Studies #1 and #3, in a preprint:
+> [doi.org/10.5281/zenodo.21721312](https://doi.org/10.5281/zenodo.21721312)
+
 The scoring rules for this evaluation were published **before the result existed**:
 [Pre-registered Scoring Contract](PREREGISTRATION.md) (committed 2026-07-03; the run
 completed 2026-07-05). Every reporting commitment in that contract (§3) is delivered

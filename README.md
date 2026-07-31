@@ -19,6 +19,31 @@ existed**, and each recomputes from raw artifacts with a stdlib-only script.
 - *What is my own agent's number?* → [`self-check/`](self-check/) — `pip install fa-patchward`. Costs a day and a Docker install; gives you a figure that is yours, not mine.
 - *Auditing a repository's history?* → [`check/`](check/) — `pip install patchward-check`. A wide sieve, not an alarm, and read its own README before you rely on it: 6.9% precision, recall unmeasured.
 - *Want this number for your own pipeline, not a benchmark?* → [MEASUREMENT_PROTOCOL.md](MEASUREMENT_PROTOCOL.md) — a pre-registered, fixed-scope measurement run inside your perimeter, against your own tests. Your code never leaves; the method stays with you afterwards.
+- *Prefer it as one paper?* → all three studies and the method are written up in a preprint: [doi.org/10.5281/zenodo.21721311](https://doi.org/10.5281/zenodo.21721311).
+
+---
+
+## Citing this work
+
+The three studies are written up as a single preprint — *Independent Verification as a
+Measurable Property of AI Coding Pipelines: Three Pre-Registered Studies* (2026),
+CC BY 4.0.
+
+```bibtex
+@misc{kolesnikov2026independent,
+  title     = {Independent Verification as a Measurable Property of AI Coding
+               Pipelines: Three Pre-Registered Studies},
+  author    = {Kolesnikov, Dmitriy},
+  year      = {2026},
+  publisher = {Zenodo},
+  note      = {Preprint v0.2},
+  doi       = {10.5281/zenodo.21721312},
+  url       = {https://doi.org/10.5281/zenodo.21721312}
+}
+```
+
+`10.5281/zenodo.21721312` is this version; `10.5281/zenodo.21721311` always resolves to
+the latest one. Cite the version you actually read.
 
 ---
 

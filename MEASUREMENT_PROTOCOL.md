@@ -18,6 +18,8 @@ rules committed **before** the result existed, including one that went against m
 own tool and was published anyway — [RESULTS.md](RESULTS.md),
 [Study #1](check/study-artifacts/RESULTS.md),
 [Study #3](selfreport/RESULTS.md), [PREREGISTRATION.md](PREREGISTRATION.md).
+All three are written up as a citable preprint,
+[doi.org/10.5281/zenodo.21721312](https://doi.org/10.5281/zenodo.21721312) (CC BY 4.0).
 This protocol applies the same discipline to your pipeline.
 
 ---

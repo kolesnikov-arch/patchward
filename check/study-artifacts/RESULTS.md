@@ -3,6 +3,9 @@
 **Run date: 2026-07-26. Instrument: `patchward-check` @ `d2f14f4`.**
 Reported against [the pre-registered contract](../PREREGISTRATION_PR_STUDY.md), committed before collection began.
 
+> Written up, with the held-out evaluation and Study #3, in a preprint:
+> [doi.org/10.5281/zenodo.21721312](https://doi.org/10.5281/zenodo.21721312)
+
 ## 1. Disposition first (contract §5.2)
 
 | | count |
