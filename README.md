@@ -18,6 +18,7 @@ existed**, and each recomputes from raw artifacts with a stdlib-only script.
 - *Is any of this real?* → [RESULTS.md](RESULTS.md) + [`evaluation-artifacts/`](evaluation-artifacts/) + [PREREGISTRATION.md](PREREGISTRATION.md). Everything recomputes; nothing asks you to trust me.
 - *What is my own agent's number?* → [`self-check/`](self-check/) — `pip install fa-patchward`. Costs a day and a Docker install; gives you a figure that is yours, not mine.
 - *Auditing a repository's history?* → [`check/`](check/) — `pip install patchward-check`. A wide sieve, not an alarm, and read its own README before you rely on it: 6.9% precision, recall unmeasured.
+- *Want this number for your own pipeline, not a benchmark?* → [MEASUREMENT_PROTOCOL.md](MEASUREMENT_PROTOCOL.md) — a pre-registered, fixed-scope measurement run inside your perimeter, against your own tests. Your code never leaves; the method stays with you afterwards.
 
 ---
 
