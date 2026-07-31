@@ -97,6 +97,7 @@ is caught.
 ```bash
 python study/test_stats.py       # intervals, incl. reproducing the published held-out CIs
 python study/test_pipeline.py    # draw determinism, disposition, blind-review export
+python study/test_matched_analysis.py   # Analysis 2: the strata rule, on data with no effect in it
 ```
 
 `test_stats.py` reproduces the `17/50 → [21.2%, 48.8%]` and `0/50 → [0.0%, 7.1%]`
