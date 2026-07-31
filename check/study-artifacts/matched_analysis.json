@@ -1,0 +1,340 @@
+{
+  "contract": "PREREGISTRATION_MATCHED_ANALYSIS.md",
+  "classifier_pattern": "\\b(ai|a\\.i\\.|llm|llms|gpt|agent|agents|agentic|chatbot|copilot|prompt|prompts|rag|inference|embedding|embeddings|transformer|transformers|diffusion|openai|anthropic|claude|gemini|deepseek|qwen|llama|mistral|ollama|vllm|langchain|mcp|assistant|coding-agent)\\b",
+  "flag_rule": "severity >= 3",
+  "min_cell": 30,
+  "seed": 2026,
+  "resamples": 2000,
+  "n_analysed": 2933,
+  "n_repositories": 147,
+  "crude": {
+    "ai": {
+      "n": 1575,
+      "k": 408,
+      "rate": 0.259047619047619
+    },
+    "other": {
+      "n": 1358,
+      "k": 299,
+      "rate": 0.22017673048600883
+    }
+  },
+  "bins": [
+    [
+      0,
+      20
+    ],
+    [
+      21,
+      100
+    ],
+    [
+      101,
+      500
+    ],
+    [
+      501,
+      2000
+    ],
+    [
+      2001,
+      5000
+    ]
+  ],
+  "strata": {
+    "[0, 20]": {
+      "ai": [
+        403,
+        12
+      ],
+      "other": [
+        483,
+        24
+      ]
+    },
+    "[21, 100]": {
+      "ai": [
+        429,
+        87
+      ],
+      "other": [
+        399,
+        83
+      ]
+    },
+    "[101, 500]": {
+      "ai": [
+        505,
+        173
+      ],
+      "other": [
+        318,
+        111
+      ]
+    },
+    "[501, 2000]": {
+      "ai": [
+        189,
+        105
+      ],
+      "other": [
+        128,
+        65
+      ]
+    },
+    "[2001, 5000]": {
+      "ai": [
+        49,
+        31
+      ],
+      "other": [
+        30,
+        16
+      ]
+    }
+  },
+  "common_support": {
+    "included_bins": [
+      [
+        0,
+        20
+      ],
+      [
+        21,
+        100
+      ],
+      [
+        101,
+        500
+      ],
+      [
+        501,
+        2000
+      ],
+      [
+        2001,
+        5000
+      ]
+    ],
+    "excluded_bins": [],
+    "coverage_prs": 2933,
+    "coverage_share": 1.0
+  },
+  "primary": {
+    "estimand": "size-standardized rate difference over common-support strata, ai-adjacent minus other",
+    "standardized_rate_ai": 0.2394570524106216,
+    "standardized_rate_other": 0.24093042173994203,
+    "difference_pp": -0.14733693293204342,
+    "ci95_pp": [
+      -4.897923196983181,
+      4.589241469667235
+    ],
+    "bootstrap_replicates_used": 2000
+  },
+  "secondary": {
+    "cmh_odds_ratio_all_strata": {
+      "or": 0.9888919233770963,
+      "ci95": [
+        0.8202704280258978,
+        1.1921766318870368
+      ]
+    },
+    "by_language": {
+      "go": {
+        "n": 523,
+        "crude": {
+          "ai": {
+            "n": 183,
+            "k": 47,
+            "rate": 0.2568306010928962
+          },
+          "other": {
+            "n": 340,
+            "k": 77,
+            "rate": 0.22647058823529412
+          }
+        },
+        "included_bins": [
+          [
+            0,
+            20
+          ],
+          [
+            21,
+            100
+          ],
+          [
+            101,
+            500
+          ]
+        ],
+        "difference_pp": -2.700914668451579
+      },
+      "js-ts": {
+        "n": 1234,
+        "crude": {
+          "ai": {
+            "n": 692,
+            "k": 201,
+            "rate": 0.2904624277456647
+          },
+          "other": {
+            "n": 542,
+            "k": 103,
+            "rate": 0.1900369003690037
+          }
+        },
+        "included_bins": [
+          [
+            0,
+            20
+          ],
+          [
+            21,
+            100
+          ],
+          [
+            101,
+            500
+          ],
+          [
+            501,
+            2000
+          ]
+        ],
+        "difference_pp": 4.460370727454291
+      },
+      "python": {
+        "n": 1176,
+        "crude": {
+          "ai": {
+            "n": 700,
+            "k": 160,
+            "rate": 0.22857142857142856
+          },
+          "other": {
+            "n": 476,
+            "k": 119,
+            "rate": 0.25
+          }
+        },
+        "included_bins": [
+          [
+            0,
+            20
+          ],
+          [
+            21,
+            100
+          ],
+          [
+            101,
+            500
+          ],
+          [
+            501,
+            2000
+          ]
+        ],
+        "difference_pp": -5.26975140799453
+      }
+    },
+    "excluding_top3_repositories": {
+      "excluded": [
+        "openclaw/openclaw",
+        "getsentry/sentry",
+        "microsoft/vscode"
+      ],
+      "n": 2460,
+      "included_bins": [
+        [
+          0,
+          20
+        ],
+        [
+          21,
+          100
+        ],
+        [
+          101,
+          500
+        ],
+        [
+          501,
+          2000
+        ]
+      ],
+      "difference_pp": 0.16097027983802414
+    },
+    "repository_as_unit": {
+      "min_prs": 10,
+      "n_repositories": {
+        "ai": 40,
+        "other": 29
+      },
+      "median_proportion": {
+        "ai": 0.2421875,
+        "other": 0.1875
+      },
+      "mann_whitney_u": 673.0,
+      "p_two_sided": 0.2581207665503824
+    },
+    "merged_strata_contrast": {
+      "bins": [
+        [
+          0,
+          20
+        ],
+        [
+          21,
+          100
+        ],
+        [
+          101,
+          500
+        ],
+        [
+          501,
+          2000
+        ],
+        [
+          2001,
+          5000
+        ]
+      ],
+      "merges": [],
+      "difference_pp": -0.14733693293204342,
+      "note": "reported to show what the rejected rule would have produced; wide strata leave residual size imbalance inside them"
+    },
+    "size_distribution": {
+      "ai": {
+        "n": 1575,
+        "median": 87,
+        "by_bin": {
+          "[0, 20]": 403,
+          "[21, 100]": 429,
+          "[101, 500]": 505,
+          "[501, 2000]": 189,
+          "[2001, 5000]": 49
+        }
+      },
+      "other": {
+        "n": 1358,
+        "median": 48.0,
+        "by_bin": {
+          "[0, 20]": 483,
+          "[21, 100]": 399,
+          "[101, 500]": 318,
+          "[501, 2000]": 128,
+          "[2001, 5000]": 30
+        }
+      }
+    }
+  },
+  "skipped_rows": {
+    "not_analysed": 67,
+    "unframed_repo": 0,
+    "no_size": 0,
+    "oversize": 0
+  }
+}

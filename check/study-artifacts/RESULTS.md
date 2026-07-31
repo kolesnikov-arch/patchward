@@ -119,6 +119,8 @@ This is a property of the *repository*, not of who wrote any pull request. It is
 
 > If these two rates differ materially, the headline is partly a statement about which repositories dominate the frame, and should be read that way.
 
+**They do not, once change size is held fixed — see [§8](#8-analysis-2-does-the-repository-class-difference-survive-adjustment).** The 3.9-point gap above is unadjusted, and it is the gap that section was written to test.
+
 **Concentration.** The draw is proportional to volume, as the contract specifies, so the sample is not spread evenly: 3000 pull requests come from 147 repositories, and the busiest ten supply **40%** of them.
 
 | repository | drawn | share |
@@ -197,3 +199,49 @@ python -m study verify
 ```
 
 Recomputes every figure above from `results.jsonl` and fails loudly on any mismatch. The repository frame, the drawn PR list, and the per-PR verdicts are all in `study-artifacts/`.
+
+---
+
+## 8. Analysis 2: does the repository-class difference survive adjustment?
+
+**Run date: 2026-07-31.** Contract: [PREREGISTRATION_MATCHED_ANALYSIS.md](../PREREGISTRATION_MATCHED_ANALYSIS.md) and the code that produces every figure below were committed in `e7308fb`, **before this analysis was run for the first time on these artifacts**. No new data was collected; nothing was re-classified or re-scored.
+
+§5b left one question open: the 3.9-point gap between AI-adjacent repositories (25.9%) and the rest (22.0%). Change size predicts the outcome far more strongly than anything else in this data — from 4.1% at 0–20 changed lines to 59.5% at 2,001–5,000 (§5) — and the two classes do not merge changes of the same size.
+
+### The answer
+
+**Standardized to the pooled change-size distribution: −0.15 pp, 95% cluster bootstrap CI [−4.90, +4.59].** AI-adjacent 23.95%, other 24.09%. **The unadjusted difference does not survive adjustment for change size.**
+
+The mechanism is visible directly: median changed lines is **87** in AI-adjacent repositories against **48** elsewhere. Within each size stratum the two classes behave the same way.
+
+| changed lines | AI-adjacent | rate | other | rate |
+|---|---|---|---|---|
+| 0–20 | 12 / 403 | 3.0% | 24 / 483 | 5.0% |
+| 21–100 | 87 / 429 | 20.3% | 83 / 399 | 20.8% |
+| 101–500 | 173 / 505 | 34.3% | 111 / 318 | 34.9% |
+| 501–2,000 | 105 / 189 | 55.6% | 65 / 128 | 50.8% |
+| 2,001–5,000 | 31 / 49 | 63.3% | 16 / 30 | 53.3% |
+
+Every stratum carried at least 30 pull requests in both classes, so the contract's common-support restriction never bound: the estimate covers **100%** of the analysed sample. The strata rule the contract rejected (§2 of the contract) returns the same −0.15 pp here, because no merge fires on this data — the rule change could not have manufactured this answer.
+
+### Secondary analyses (contract §4)
+
+| analysis | result |
+|---|---|
+| Mantel–Haenszel common odds ratio, all strata | **0.989**, 95% CI [0.820, 1.192] |
+| Excluding the three most heavily drawn repositories | +0.16 pp |
+| Per language, standardized (smaller n, unstable) | go −2.7 pp · js-ts +4.46 pp · python −5.27 pp |
+| Repository as the unit, **unadjusted by construction** | median flag proportion 24.2% vs 18.8%; Mann–Whitney *p* = 0.26 |
+
+The per-language figures scatter in both directions with no consistent sign, which is what a null looks like at these sample sizes. The repository-level comparison is unadjusted for change size on purpose — it answers whether *repositories* differ, is expected to track the raw gap, and must not be read as support for the primary question; it is reported because omitting it would be a choice.
+
+### What this does and does not say
+
+It says that in this frame, once you compare changes of similar size, repositories that describe themselves as AI or agent projects replace existing test expectations at the same rate as everything else. The visible gap was a statement about change size, not about the repositories.
+
+It does not say anything about correctness. The instrument reports a structural property of a diff at 6.9% precision (§6); the honest reading is about a practice, not a defect rate. And with only four confirmed true positives in the blind review, precision **per class** cannot be estimated at all — if the instrument's precision differed between the two classes, no comparison of flag rates would transfer to the underlying practice. That limit was stated in the contract before the number existed and does not go away because the number came out null.
+
+```bash
+python -m study.matched_analysis      # writes study-artifacts/matched_analysis.json
+python study/test_matched_analysis.py # the strata rule, on data with no effect in it
+```
