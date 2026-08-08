@@ -151,7 +151,7 @@ three test files in total.
 ### In CI
 
 ```yaml
-- uses: kolesnikov-arch/patchward/check@check-v0.2.2
+- uses: kolesnikov-arch/patchward/check@check-v0.2.3
 ```
 
 It posts the retracted-expectation list as one pull request comment and updates

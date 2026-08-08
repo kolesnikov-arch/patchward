@@ -51,6 +51,17 @@ PAIR_THRESHOLD = 0.6
 #: list nobody reads is worse than a sentence they do.
 ITEMISE_LIMIT = 8
 
+#: Removed lines in one hunk above which pairing is not attempted at all and the
+#: file is reported as a bulk rewrite directly.
+#:
+#: This is a stated rule, not a silent approximation. Pairing is quadratic, and
+#: a hunk of this size would have to consist almost entirely of comment-only
+#: changes to fall back under ITEMISE_LIMIT afterwards — but "almost entirely"
+#: is not "provably never", so the behaviour is written down here rather than
+#: claimed to be equivalent. Without it, a single vendored or generated diff
+#: takes minutes and can exhaust memory.
+PAIRING_LIMIT = 200
+
 #: A hunk starting at or above this line is the head of the file — module
 #: docstring, licence header, imports. Inside it, prose is prose.
 HEAD_OF_FILE = 3
@@ -111,9 +122,22 @@ def _pair(removed: List[str], added: List[str]):
     """
     unused = list(added)
     for r in removed:
+        rs = r.strip()
+        lr = len(rs)
         best, best_ratio = None, 0.0
         for a in unused:
-            ratio = difflib.SequenceMatcher(None, r.strip(), a.strip()).ratio()
+            as_ = a.strip()
+            la = len(as_)
+            # `ratio` is 2*matches/(la+lr) and matches cannot exceed the shorter
+            # string, so this is an upper bound — computed with arithmetic
+            # rather than difflib's own quick_ratio, whose call overhead cost
+            # more than it saved. A candidate whose bound cannot beat the
+            # incumbent cannot beat it on the real figure, so skipping changes
+            # no result. Without it this loop is quadratic in the size of a
+            # hunk and exhausts memory on generated diffs.
+            if la + lr == 0 or 2.0 * min(la, lr) / (la + lr) <= best_ratio:
+                continue
+            ratio = difflib.SequenceMatcher(None, rs, as_).ratio()
             if ratio > best_ratio:
                 best, best_ratio = a, ratio
         if best is not None and best_ratio >= PAIR_THRESHOLD:
@@ -203,7 +227,9 @@ def _file_retractions(fd: FileDiff) -> List[Retraction]:
                     if _looks_like_a_check(l) or (set(l) & CODE_PUNCTUATION)]
         if not gone:
             continue
-        if h.is_replacement:
+        if len(gone) > PAIRING_LIMIT:
+            out += [Retraction(path, "removed", was=l) for l in gone]
+        elif h.is_replacement:
             for was, now in _pair(gone, kept_added):
                 if now and _comment_only(was, now):
                     continue

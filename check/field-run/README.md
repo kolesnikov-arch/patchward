@@ -51,7 +51,7 @@ cannot quietly replace a result that came out inconveniently, and running
 
 ```bash
 python check/field-run/draw.py          # wave, group, repository
-pip install patchward-check==0.2.2
+pip install patchward-check==0.2.3
 python check/field-run/scan.py clones > results.json
 ```
 

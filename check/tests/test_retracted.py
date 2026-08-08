@@ -210,5 +210,24 @@ class SilenceAndScope(unittest.TestCase):
         self.assertEqual(r.source_files, ["app/calc.py"])
         self.assertEqual(r.test_files, [])
 
+
+class LargeHunks(unittest.TestCase):
+    """A vendored or generated diff must not cost minutes."""
+
+    def test_a_hunk_past_the_pairing_limit_is_reported_without_pairing(self):
+        from patchward_check.retracted import PAIRING_LIMIT
+        body = "".join(f"-    assert f({i}) == {i}\n+    assert f({i}) == {i+1}\n"
+                       for i in range(PAIRING_LIMIT + 5))
+        r = extract(SRC + diff("tests/test_calc.py", " def test_f():\n" + body))
+        self.assertEqual([i.kind for i in r.items], ["bulk"])
+
+    def test_it_finishes_quickly(self):
+        import time
+        body = "".join(f"-    assert f({i}) == {i}\n+    assert g({i}) == {i*7}\n"
+                       for i in range(1500))
+        t0 = time.time()
+        extract(SRC + diff("tests/test_calc.py", " def test_f():\n" + body))
+        self.assertLess(time.time() - t0, 5.0)
+
 if __name__ == "__main__":
     unittest.main()
