@@ -1,7 +1,7 @@
 name: "patchward check"
 description: >-
-  Flags pull requests that edit the tests which judge them. Reads the diff only
-  — runs nothing, blocks nothing.
+  Lists the expectations a pull request stops checking, as before/after pairs.
+  Reads the diff only — runs nothing, blocks nothing, judges nothing.
 author: "Dmitriy Kolesnikov"
 
 branding:
@@ -17,14 +17,14 @@ inputs:
     default: "never"
   comment:
     description: >-
-      Post the findings as a pull request comment (true/false). Default `false`.
-      The check fires on roughly a quarter of pull requests, and on a hand-labelled
-      sample about 7% of those flags were confirmed as an expectation actually being
-      retracted. A comment on every one of them reads as an accusation the check
-      cannot support, so it is off unless you ask for it. Findings always go to the
-      job summary, where whoever is looking will find them.
+      Post the result as a pull request comment (true/false). Default `true`.
+      What gets posted is the retracted-expectation list — the lines that existed
+      before this change and do not after it, shown as before/after pairs — and
+      nothing else. It states no verdict, so there is nothing in it to be wrong
+      about; a rename and a weakened test look the same, and the reviewer settles
+      that in a glance. Set `false` to keep it in the job summary only.
     required: false
-    default: "false"
+    default: "true"
   test-glob:
     description: >-
       Extra regex marking a path as a test file, one per line.
@@ -36,6 +36,9 @@ inputs:
     default: ""
 
 outputs:
+  stops-checking:
+    description: "How many expectations this change retracts"
+    value: ${{ steps.run.outputs.stops_checking }}
   verdict:
     description: "clean | note | review | self-graded"
     value: ${{ steps.run.outputs.verdict }}
@@ -75,8 +78,19 @@ runs:
 
         git diff --unified=3 "$base" "$head" > /tmp/pw.diff || true
 
+        # What a human sees: the retracted expectations, no verdict attached.
+        patchward-check --diff /tmp/pw.diff --format retracted-md \
+          "${args[@]}" > /tmp/pw.md || true
+        patchward-check --diff /tmp/pw.diff --format retracted-json \
+          "${args[@]}" > /tmp/pw.retracted.json || true
+
+        # The verdict is still computed, because `fail-on` is built on it. It
+        # stays a machine output; it is not what gets shown to the author.
         patchward-check --diff /tmp/pw.diff --format json \
           --fail-on never "${args[@]}" > /tmp/pw.json || true
+
+        stops=$(python -c "import json;print(json.load(open('/tmp/pw.retracted.json'))['stops_checking'])")
+        echo "stops_checking=$stops" >> "$GITHUB_OUTPUT"
 
         verdict=$(python -c "import json;print(json.load(open('/tmp/pw.json'))['verdict'])")
         echo "verdict=$verdict" >> "$GITHUB_OUTPUT"
@@ -86,8 +100,6 @@ runs:
         print("findings=" + json.dumps(d["findings"], ensure_ascii=False))
         PY
 
-        patchward-check --diff /tmp/pw.diff --format markdown \
-          --fail-on never "${args[@]}" > /tmp/pw.md || true
         cat /tmp/pw.md >> "$GITHUB_STEP_SUMMARY"
 
         sev=$(python -c "import json;print(json.load(open('/tmp/pw.json'))['severity'])")
@@ -103,7 +115,7 @@ runs:
         fi
 
     - name: Comment on the pull request
-      if: ${{ inputs.comment == 'true' && github.event_name == 'pull_request' && steps.run.outputs.verdict != 'clean' }}
+      if: ${{ inputs.comment == 'true' && github.event_name == 'pull_request' && steps.run.outputs.stops_checking != '0' }}
       uses: actions/github-script@v7
       with:
         script: |

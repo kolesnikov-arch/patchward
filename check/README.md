@@ -1,11 +1,12 @@
 # patchward check
 
-**Does this change edit the tests that judge it?**
+**What does this change stop checking?**
 
 ```bash
 pip install patchward-check
-patchward-check scan    # your history
-patchward-check         # your working tree
+patchward-check --format retracted     # what this change stops checking
+patchward-check                        # did it edit its own tests?
+patchward-check scan                   # the same, across your history
 ```
 
 No config, no API key, no Docker, no model. It reads the diff. It runs nothing
@@ -13,6 +14,40 @@ and blocks nothing.
 
 *Installed as `patchward-check`: the bare `patchward` name on PyPI belongs to an
 unrelated project.*
+
+---
+
+## `--format retracted` — the one to put in front of a human
+
+It lists the expectations that existed before a change and do not exist after
+it, as before/after pairs, and says nothing else:
+
+```
+This change stops checking 2 things.
+
+  tests/test_ext_napoleon_docstring.py
+    was:  :ivar arg\_: some description
+    now:  :ivar arg_: some description
+
+    was:  :vartype arg\_: type
+    now:  :vartype arg_: type
+
+  1 source file changed in the same diff.
+```
+
+That is a real agent patch from the held-out evaluation, and it was wrong. The
+agent could not make the code produce the escaped output, so it changed what the
+test expected. Two lines, and you can see it. In the full diff you would not
+have.
+
+**There is no verdict in this output, and that is the design.** A rename, a
+deliberate behaviour change and a quietly weakened test all look identical here.
+Telling them apart takes a reviewer about two seconds; *finding* them among four
+hundred changed lines is what nobody has time for. So the tool does the finding
+and leaves the judgement where it belongs.
+
+It is also why this format, unlike a flag, is safe to post on a pull request: it
+makes no claim that can be wrong. The lines either were there or they were not.
 
 ---
 
@@ -96,20 +131,20 @@ patchward-check scan --author "github-actions"   # or your agent's commit identi
 
 ```yaml
 - uses: kolesnikov-arch/patchward/check@main
-  with:
-    fail-on: never      # report first. earn the block later.
 ```
 
-Findings go to the job summary. Both defaults are deliberately quiet: `fail-on:
-never`, because a new check that starts by breaking builds gets deleted rather
-than adopted — and `comment: false`, because the check fires on roughly a quarter
-of pull requests and only about 7% of those flags held up under blind re-reading.
-Commenting on all of them would be an accusation this check cannot support.
+It posts the retracted-expectation list as one pull request comment and updates
+it in place rather than adding a new one per push. Nothing is blocked:
+`fail-on` defaults to `never`, because a new check that starts by breaking
+builds gets deleted rather than adopted. Set `comment: false` to keep the output
+in the job summary only.
 
-Set `comment: true` if you want it in the thread anyway; it posts one comment and
-updates it in place rather than adding a new one per push.
-
-Where that 7% comes from, and why no single finding class can be shown to do better:
+The **verdict** side of the tool — `--format text|json`, the severity levels, and
+`fail-on` — is still there and still off by default. It fires on roughly a
+quarter of pull requests, and on a hand-labelled sample only about 7% of those
+flags held up under blind re-reading, which is fine for a list to skim and not
+fine for telling an author their pull request is suspect. Where that 7% comes
+from, and why no single finding class can be shown to do better:
 [APPENDIX_precision_by_class.md](study-artifacts/APPENDIX_precision_by_class.md).
 
 ## What this does not do — and why that matters

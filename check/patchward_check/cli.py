@@ -1,12 +1,19 @@
 """patchward — a verdict layer for AI coding agents.
 
-    patchward-check         read a diff; report whether the change edited its own tests
-    patchward-check scan    run that check across a range of commits in this repo
+    patchward-check                        did this change edit its own tests?
+    patchward-check --format retracted     what does this change stop checking?
+    patchward-check scan                   the same, across your history
 
 The check is the everyday command, and the default one: it reads a unified diff
 (stdin, a file, or a git revision range) and answers one question — did this
 change edit the tests that judge it? No tests are run. Nothing is blocked. It is
 a flag, not a gate.
+
+`--format retracted` answers a narrower question and gives no verdict at all: it
+lists the expectations that existed before this change and do not exist after
+it, as before/after pairs. That is a fact about the diff rather than a claim
+about the author, which is why it is the format worth putting in front of a
+human. It always exits 0.
 
 `scan` points the same rule at your existing history, which is usually where the
 first surprise lives.
@@ -16,6 +23,7 @@ import subprocess
 import sys
 
 from . import report as rep
+from . import retracted as ret
 from .detect import analyse
 
 EXIT_CLEAN, EXIT_FINDINGS, EXIT_ERROR = 0, 1, 2
@@ -54,8 +62,29 @@ def cmd_check(a):
             print("patchward: empty diff — nothing to check")
         return EXIT_CLEAN
 
-    res = analyse(diff, a.test_glob)
     label = a.label or a.rev or a.diff or "working tree"
+
+    # `retracted` is a different product from the rest of this command: an
+    # extraction with no verdict in it, so it never fails a build and ignores
+    # --fail-on. See retracted.py for why the two are kept apart.
+    if a.format in ("retracted", "retracted-md", "retracted-json"):
+        r = ret.extract(diff, a.test_glob)
+        # No --label means no subject: "This change stops checking …" reads
+        # better on a pull request than the path of a temporary file.
+        shown_label = a.label or ""
+        if a.format == "retracted-json":
+            import json
+            print(json.dumps(ret.as_dict(r, shown_label), indent=2, ensure_ascii=False))
+        else:
+            render = ret.markdown if a.format == "retracted-md" else ret.text
+            out = render(r, shown_label)
+            if out:
+                print(out)
+            elif not a.quiet:
+                print("patchward: this change stops checking nothing")
+        return EXIT_CLEAN
+
+    res = analyse(diff, a.test_glob)
 
     if a.format == "json":
         print(rep.as_json(res, label))
@@ -150,7 +179,9 @@ def build_parser():
                         metavar="REGEX",
                         help="extra regex marking a path as a test file "
                              "(repeatable)")
-        sp.add_argument("--format", choices=["text", "json", "markdown"],
+        sp.add_argument("--format",
+                        choices=["text", "json", "markdown",
+                                 "retracted", "retracted-md", "retracted-json"],
                         default="text")
 
     c = sub.add_parser("check", help="check one diff / revision range")
