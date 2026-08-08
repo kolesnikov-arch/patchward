@@ -130,7 +130,7 @@ patchward-check scan --author "github-actions"   # or your agent's commit identi
 ### In CI
 
 ```yaml
-- uses: kolesnikov-arch/patchward/check@main
+- uses: kolesnikov-arch/patchward/check@check-v0.2.0
 ```
 
 It posts the retracted-expectation list as one pull request comment and updates

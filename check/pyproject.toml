@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patchward-check"
-version = "0.1.1"
-description = "Does this change edit the tests that judge it? A flag for AI-authored diffs — reads the diff, runs nothing, blocks nothing."
+version = "0.2.0"
+description = "What does this change stop checking? Lists the test expectations that existed before a diff and not after it, as before/after pairs — reads the diff, runs nothing, blocks nothing, judges nothing."
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [{ name = "Dmitriy Kolesnikov" }]
