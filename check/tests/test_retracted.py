@@ -171,7 +171,7 @@ class NoiseFoundOnRealRepositories(unittest.TestCase):
         r = extract(SRC + diff("tests/test_calc.py", " def test_f():\n" + body))
         self.assertEqual([i.kind for i in r.items], ["bulk"])
         self.assertIn("20", r.items[0].was)
-        self.assertIn("too large to itemise", text(r))
+        self.assertIn("too large to list line by line", text(r))
 
 
 

@@ -308,7 +308,7 @@ def markdown(res: Retractions, label: str = "", limit: int = 12) -> str:
                 lines.append("")          # one blank line keeps the pairs apart
             first = False
             if r.kind == "bulk":
-                lines.append(f"! {r.was} — too large to itemise")
+                lines.append(f"! {r.was} — too large to list line by line")
             else:
                 if r.was:
                     lines.append(f"- {r.was.strip()}")
@@ -343,7 +343,7 @@ def text(res: Retractions, label: str = "", limit: int = 12) -> str:
             if shown >= limit:
                 break
             if r.kind == "bulk":
-                out.append(f"    {r.was} — too large to itemise")
+                out.append(f"    {r.was} — too large to list line by line")
             else:
                 if r.was:
                     out.append(f"    was:  {r.was.strip()}")
