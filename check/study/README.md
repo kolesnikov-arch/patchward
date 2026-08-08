@@ -125,4 +125,5 @@ agree wherever the original still works, which `test_stats.py` checks.
 | `study-artifacts/review_sample.jsonl` | blind review sheet | yes |
 | `study-artifacts/review_key.json` | unblinding key | yes, *after* the review |
 | `study-artifacts/RESULTS.md`, `summary.json` | the report | yes |
+| `study-artifacts/ERRATA.md` | corrections applied after release, with checksums either side | yes |
 | `cache/` | raw HTTP responses and diffs | **no** — gigabytes, and rebuildable |

@@ -9,7 +9,7 @@ existed**, and each recomputes from raw artifacts with a stdlib-only script.
 
 | | |
 |---|---|
-| **17/50 → 0/50** | On 50 held-out benchmark tasks, the same model silently shipped 17 wrong fixes ungated — and 0 when an independent layer decided what ships. [RESULTS.md](RESULTS.md) |
+| **17/50 → 0/50** | On 50 held-out benchmark tasks, the same model silently shipped 17 wrong fixes ungated — and 0 when an independent layer decided what ships. The price, in the same breath: 24 correct fixes delivered against 33, five correct fixes wrongly blocked, and not one confident vouch. [RESULTS.md](RESULTS.md) |
 | **a few %** | of merged pull requests in the wild quietly remove the evidence that judged them. Derived, not observed: 707 of 2933 flagged (24.1%), 6.9% of flags confirmed on blind re-reading → ~1.7%, interval roughly 0.4–4.3%. [Study #1](check/study-artifacts/RESULTS.md) |
 | **6.9%** | precision of the free detector in this repo — it cries wolf nine times in ten, and its recall was never established. Published because the previous README promised the number whichever way it came out. [`check/`](check/) |
 
