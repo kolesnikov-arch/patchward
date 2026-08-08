@@ -49,6 +49,14 @@ and leaves the judgement where it belongs.
 It is also why this format, unlike a flag, is safe to post on a pull request: it
 makes no claim that can be wrong. The lines either were there or they were not.
 
+**How loud is it on a real project?** It was run over 2,777 commits of twelve
+repositories drawn — with the seed written down first — from a frame registered
+months earlier for a different study. It says something on 16.6% of commits;
+half of those are three lines or fewer, two fifths are large enough that it
+declines to itemise them, and one of the twelve scored zero because it has three
+test files in total. The run, the draw and what all of that does and does not
+show: [`field-run/`](field-run/).
+
 ---
 
 ## The thing it looks for
