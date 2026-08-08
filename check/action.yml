@@ -39,6 +39,9 @@ outputs:
   stops-checking:
     description: "How many expectations this change retracts"
     value: ${{ steps.run.outputs.stops_checking }}
+  severity:
+    description: "0-3, from the verdict side of the tool"
+    value: ${{ steps.run.outputs.severity }}
   verdict:
     description: "clean | note | review | self-graded"
     value: ${{ steps.run.outputs.verdict }}
@@ -74,6 +77,21 @@ runs:
         head="${{ github.event.pull_request.head.sha || github.sha }}"
         [ -n "$base" ] || base="$(git rev-parse HEAD~1)"
 
+        # `actions/checkout` clones one commit by default, so the base of a
+        # pull request is usually not in the local object database and every
+        # `git diff` against it fails. Fetch it; if that is not possible, fall
+        # back to the previous commit and say so rather than reporting an empty
+        # diff as "this change stops checking nothing".
+        if ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+          git fetch --no-tags --depth=1 origin "$base" 2>/dev/null || true
+        fi
+        if ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+          echo "::warning::patchward: base commit $base is not available — " \
+               "add 'fetch-depth: 0' to actions/checkout. Comparing against " \
+               "HEAD~1 instead."
+          base="$(git rev-parse HEAD~1)"
+        fi
+
         args=()
         while IFS= read -r g; do
           [ -n "$g" ] && args+=(--test-glob "$g")
@@ -92,20 +110,32 @@ runs:
         patchward-check --diff /tmp/pw.diff --format json \
           --fail-on never "${args[@]}" > /tmp/pw.json || true
 
-        stops=$(python -c "import json;print(json.load(open('/tmp/pw.retracted.json'))['stops_checking'])")
-        echo "stops_checking=$stops" >> "$GITHUB_OUTPUT"
+        # Read both reports defensively and in one place. The commands above
+        # end in `|| true`, so a failure upstream leaves an empty file rather
+        # than no file — and `json.load` on an empty file under `set -e` would
+        # fail the whole step for a repository that simply has no test files.
+        python - <<'PY'
+        import json, os
 
-        verdict=$(python -c "import json;print(json.load(open('/tmp/pw.json'))['verdict'])")
-        echo "verdict=$verdict" >> "$GITHUB_OUTPUT"
-        python - <<'PY' >> "$GITHUB_OUTPUT"
-        import json
-        d = json.load(open("/tmp/pw.json"))
-        print("findings=" + json.dumps(d["findings"], ensure_ascii=False))
+        def read(path, key, default):
+            try:
+                with open(path, encoding="utf-8") as f:
+                    return json.load(f).get(key, default)
+            except Exception:
+                return default
+
+        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+            out.write(f"stops_checking={read('/tmp/pw.retracted.json', 'stops_checking', 0)}\n")
+            out.write(f"verdict={read('/tmp/pw.json', 'verdict', 'clean')}\n")
+            out.write(f"severity={read('/tmp/pw.json', 'severity', 0)}\n")
+            findings = read("/tmp/pw.json", "findings", [])
+            out.write("findings=" + json.dumps(findings, ensure_ascii=False) + "\n")
         PY
 
         cat /tmp/pw.md >> "$GITHUB_STEP_SUMMARY"
 
-        sev=$(python -c "import json;print(json.load(open('/tmp/pw.json'))['severity'])")
+        sev=$(grep '^severity=' "$GITHUB_OUTPUT" | tail -1 | cut -d= -f2)
+        verdict=$(grep '^verdict=' "$GITHUB_OUTPUT" | tail -1 | cut -d= -f2)
         case "${FAIL_ON}" in
           high)   limit=3 ;;
           medium) limit=2 ;;

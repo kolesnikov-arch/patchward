@@ -1,0 +1,30 @@
+# The action, running against this repository.
+#
+# It exists because until it ran here it had never run anywhere: the YAML
+# parsed and the command-line tool was tested against thousands of commits,
+# but the composite action itself — the output writes, the heredoc, the
+# comment step — had executed exactly zero times. Asking anyone to install
+# something in that state is asking them to be the first to find out.
+name: what this change stops checking
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write     # the comment step, and nothing else
+
+jobs:
+  retracted:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The base of a pull request is not in a depth-1 clone, and every
+          # diff against it fails. The action warns and falls back if this is
+          # missing; better not to need the fallback.
+          fetch-depth: 0
+
+      - uses: ./check
+        with:
+          fail-on: never
