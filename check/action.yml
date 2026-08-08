@@ -12,13 +12,19 @@ inputs:
   fail-on:
     description: >-
       Fail the check at this severity or above: high | medium | any | never.
-      Default `never` — start as a comment, not a blocker. Earn the block.
+      Default `never` — report, do not block. Earn the block.
     required: false
     default: "never"
   comment:
-    description: "Post the findings as a PR comment (true/false)."
+    description: >-
+      Post the findings as a pull request comment (true/false). Default `false`.
+      The check fires on roughly a quarter of pull requests, and on a hand-labelled
+      sample about 7% of those flags were confirmed as an expectation actually being
+      retracted. A comment on every one of them reads as an accusation the check
+      cannot support, so it is off unless you ask for it. Findings always go to the
+      job summary, where whoever is looking will find them.
     required: false
-    default: "true"
+    default: "false"
   test-glob:
     description: >-
       Extra regex marking a path as a test file, one per line.

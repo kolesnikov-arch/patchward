@@ -97,11 +97,17 @@ patchward-check scan --author "github-actions"   # or your agent's commit identi
 ```yaml
 - uses: kolesnikov-arch/patchward/check@main
   with:
-    fail-on: never      # start as a comment. earn the block later.
+    fail-on: never      # report first. earn the block later.
 ```
 
-It posts one comment on the PR and updates it in place. Default is `never`:
-a new check that starts by breaking builds gets deleted, not adopted.
+Findings go to the job summary. Both defaults are deliberately quiet: `fail-on:
+never`, because a new check that starts by breaking builds gets deleted rather
+than adopted — and `comment: false`, because the check fires on roughly a quarter
+of pull requests and only about 7% of those flags held up under blind re-reading.
+Commenting on all of them would be an accusation this check cannot support.
+
+Set `comment: true` if you want it in the thread anyway; it posts one comment and
+updates it in place rather than adding a new one per push.
 
 ## What this does not do — and why that matters
 
