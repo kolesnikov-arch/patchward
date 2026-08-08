@@ -10,15 +10,22 @@ from dataclasses import dataclass, field
 from typing import List
 
 _GIT_HEADER = re.compile(r"^diff --git a/(?P<a>.+?) b/(?P<b>.+)$")
-_HUNK = re.compile(r"^@@ -\d+(?:,\d+)? \+\d+(?:,\d+)? @@")
+_HUNK = re.compile(r"^@@ -(?P<start>\d+)(?:,\d+)? \+\d+(?:,\d+)? @@")
 _DEV_NULL = "/dev/null"
 
 
 @dataclass
 class Hunk:
-    """One @@ block. `removed`/`added` hold content only, prefix stripped."""
+    """One @@ block. `removed`/`added` hold content only, prefix stripped.
+
+    `old_start` is the first line number the hunk covers in the pre-image. It is
+    kept because the top of a file is imports and documentation rather than
+    expectations, and that is the difference between reading a rewritten
+    assertion and reading someone's edit to a module docstring.
+    """
     removed: List[str] = field(default_factory=list)
     added: List[str] = field(default_factory=list)
+    old_start: int = 0
 
     @property
     def is_pure_addition(self) -> bool:
@@ -84,10 +91,11 @@ def parse(text: str) -> List[FileDiff]:
             in_hunk = False
             continue
 
-        if _HUNK.match(raw):
+        m = _HUNK.match(raw)
+        if m:
             if cur is None:
                 continue
-            hunk = Hunk()
+            hunk = Hunk(old_start=int(m.group("start")))
             cur.hunks.append(hunk)
             in_hunk = True
             continue

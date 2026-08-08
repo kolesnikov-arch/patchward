@@ -56,10 +56,10 @@ runs:
 
     - name: Install patchward check
       shell: bash
-      # Pinned on purpose. An unpinned install makes `@check-v0.2.1` mean
+      # Pinned on purpose. An unpinned install makes `@check-v0.2.2` mean
       # "this action, plus whatever was on PyPI the morning you ran it", which
       # is not a thing a pinned reference should mean.
-      run: pip install --quiet "patchward-check==0.2.1"
+      run: pip install --quiet "patchward-check==0.2.2"
 
     - name: Run patchward check
       id: run

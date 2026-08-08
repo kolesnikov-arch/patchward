@@ -29,6 +29,14 @@ which is where this note nearly ended. Except that I had picked those three
 projects myself, which makes a good result about my taste rather than about the
 tool. So the run was done again, properly.
 
+One more false positive turned up afterwards, and it came from pointing the tool
+at its own repository: editing the **module docstring of a test file** was
+reported as three retracted expectations. The fix is that prose at the head of a
+file is prose. It is deliberately not "the first lines of a file do not count" —
+an expected literal sitting near the top is still an expectation, and a test
+pinning that down was already in the suite and failed when the cruder rule went
+in. The cruder rule was removed rather than the test.
+
 ## How the repositories were chosen
 
 Drawn from [`../study-artifacts/frame.json`](../study-artifacts/frame.json) —
@@ -45,7 +53,7 @@ Bare clones, `--depth 250`, so this reads each project's **most recent 250
 commits**, not its history.
 
 ```bash
-pip install patchward-check==0.2.1
+pip install patchward-check==0.2.2
 python check/field-run/scan.py clones > results.json
 ```
 
@@ -65,7 +73,7 @@ python check/field-run/scan.py clones > results.json
 | repository | commits | touched tests | retracts | rate | median | max |
 |---|---|---|---|---|---|---|
 | `Fission-AI/OpenSpec` | 250 | 167 | 104 | 41.6% | 4.5 | 77 |
-| `milvus-io/milvus` | 249 | 179 | 92 | 36.9% | 4 | 268 |
+| `milvus-io/milvus` | 249 | 179 | 92 | 36.9% | 4 | 281 |
 | `github/github-mcp-server` | 250 | 134 | 70 | 28.0% | 2 | 61 |
 | `traefik/traefik` | 193 | 82 | 41 | 21.2% | 2 | 112 |
 | `exo-explore/exo` | 250 | 72 | 42 | 16.8% | 4 | 21 |

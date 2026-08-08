@@ -174,5 +174,41 @@ class NoiseFoundOnRealRepositories(unittest.TestCase):
         self.assertIn("too large to itemise", text(r))
 
 
+
+class SilenceAndScope(unittest.TestCase):
+    """Found by pointing the tool at its own repository and at open-webui."""
+
+    def test_a_docstring_edit_at_the_head_of_a_test_file_is_not_a_retraction(self):
+        d = SRC + ("diff --git a/tests/test_x.py b/tests/test_x.py\n"
+                   "--- a/tests/test_x.py\n+++ b/tests/test_x.py\n"
+                   "@@ -1,4 +1,4 @@\n"
+                   '-The cases that matter are the ones found on real data.\n'
+                   '+The cases that matter came from real data, not reasoning.\n')
+        self.assertEqual(len(extract(d)), 0)
+
+    def test_a_real_expectation_at_the_head_still_counts(self):
+        d = SRC + ("diff --git a/tests/test_x.py b/tests/test_x.py\n"
+                   "--- a/tests/test_x.py\n+++ b/tests/test_x.py\n"
+                   "@@ -1,4 +1,4 @@\n"
+                   "-    assert f() == 5\n"
+                   "+    assert f() == 7\n")
+        self.assertEqual(len(extract(d)), 1)
+
+    def test_a_deep_hunk_is_not_treated_as_the_head(self):
+        """The sharpest real case lives hundreds of lines into a file."""
+        d = SRC + ("diff --git a/tests/test_pretty.py b/tests/test_pretty.py\n"
+                   "--- a/tests/test_pretty.py\n+++ b/tests/test_pretty.py\n"
+                   "@@ -618,4 +618,4 @@\n"
+                   "-    expected = 'x + 1'\n"
+                   "+    expected = '1 + x'\n")
+        self.assertEqual(len(extract(d)), 1)
+
+    def test_a_source_only_change_records_the_source_files(self):
+        """So the caller can tell 'nothing retracted' from 'nothing checked'."""
+        r = extract(SRC)
+        self.assertEqual(len(r), 0)
+        self.assertEqual(r.source_files, ["app/calc.py"])
+        self.assertEqual(r.test_files, [])
+
 if __name__ == "__main__":
     unittest.main()

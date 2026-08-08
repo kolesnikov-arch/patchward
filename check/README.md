@@ -129,7 +129,17 @@ patchward-check --diff some.patch     # a patch file
 patchward-check scan                  # last 200 commits
 patchward-check scan --range v2.0..HEAD
 patchward-check scan --author "github-actions"   # or your agent's commit identity
+
+patchward-check scan --format retracted          # history, without the verdict
 ```
+
+`scan --format retracted` prints, under the findings, how many of the commits it
+read touched a test file at all. That footer is not decoration. This view is
+silent about any change that never went near a test, so on a repository with few
+tests it is silent about nearly everything — and silence reads like a clean bill
+of health unless the coverage is printed beside it. One of the twelve projects in
+[`field-run/`](field-run/) scored zero across 247 commits, because it contains
+three test files in total.
 
 `--format json` for machines, `--format markdown` for a PR comment.
 `--fail-on high|medium|any|never` sets the exit code (default `high`).
@@ -138,7 +148,7 @@ patchward-check scan --author "github-actions"   # or your agent's commit identi
 ### In CI
 
 ```yaml
-- uses: kolesnikov-arch/patchward/check@check-v0.2.1
+- uses: kolesnikov-arch/patchward/check@check-v0.2.2
 ```
 
 It posts the retracted-expectation list as one pull request comment and updates

@@ -1,6 +1,6 @@
 """Run the retracted-expectation view over the drawn repositories.
 
-    pip install patchward-check==0.2.1
+    pip install patchward-check==0.2.2
     python check/field-run/draw.py | awk '{print $2}' | while read r; do
       git clone --bare --depth 250 --single-branch \
         "https://github.com/$r.git" "clones/$(echo $r | tr / _).git"
@@ -71,7 +71,7 @@ def main(base):
            for k in ("commits", "touched_tests", "retracting",
                      "summarised_as_bulk", "flagged_of_three_or_fewer")}
     tot["repositories"] = len(repos)
-    print(json.dumps({"tool": "patchward-check 0.2.1",
+    print(json.dumps({"tool": "patchward-check 0.2.2",
                       "max_commits_per_repo": MAX_COMMITS,
                       "totals": tot, "by_repository": repos},
                      indent=2, ensure_ascii=False))

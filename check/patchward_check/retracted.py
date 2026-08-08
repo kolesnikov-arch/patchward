@@ -51,6 +51,15 @@ PAIR_THRESHOLD = 0.6
 #: list nobody reads is worse than a sentence they do.
 ITEMISE_LIMIT = 8
 
+#: A hunk starting at or above this line is the head of the file — module
+#: docstring, licence header, imports. Inside it, prose is prose.
+HEAD_OF_FILE = 3
+
+#: Characters that make a line code rather than prose. Used only at the head of
+#: a file: deeper in, a line of prose may well be an expected output literal,
+#: and the sharpest case this tool exists for is exactly that.
+CODE_PUNCTUATION = set("=([{\"'\\:")
+
 #: Lines that cannot be an expectation no matter which hunk they sit in.
 #: Deliberately narrow. Note what is *not* here: string literals and bare
 #: values, because the sharpest real case rewrote an expected output literal
@@ -175,13 +184,26 @@ def _file_retractions(fd: FileDiff) -> List[Retraction]:
     for h in fd.hunks:
         gone = [l for l in _content(h.removed)
                 if not NOT_AN_EXPECTATION.match(l) and not moved_not_retracted(l)]
+        kept_added = [l for l in _content(h.added)
+                      if not NOT_AN_EXPECTATION.match(l)]
+
+        # Reflow first, and on both sides unfiltered by anything below: this
+        # asks whether the removed content survived, and narrowing one side
+        # would make a survivor look like a casualty.
+        if h.is_replacement and _reflowed(gone, kept_added):
+            continue
+
+        # The head of a file is its docstring and its imports. Found by running
+        # this over its own repository, where editing the module docstring of a
+        # test file was reported as three retracted expectations. The rule is
+        # "prose is not code", not "the first lines do not count": an expected
+        # literal sitting at the top of a file is still an expectation.
+        if h.old_start and h.old_start <= HEAD_OF_FILE:
+            gone = [l for l in gone
+                    if _looks_like_a_check(l) or (set(l) & CODE_PUNCTUATION)]
         if not gone:
             continue
         if h.is_replacement:
-            kept_added = [l for l in _content(h.added)
-                          if not NOT_AN_EXPECTATION.match(l)]
-            if _reflowed(gone, kept_added):
-                continue
             for was, now in _pair(gone, kept_added):
                 if now and _comment_only(was, now):
                     continue

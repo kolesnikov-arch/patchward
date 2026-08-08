@@ -81,7 +81,18 @@ def cmd_check(a):
             if out:
                 print(out)
             elif not a.quiet:
-                print("patchward: this change stops checking nothing")
+                # Two different silences, and conflating them is the failure
+                # this view is most likely to cause: a repository with three
+                # test files scores clean on everything, forever.
+                if r.test_files:
+                    print("patchward: this change stops checking nothing")
+                elif r.source_files:
+                    print(f"patchward: this change edits "
+                          f"{len(r.source_files)} source file(s) and no test "
+                          f"file. Nothing was retracted because nothing here "
+                          f"was checked.")
+                else:
+                    print("patchward: no source or test files in this diff")
         return EXIT_CLEAN
 
     res = analyse(diff, a.test_glob)
@@ -124,7 +135,72 @@ def _walk_log(a):
         yield parts[0].strip(), parts[1], parts[2], body
 
 
+def cmd_scan_retracted(a):
+    """History, through the extraction rather than the verdict.
+
+    The footer is the point as much as the rows are. This view is silent about
+    any change that never touched a test file, and on a repository that barely
+    has tests it is silent about almost everything — which reads exactly like a
+    clean bill of health unless the coverage is printed next to it.
+    """
+    rows = []
+    commits = touched = 0
+    for sha, author, subject, diff in _walk_log(a):
+        if a.author and a.author.lower() not in author.lower():
+            continue
+        if not diff.strip():
+            continue
+        commits += 1
+        r = ret.extract(diff, a.test_glob)
+        if r.test_files:
+            touched += 1
+        if len(r):
+            rows.append((sha[:10], author, subject[:58], r))
+
+    if a.format == "retracted-json":
+        import json
+        print(json.dumps({
+            "commits_scanned": commits,
+            "commits_touching_a_test_file": touched,
+            "commits_retracting": len(rows),
+            "commits": [{"commit": s, "author": au, "subject": sub,
+                         **ret.as_dict(r, s)} for s, au, sub, r in rows],
+        }, indent=2, ensure_ascii=False))
+        return EXIT_CLEAN
+
+    for sha, author, subject, r in rows:
+        n = len(r)
+        print(f"{sha}  {author[:18]:<18}  {subject}"
+              f"   — stops checking {n} thing{'' if n == 1 else 's'}")
+        for item in r.items[:3]:
+            if item.kind == "bulk":
+                print(f"      {item.was} — too large to itemise")
+            else:
+                if item.was:
+                    print(f"      was:  {item.was.strip()[:96]}")
+                print(f"      now:  {item.now.strip()[:96]}" if item.now
+                      else f"            ({ret._VERB[item.kind]})")
+        if n > 3:
+            print(f"      …and {n - 3} more")
+
+    if commits == 0:
+        print("patchward: no commits matched")
+        return EXIT_CLEAN
+
+    untouched = commits - touched
+    print(f"\n— {commits} commits scanned · {touched} touched a test file · "
+          f"{len(rows)} retracted something")
+    print(f"— {untouched} ({untouched / commits:.0%}) changed no test file at "
+          f"all. This view is silent about those, and silence here is not a "
+          f"clean bill of health — it is an absence of evidence either way.")
+    print(f"\n  {ret.FOOTER}")
+    return EXIT_CLEAN
+
+
 def cmd_scan(a):
+    if a.format in ("retracted", "retracted-md", "retracted-json"):
+        return cmd_scan_retracted(a)
+
     rows, counts = [], {"clean": 0, "note": 0, "review": 0, "self-graded": 0}
     for sha, author, subject, diff in _walk_log(a):
         if a.author and a.author.lower() not in author.lower():

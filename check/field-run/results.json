@@ -1,5 +1,5 @@
 {
-  "tool": "patchward-check 0.2.1",
+  "tool": "patchward-check 0.2.2",
   "max_commits_per_repo": 250,
   "totals": {
     "commits": 2777,
@@ -70,7 +70,7 @@
       "retracting": 92,
       "summarised_as_bulk": 47,
       "median_per_flagged": 4.0,
-      "max_per_flagged": 268,
+      "max_per_flagged": 281,
       "flagged_of_three_or_fewer": 43
     },
     "open-webui/open-webui": {
