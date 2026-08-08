@@ -1,12 +1,18 @@
-"""What the extraction must and must not report.
+"""What the extraction must and must not report. `python tests/test_retracted.py`.
 
-The cases that matter are the ones found on real data: an expected literal
-rewritten without the word `assert` anywhere near it, and a refactor that removes
-lines only to add them back.
+The cases that matter came from real data, not from reasoning: an expected
+literal rewritten without the word `assert` anywhere near it, a refactor that
+removes lines only to add them back, and — in `NoiseFoundOnRealRepositories` —
+every false positive this view produced across 950 commits of requests, flask
+and fastapi.
 """
+import pathlib
+import sys
 import unittest
 
-from patchward_check.retracted import extract, markdown, text
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+
+from patchward_check.retracted import extract, markdown, text  # noqa: E402
 
 
 def diff(path, hunk, old=None):
@@ -120,6 +126,52 @@ class Rendering(unittest.TestCase):
         r = extract(SRC + diff("tests/test_calc.py",
                                " import pytest\n-def test_gone():\n-    assert f(0) == 0\n"))
         self.assertIn("(removed)", text(r))
+
+
+class NoiseFoundOnRealRepositories(unittest.TestCase):
+    """Every case here was a false positive on requests, flask or fastapi."""
+
+    def test_a_trailing_comment_change_is_not_a_retraction(self):
+        d = SRC + diff("tests/test_calc.py",
+                       " def test_f():\n"
+                       "-    x = f()  # ty: ignore[missing-argument, unknown]\n"
+                       "+    x = f()  # ty: ignore[missing-argument]\n")
+        self.assertEqual(len(extract(d)), 0)
+
+    def test_a_hash_inside_a_string_is_not_a_comment(self):
+        """Dropping a real retraction to tidy output is the one trade not allowed."""
+        d = SRC + diff("tests/test_calc.py",
+                       " def test_f():\n"
+                       "-    assert render() == 'tag #1'\n"
+                       "+    assert render() == 'tag #2'\n")
+        self.assertEqual(len(extract(d)), 1)
+
+    def test_rewrapping_one_expression_is_not_a_retraction(self):
+        d = SRC + diff("tests/test_calc.py",
+                       " def test_f():\n"
+                       "-    order = [\n"
+                       "-        r.name\n"
+                       "-        for r in rules()\n"
+                       "-    ]\n"
+                       "+    order = [r.name for r in rules()]\n")
+        self.assertEqual(len(extract(d)), 0)
+
+    def test_imports_and_fixtures_are_not_expectations(self):
+        d = SRC + diff("tests/test_calc.py",
+                       " def test_f():\n"
+                       "-from flask.globals import app_ctx\n"
+                       "+from flask.testing import FlaskClient\n"
+                       "-@pytest.fixture(scope='session')\n"
+                       "+@pytest.fixture\n")
+        self.assertEqual(len(extract(d)), 0)
+
+    def test_a_large_rewrite_is_summarised_not_listed(self):
+        body = "".join(f"-    assert f({i}) == {i}\n+    assert f({i}) == {i + 1}\n"
+                       for i in range(20))
+        r = extract(SRC + diff("tests/test_calc.py", " def test_f():\n" + body))
+        self.assertEqual([i.kind for i in r.items], ["bulk"])
+        self.assertIn("20", r.items[0].was)
+        self.assertIn("too large to itemise", text(r))
 
 
 if __name__ == "__main__":

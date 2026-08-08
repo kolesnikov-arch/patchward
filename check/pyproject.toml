@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patchward-check"
-version = "0.2.0"
+version = "0.2.1"
 description = "What does this change stop checking? Lists the test expectations that existed before a diff and not after it, as before/after pairs — reads the diff, runs nothing, blocks nothing, judges nothing."
 readme = "README.md"
 requires-python = ">=3.8"

@@ -31,6 +31,7 @@ re-indented, not retracted, and is dropped — the same multiset rule the detect
 uses, for the same reason it exists there.
 """
 import difflib
+import re
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import List, Optional
@@ -42,6 +43,29 @@ from .diff import FileDiff, parse
 #: willing to show them as a before/after pair rather than as a bare removal.
 #: Pairing is presentation only: the "was" line is exact either way.
 PAIR_THRESHOLD = 0.6
+
+#: Above this many retractions in one file, the file is summarised instead of
+#: itemised. Measured, not guessed: across 950 commits of requests, flask and
+#: fastapi the per-commit count ran to 69 and 102, and those were test rewrites
+#: and dependency bumps rather than anything a reviewer wants line by line. A
+#: list nobody reads is worse than a sentence they do.
+ITEMISE_LIMIT = 8
+
+#: Lines that cannot be an expectation no matter which hunk they sit in.
+#: Deliberately narrow. Note what is *not* here: string literals and bare
+#: values, because the sharpest real case rewrote an expected output literal
+#: with no assertion keyword anywhere near it. Excluding those to cut noise
+#: would cut the one case this tool exists for.
+NOT_AN_EXPECTATION = re.compile(
+    r"^\s*("
+    r"(from\s+\S+\s+)?import\s"                  # imports move constantly
+    r"|@(?!.*\b(skip|skipif|xfail|ignore|only|disabled)\b)"  # non-suppression decorators
+    r"|(#|//|/\*|\*/)"                           # comments, incl. `# type: ignore`
+    r"|(async\s+)?def\s+(?!test)"                # helper defs; test defs handled above
+    r"|@?(pytest\.)?fixture\b"
+    r")",
+    re.IGNORECASE,
+)
 
 
 @dataclass
@@ -94,6 +118,41 @@ def _looks_like_a_check(line: str) -> bool:
     return bool(ASSERTION.search(line) or TEST_DECL.match(line))
 
 
+def _code_part(line: str) -> str:
+    """The line with a trailing comment removed, whitespace squeezed.
+
+    Only strips a marker that sits outside a string literal — counted by quotes
+    rather than assumed. `assert x == "a#b"` must not lose its expected value:
+    dropping a real retraction to tidy the output is the one trade this module
+    is not allowed to make.
+    """
+    for i, ch in enumerate(line):
+        if ch in "#/" and (ch == "#" or line[i:i + 2] == "//"):
+            head = line[:i]
+            if head.count('"') % 2 == 0 and head.count("'") % 2 == 0:
+                return "".join(head.split())
+    return "".join(line.split())
+
+
+def _comment_only(was: str, now: str) -> bool:
+    """True when the two lines differ only after a comment marker."""
+    return was != now and _code_part(was) == _code_part(now) != ""
+
+
+def _reflowed(removed: List[str], added: List[str]) -> bool:
+    """True when the removed lines survive verbatim as re-wrapped added lines.
+
+    Splitting one expression across lines, or joining it back, removes and adds
+    lines whose *content* never changed. That is the same "moved, not retracted"
+    rule the multiset check applies to whole lines, one level down.
+    """
+    if not removed or not added:
+        return False
+    flat_removed = "".join("".join(l.split()) for l in removed)
+    flat_added = "".join("".join(l.split()) for l in added)
+    return bool(flat_removed) and flat_removed in flat_added
+
+
 def _file_retractions(fd: FileDiff) -> List[Retraction]:
     path = fd.path or fd.old_path
 
@@ -114,11 +173,18 @@ def _file_retractions(fd: FileDiff) -> List[Retraction]:
         return False
 
     for h in fd.hunks:
-        gone = [l for l in _content(h.removed) if not moved_not_retracted(l)]
+        gone = [l for l in _content(h.removed)
+                if not NOT_AN_EXPECTATION.match(l) and not moved_not_retracted(l)]
         if not gone:
             continue
         if h.is_replacement:
-            for was, now in _pair(gone, _content(h.added)):
+            kept_added = [l for l in _content(h.added)
+                          if not NOT_AN_EXPECTATION.match(l)]
+            if _reflowed(gone, kept_added):
+                continue
+            for was, now in _pair(gone, kept_added):
+                if now and _comment_only(was, now):
+                    continue
                 out.append(Retraction(path, "changed" if now else "removed",
                                       was=was, now=now))
         else:
@@ -127,6 +193,12 @@ def _file_retractions(fd: FileDiff) -> List[Retraction]:
 
     out += [Retraction(path, "suppressed", now=l)
             for l in fd.added if SUPPRESSION.search(l)]
+
+    if len(out) > ITEMISE_LIMIT:
+        # A rewrite this size is a rewrite, not a retraction anyone can read
+        # line by line. Say so, and say how big, rather than printing a wall.
+        return [Retraction(path, "bulk", was=f"{len(out)} existing test lines "
+                                             f"replaced or removed")]
     return out
 
 
@@ -159,6 +231,7 @@ _VERB = {
     "changed": "changed",
     "removed": "removed",
     "suppressed": "no longer runs",
+    "bulk": "a rewrite this size is not itemised",
 }
 
 
@@ -186,10 +259,13 @@ def markdown(res: Retractions, label: str = "", limit: int = 12) -> str:
             if not first:
                 lines.append("")          # one blank line keeps the pairs apart
             first = False
-            if r.was:
-                lines.append(f"- {r.was.strip()}")
-            if r.now:
-                lines.append(f"+ {r.now.strip()}")
+            if r.kind == "bulk":
+                lines.append(f"! {r.was} — too large to itemise")
+            else:
+                if r.was:
+                    lines.append(f"- {r.was.strip()}")
+                if r.now:
+                    lines.append(f"+ {r.now.strip()}")
             shown += 1
         lines.append("```")
         lines.append("")
@@ -218,12 +294,15 @@ def text(res: Retractions, label: str = "", limit: int = 12) -> str:
         for r in items:
             if shown >= limit:
                 break
-            if r.was:
-                out.append(f"    was:  {r.was.strip()}")
-            if r.now:
-                out.append(f"    now:  {r.now.strip()}")
-            if not r.now:
-                out.append(f"          ({_VERB[r.kind]})")
+            if r.kind == "bulk":
+                out.append(f"    {r.was} — too large to itemise")
+            else:
+                if r.was:
+                    out.append(f"    was:  {r.was.strip()}")
+                if r.now:
+                    out.append(f"    now:  {r.now.strip()}")
+                else:
+                    out.append(f"          ({_VERB[r.kind]})")
             out.append("")
             shown += 1
     remaining = len(res) - shown
