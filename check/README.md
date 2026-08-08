@@ -109,6 +109,9 @@ Commenting on all of them would be an accusation this check cannot support.
 Set `comment: true` if you want it in the thread anyway; it posts one comment and
 updates it in place rather than adding a new one per push.
 
+Where that 7% comes from, and why no single finding class can be shown to do better:
+[APPENDIX_precision_by_class.md](study-artifacts/APPENDIX_precision_by_class.md).
+
 ## What this does not do — and why that matters
 
 **It does not know whether your change is correct.** It knows whether the
