@@ -2,47 +2,132 @@
   "tool": "patchward-check 0.2.2",
   "max_commits_per_repo": 250,
   "totals": {
-    "commits": 2777,
-    "touched_tests": 951,
-    "retracting": 462,
-    "summarised_as_bulk": 182,
-    "flagged_of_three_or_fewer": 238,
-    "repositories": 12
+    "commits": 8302,
+    "touched_tests": 3422,
+    "retracting": 1638,
+    "summarised_as_bulk": 519,
+    "flagged_of_three_or_fewer": 933,
+    "commits_too_large_to_read": 126,
+    "repositories": 36
   },
   "by_repository": {
+    "BerriAI/litellm": {
+      "commits": 164,
+      "touched_tests": 122,
+      "retracting": 51,
+      "summarised_as_bulk": 17,
+      "commits_too_large_to_read": 0,
+      "median_per_flagged": 3,
+      "max_per_flagged": 24,
+      "flagged_of_three_or_fewer": 30
+    },
     "Comfy-Org/ComfyUI": {
       "commits": 250,
-      "touched_tests": 20,
+      "touched_tests": 19,
       "retracting": 4,
       "summarised_as_bulk": 1,
+      "commits_too_large_to_read": 1,
       "median_per_flagged": 2.0,
       "max_per_flagged": 25,
       "flagged_of_three_or_fewer": 3
     },
     "Fission-AI/OpenSpec": {
       "commits": 250,
-      "touched_tests": 167,
-      "retracting": 104,
-      "summarised_as_bulk": 39,
-      "median_per_flagged": 4.5,
+      "touched_tests": 165,
+      "retracting": 103,
+      "summarised_as_bulk": 38,
+      "commits_too_large_to_read": 2,
+      "median_per_flagged": 4,
       "max_per_flagged": 77,
       "flagged_of_three_or_fewer": 46
     },
+    "NousResearch/hermes-agent": {
+      "commits": 238,
+      "touched_tests": 180,
+      "retracting": 65,
+      "summarised_as_bulk": 7,
+      "commits_too_large_to_read": 0,
+      "median_per_flagged": 3,
+      "max_per_flagged": 9,
+      "flagged_of_three_or_fewer": 41
+    },
+    "OpenBB-finance/OpenBB": {
+      "commits": 249,
+      "touched_tests": 75,
+      "retracting": 44,
+      "summarised_as_bulk": 13,
+      "commits_too_large_to_read": 54,
+      "median_per_flagged": 4.0,
+      "max_per_flagged": 34,
+      "flagged_of_three_or_fewer": 20
+    },
+    "OpenHands/OpenHands": {
+      "commits": 248,
+      "touched_tests": 163,
+      "retracting": 97,
+      "summarised_as_bulk": 31,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 3,
+      "max_per_flagged": 57,
+      "flagged_of_three_or_fewer": 49
+    },
+    "Wei-Shaw/sub2api": {
+      "commits": 147,
+      "touched_tests": 125,
+      "retracting": 64,
+      "summarised_as_bulk": 14,
+      "commits_too_large_to_read": 0,
+      "median_per_flagged": 3.0,
+      "max_per_flagged": 40,
+      "flagged_of_three_or_fewer": 34
+    },
+    "axios/axios": {
+      "commits": 248,
+      "touched_tests": 108,
+      "retracting": 30,
+      "summarised_as_bulk": 10,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 2.0,
+      "max_per_flagged": 22,
+      "flagged_of_three_or_fewer": 19
+    },
     "clash-verge-rev/clash-verge-rev": {
       "commits": 249,
-      "touched_tests": 10,
+      "touched_tests": 9,
       "retracting": 4,
       "summarised_as_bulk": 2,
+      "commits_too_large_to_read": 1,
       "median_per_flagged": 3.5,
       "max_per_flagged": 8,
       "flagged_of_three_or_fewer": 2
     },
+    "coder/code-server": {
+      "commits": 250,
+      "touched_tests": 26,
+      "retracting": 22,
+      "summarised_as_bulk": 7,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 3.0,
+      "max_per_flagged": 22,
+      "flagged_of_three_or_fewer": 19
+    },
+    "etcd-io/etcd": {
+      "commits": 144,
+      "touched_tests": 54,
+      "retracting": 37,
+      "summarised_as_bulk": 10,
+      "commits_too_large_to_read": 0,
+      "median_per_flagged": 4,
+      "max_per_flagged": 67,
+      "flagged_of_three_or_fewer": 18
+    },
     "exo-explore/exo": {
       "commits": 250,
-      "touched_tests": 72,
-      "retracting": 42,
+      "touched_tests": 70,
+      "retracting": 41,
       "summarised_as_bulk": 5,
-      "median_per_flagged": 4.0,
+      "commits_too_large_to_read": 2,
+      "median_per_flagged": 3,
       "max_per_flagged": 21,
       "flagged_of_three_or_fewer": 21
     },
@@ -51,72 +136,240 @@
       "touched_tests": 66,
       "retracting": 33,
       "summarised_as_bulk": 9,
+      "commits_too_large_to_read": 5,
       "median_per_flagged": 4,
       "max_per_flagged": 114,
       "flagged_of_three_or_fewer": 15
     },
+    "firecrawl/firecrawl": {
+      "commits": 235,
+      "touched_tests": 125,
+      "retracting": 55,
+      "summarised_as_bulk": 15,
+      "commits_too_large_to_read": 0,
+      "median_per_flagged": 2,
+      "max_per_flagged": 38,
+      "flagged_of_three_or_fewer": 41
+    },
     "github/github-mcp-server": {
       "commits": 250,
-      "touched_tests": 134,
+      "touched_tests": 133,
       "retracting": 70,
       "summarised_as_bulk": 31,
+      "commits_too_large_to_read": 1,
       "median_per_flagged": 2.0,
       "max_per_flagged": 61,
       "flagged_of_three_or_fewer": 41
     },
+    "github/spec-kit": {
+      "commits": 244,
+      "touched_tests": 160,
+      "retracting": 28,
+      "summarised_as_bulk": 6,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 2.5,
+      "max_per_flagged": 17,
+      "flagged_of_three_or_fewer": 17
+    },
+    "gogs/gogs": {
+      "commits": 249,
+      "touched_tests": 36,
+      "retracting": 20,
+      "summarised_as_bulk": 8,
+      "commits_too_large_to_read": 4,
+      "median_per_flagged": 1.0,
+      "max_per_flagged": 72,
+      "flagged_of_three_or_fewer": 15
+    },
+    "gohugoio/hugo": {
+      "commits": 247,
+      "touched_tests": 119,
+      "retracting": 56,
+      "summarised_as_bulk": 12,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 2.0,
+      "max_per_flagged": 149,
+      "flagged_of_three_or_fewer": 40
+    },
+    "google-gemini/gemini-cli": {
+      "commits": 250,
+      "touched_tests": 158,
+      "retracting": 79,
+      "summarised_as_bulk": 26,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 3,
+      "max_per_flagged": 53,
+      "flagged_of_three_or_fewer": 44
+    },
+    "hashicorp/terraform": {
+      "commits": 236,
+      "touched_tests": 142,
+      "retracting": 81,
+      "summarised_as_bulk": 32,
+      "commits_too_large_to_read": 0,
+      "median_per_flagged": 3,
+      "max_per_flagged": 103,
+      "flagged_of_three_or_fewer": 42
+    },
+    "k3s-io/k3s": {
+      "commits": 245,
+      "touched_tests": 37,
+      "retracting": 19,
+      "summarised_as_bulk": 2,
+      "commits_too_large_to_read": 0,
+      "median_per_flagged": 2,
+      "max_per_flagged": 9,
+      "flagged_of_three_or_fewer": 12
+    },
+    "mermaid-js/mermaid": {
+      "commits": 164,
+      "touched_tests": 50,
+      "retracting": 26,
+      "summarised_as_bulk": 12,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 2.0,
+      "max_per_flagged": 50,
+      "flagged_of_three_or_fewer": 16
+    },
+    "microsoft/playwright": {
+      "commits": 250,
+      "touched_tests": 158,
+      "retracting": 96,
+      "summarised_as_bulk": 22,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 2.0,
+      "max_per_flagged": 175,
+      "flagged_of_three_or_fewer": 67
+    },
     "milvus-io/milvus": {
       "commits": 249,
-      "touched_tests": 179,
-      "retracting": 92,
-      "summarised_as_bulk": 47,
-      "median_per_flagged": 4.0,
-      "max_per_flagged": 281,
-      "flagged_of_three_or_fewer": 43
+      "touched_tests": 175,
+      "retracting": 89,
+      "summarised_as_bulk": 45,
+      "commits_too_large_to_read": 4,
+      "median_per_flagged": 4,
+      "max_per_flagged": 227,
+      "flagged_of_three_or_fewer": 42
+    },
+    "netdata/netdata": {
+      "commits": 250,
+      "touched_tests": 48,
+      "retracting": 39,
+      "summarised_as_bulk": 23,
+      "commits_too_large_to_read": 4,
+      "median_per_flagged": 10,
+      "max_per_flagged": 67,
+      "flagged_of_three_or_fewer": 12
+    },
+    "odysseus-dev/odysseus": {
+      "commits": 231,
+      "touched_tests": 126,
+      "retracting": 39,
+      "summarised_as_bulk": 6,
+      "commits_too_large_to_read": 2,
+      "median_per_flagged": 2,
+      "max_per_flagged": 22,
+      "flagged_of_three_or_fewer": 26
+    },
+    "ollama/ollama": {
+      "commits": 250,
+      "touched_tests": 161,
+      "retracting": 108,
+      "summarised_as_bulk": 39,
+      "commits_too_large_to_read": 3,
+      "median_per_flagged": 3.0,
+      "max_per_flagged": 39,
+      "flagged_of_three_or_fewer": 64
     },
     "open-webui/open-webui": {
       "commits": 247,
       "touched_tests": 0,
       "retracting": 0,
       "summarised_as_bulk": 0,
+      "commits_too_large_to_read": 1,
       "median_per_flagged": null,
       "max_per_flagged": null,
       "flagged_of_three_or_fewer": 0
     },
+    "paperless-ngx/paperless-ngx": {
+      "commits": 236,
+      "touched_tests": 94,
+      "retracting": 35,
+      "summarised_as_bulk": 9,
+      "commits_too_large_to_read": 6,
+      "median_per_flagged": 2,
+      "max_per_flagged": 20,
+      "flagged_of_three_or_fewer": 26
+    },
     "roboflow/supervision": {
       "commits": 250,
-      "touched_tests": 125,
+      "touched_tests": 124,
       "retracting": 41,
       "summarised_as_bulk": 18,
+      "commits_too_large_to_read": 3,
       "median_per_flagged": 3,
       "max_per_flagged": 30,
       "flagged_of_three_or_fewer": 22
     },
     "shadcn-ui/ui": {
       "commits": 248,
-      "touched_tests": 42,
-      "retracting": 19,
+      "touched_tests": 37,
+      "retracting": 15,
       "summarised_as_bulk": 4,
-      "median_per_flagged": 2,
+      "commits_too_large_to_read": 13,
+      "median_per_flagged": 3,
       "max_per_flagged": 34,
-      "flagged_of_three_or_fewer": 14
+      "flagged_of_three_or_fewer": 10
     },
     "sveltejs/svelte": {
       "commits": 100,
-      "touched_tests": 54,
+      "touched_tests": 53,
       "retracting": 12,
       "summarised_as_bulk": 2,
+      "commits_too_large_to_read": 1,
       "median_per_flagged": 3.0,
       "max_per_flagged": 10,
       "flagged_of_three_or_fewer": 7
     },
     "traefik/traefik": {
       "commits": 193,
-      "touched_tests": 82,
-      "retracting": 41,
-      "summarised_as_bulk": 24,
+      "touched_tests": 80,
+      "retracting": 39,
+      "summarised_as_bulk": 23,
+      "commits_too_large_to_read": 2,
       "median_per_flagged": 2,
       "max_per_flagged": 112,
-      "flagged_of_three_or_fewer": 24
+      "flagged_of_three_or_fewer": 23
+    },
+    "ultralytics/ultralytics": {
+      "commits": 250,
+      "touched_tests": 22,
+      "retracting": 15,
+      "summarised_as_bulk": 1,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 2,
+      "max_per_flagged": 14,
+      "flagged_of_three_or_fewer": 12
+    },
+    "vercel/next.js": {
+      "commits": 250,
+      "touched_tests": 115,
+      "retracting": 52,
+      "summarised_as_bulk": 12,
+      "commits_too_large_to_read": 7,
+      "median_per_flagged": 4.5,
+      "max_per_flagged": 157,
+      "flagged_of_three_or_fewer": 21
+    },
+    "vitejs/vite": {
+      "commits": 250,
+      "touched_tests": 87,
+      "retracting": 29,
+      "summarised_as_bulk": 7,
+      "commits_too_large_to_read": 1,
+      "median_per_flagged": 2,
+      "max_per_flagged": 29,
+      "flagged_of_three_or_fewer": 16
     }
   }
 }
