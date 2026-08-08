@@ -20,11 +20,24 @@ be included in this study, and the study does not need their addresses to work.
 
 **What changed.**
 
+Checksums below are of **the file as it arrives from a fresh clone** — LF line endings
+for the `.jsonl` files, per `.gitattributes`. That is the only hash a reader can
+reproduce, so it is the only one worth publishing.
+
 | file | records touched | field | sha256 before → after |
 |---|---|---|---|
-| `review_sample.jsonl` | 5 of 120 | `body` | `8e168516…dee5d567` → `4006526d…6ceb1ef4` |
-| `review_pass2.jsonl` | 5 of 120 | `body` | `442cdee7…6008f357` → `06ead701…df3c74fd` |
+| `review_sample.jsonl` | 5 of 120 | `body` | `1d497602…cd82024f` → `25868972…da8ed63b` |
+| `review_pass2.jsonl` | 5 of 120 | `body` | `5a9dd3a3…fc18517c` → `6e4a72d0…f13696899` |
 | `population.jsonl.gz` | 12 of 192 978 | `title` | `8f79cd01…6ac2d1bd` → `f1e6ff5a…b58e0f89` |
+
+> **This table was wrong when first published, for one hour.** The first version carried
+> checksums taken from a Windows working copy, where the `.jsonl` files sit in CRLF.
+> `.gitattributes` stores them as LF, so no reader cloning this repository could have
+> reproduced either figure — the same class of defect already recorded in the survey
+> instrument's log, committed a second time by the same author in the document that
+> documents it. Caught by cloning the repository and checking the hashes the way a
+> stranger would, which is the only reason it was caught at all. The `.gz` figures were
+> always correct: `.gitattributes` marks it `binary`, so no conversion applies.
 
 Each address was replaced in place with the literal string `[email redacted]`. The
 substitution was done on the raw line text rather than by re-serialising JSON, so every
